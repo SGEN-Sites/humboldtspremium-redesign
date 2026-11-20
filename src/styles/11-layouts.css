@@ -1,0 +1,33 @@
+/* owner requests, 2026-11-20 */
+/* ---------- wheel card, sleeker: the wheel overflows the card on the left; words and actions use the full width ---------- */
+.wheel2 { grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 3rem; padding: 2rem 2.6rem 2rem calc(clamp(250px, 24vw, 330px) + 2.4rem); margin-top: clamp(4rem, 7vw, 6rem); margin-bottom: 2.5rem; overflow: visible; }
+.wheel2__stage { position: absolute; left: clamp(.6rem, 1.5vw, 1.6rem); top: 50%; width: clamp(250px, 24vw, 330px); margin: 0; transform: translateY(-50%); z-index: 2; }
+.wheel2__txt h3 { font-size: clamp(1.9rem, 1.3rem + 1.9vw, 3.1rem); line-height: 1.05; margin-bottom: .55rem; }
+.wheel2__txt .kicker { margin-bottom: .7rem; }
+.wheel2__txt > p { font-size: 1.15rem; }
+.wheel2__meta { flex-direction: column; align-items: stretch; justify-content: center; gap: .7rem; margin: 0; min-width: 270px; }
+.wheel2__meta .btn { width: 100%; min-height: 50px; }
+.wheel2__next { justify-content: center; }
+.wheel2__note { text-align: center; }
+@media (max-width: 1100px) { .wheel2 { grid-template-columns: 1fr; padding-left: calc(clamp(220px, 26vw, 280px) + 1.8rem); } .wheel2__stage { width: clamp(220px, 26vw, 280px); } .wheel2__meta { flex-direction: row; flex-wrap: wrap; align-items: center; min-width: 0; } .wheel2__meta .btn { width: auto; } }
+@media (max-width: 760px) { .wheel2 { grid-template-columns: 1fr; padding: calc(150px + 1.4rem) 1.3rem 1.6rem; margin-top: 150px; text-align: center; } .wheel2__stage { left: 50%; top: 0; width: 260px; transform: translate(-50%, -50%); } .wheel2__meta { flex-direction: column; align-items: stretch; } .wheel2__meta .btn { width: 100%; } }
+
+/* ---------- shop by feeling: an expanding accordion ---------- */
+.feel { display: flex; gap: .8rem; height: clamp(440px, 38vw, 580px); }
+.feel__tile { flex: 1 1 0; min-width: 0; min-height: 0; transition: flex-grow .9s var(--ease), box-shadow .5s; }
+.feel__tile.is-open { flex-grow: 3.4; box-shadow: 0 40px 70px -40px rgba(0, 0, 0, .95), inset 0 0 0 1px rgba(252, 229, 148, .3); }
+.feel__spine { position: absolute; left: 50%; bottom: 1.6rem; z-index: 2; transform: translateX(-50%) rotate(180deg); writing-mode: vertical-rl; font: 600 clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem)/1 var(--f-accent); font-style: italic; letter-spacing: .02em; color: var(--fog); text-shadow: 0 4px 24px rgba(0, 0, 0, .7); opacity: 0; transition: opacity .5s var(--ease) .15s; pointer-events: none; }
+html.js .feel__tile:not(.is-open) .feel__spine { opacity: .95; }
+html.js .feel__tile:not(.is-open) .feel__body { opacity: 0; transform: translateY(14px); }
+.feel__body { transition: opacity .6s var(--ease) .2s, transform .6s var(--ease) .2s; min-width: 300px; }
+.feel__tile:not(.is-open) .feel__shade { background: linear-gradient(0deg, rgba(14, 9, 6, .85), rgba(14, 9, 6, .35) 60%, rgba(14, 9, 6, .25)); }
+html:not(.js) .feel { height: auto; }
+html:not(.js) .feel__tile { min-height: 360px; }
+@media (max-width: 760px) {
+  .feel { flex-direction: column; height: auto; }
+  .feel__tile { flex: none; min-height: 92px; height: 92px; transition: height .8s var(--ease); }
+  .feel__tile.is-open { height: 330px; }
+  .feel__spine { writing-mode: horizontal-tb; transform: translateY(-50%); left: 1.4rem; top: 50%; bottom: auto; font-size: 1.8rem; }
+  .feel__body { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .feel__tile, .feel__body, .feel__spine { transition: none; } }

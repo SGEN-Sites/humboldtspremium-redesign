@@ -1,0 +1,15 @@
+/* performance pass 3 (measured: fog layers were the largest scroll cost, then the masked hero video) */
+/* fog: two narrower layers instead of three, and none at all while its section is off screen */
+.fog__l { left: -30%; width: 160%; }
+.fog__l--3 { display: none; }
+@keyframes fogDrift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(18%, 0, 0); } }
+.fog.is-off { visibility: hidden; }
+.fog.is-off .fog__l { animation-play-state: paused; }
+/* the hero fades into the page through its shade, not through a mask over the playing video */
+.hero__media { -webkit-mask: none !important; mask: none !important; }
+.hero__shade { background:
+  linear-gradient(90deg, rgba(14, 9, 6, .88) 0%, rgba(14, 9, 6, .62) 32%, rgba(14, 9, 6, .12) 60%, rgba(14, 9, 6, 0) 75%),
+  radial-gradient(120% 70% at 20% 100%, rgba(14, 9, 6, .85), rgba(14, 9, 6, .4) 45%, rgba(14, 9, 6, 0) 75%),
+  linear-gradient(180deg, rgba(18, 12, 8, .55) 0%, rgba(18, 12, 8, 0) 22%, rgba(18, 12, 8, 0) 58%, #120c08 100%) !important; }
+/* the sticky product filter bar is solid: a live blur under a sticky bar re-blurred the grid on every scroll frame */
+.pg-tools { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(24, 16, 11, .97); }

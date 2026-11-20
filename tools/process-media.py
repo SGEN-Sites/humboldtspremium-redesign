@@ -27,38 +27,38 @@ G = 'private/gen'; S = 'private/sources'
 # id: (source, kind, widths, crop(l,t,r,b fractions) or None, alt, quality)
 IMAGES = {
   # --- the real place (owner / live / press) ---
-  'courtyard-day':      (f'{S}/gmaps-owner/own-7.jpg', 'owner', [800, 1400, 2200], None, 'The courtyard in daylight: teal-cushioned wicker sofas, a round teak table and chairs, the rock waterfall and the sunburst sign over the gate', 86),
-  'waterfall-day':      (f'{S}/gmaps-owner/own-6.jpg', 'owner', [800, 1400, 2000], None, 'The rock waterfall in the courtyard, with a small Bigfoot statue sitting on the rocks', 86),
-  'courtyard-teal':     (f'{S}/gmaps-owner/own-2.jpg', 'owner', [640], None, 'Teal wicker sofas and teak tables on the courtyard turf', 86),
-  'storefront-day':     (f'{S}/gmaps-owner/own-0.jpg', 'owner', [800, 1400, 2000], None, "The Humboldt's Premium storefront at 460 I St with the sunburst redwood mural", 86),
-  'storefront-dusk':    (f'{S}/gmaps-owner/own-8.jpg', 'owner', [700, 1441], None, 'The store at dusk with its wall lights on', 88),
-  'storefront-night':   (f'{S}/live/ba64af_091071175953464297e8ac6318d375bb-mv2.jpg', 'live', [800, 1400, 2000], None, 'The store and courtyard wall lit up at night, seen across the parking lot', 86),
-  'street-view':        (f'{S}/gmaps-owner/own-3.jpg', 'owner', [800, 1400], None, 'The building on I Street', 86),
-  'interior-wide':      (f'{S}/live/ba64af_4dd63dca4a464ceda299fb6660e8c619-mv2.jpg', 'live', [800, 1400, 2200], None, 'Inside the Arcata store: glass counters, slat walls and square pendant lights', 86),
-  'interior-counter':   (f'{S}/gmaps-owner/own-1.jpg', 'owner', [800, 1400, 2000], None, 'The counter and slat walls inside the store', 86),
-  'interior-door':      (f'{S}/live/ba64af_0fbd16be5bf64ce2bb76df0489b0a037-mv2.jpg', 'live', [800, 1400], None, 'The sales floor and front door inside the store', 86),
-  'glass-case':         (f'{S}/live/ba64af_d5600c20948f4958853a8a05710b5f57-mv2.jpg', 'live', [800, 1599], None, 'Glass pipes and bongs in a lit display case', 86),
-  'merch-tees':         (f'{S}/live/ba64af_6c0cadeb3c3c4417a2144ee8663c7b59-mv2.jpg', 'live', [600, 1000], None, "Humboldt AF and Humboldt's Premium t-shirts on the wall", 86),
-  'sign-pole':          (f'{S}/leaf/leaf-Sign.jpg', 'press', [667], None, "The Humboldt's Premium Dispensary pole sign against a blue sky", 88),
-  'leaf-gazebos':       (f'{S}/leaf/leaf-Arcata-Lounge-1.jpg', 'press', [889], None, 'Covered gazebos and teak chairs in the courtyard lounge on a sunny day', 88),
-  'leaf-interior':      (f'{S}/leaf/leaf-Arcata-Dispensary.jpg', 'press', [1392], None, 'A wide view of the sales floor with its glass counters and coolers', 88),
-  'house-products':     (f'{S}/leaf/leaf-Humboldts-Premium-Products.jpg', 'press', [889], None, "House-brand 707 Rolls preroll packs and a Widowmaker mini on the counter", 88),
-  'team-dustin':        (f'{S}/live/ba64af_7040f160ce454b5ca0298a983e7d189d-mv2.jpg', 'live', [631], None, 'Dustin', 86),
-  'team-justin':        (f'{S}/live/ba64af_9bf2ff8271db447da8cb5547b4fdf0bd-mv2.jpeg', 'live', [600, 1000], None, 'Justin', 86),
-  'team-misha':         (f'{S}/live/ba64af_518c90ac0cd443b69c5e13a58f46bce6-mv2.jpg', 'live', [600, 1000], None, 'Misha', 86),
-  'team-james':         (f'{S}/live/ba64af_54a013cb8c6c423f9e1a21db94ff9ee7-mv2.jpg', 'live', [600, 935], None, 'James', 86),
+  'courtyard-day':      (f'{S}/gmaps-owner/own-7.jpg', 'owner', [800, 1400, 2200], None, 'The courtyard in daylight: teal-cushioned wicker sofas, a round teak table and chairs, the rock waterfall and the sunburst sign over the gate', 78),
+  'waterfall-day':      (f'{S}/gmaps-owner/own-6.jpg', 'owner', [800, 1400, 2000], None, 'The rock waterfall in the courtyard, with a small Bigfoot statue sitting on the rocks', 78),
+  'courtyard-teal':     (f'{S}/gmaps-owner/own-2.jpg', 'owner', [640], None, 'Teal wicker sofas and teak tables on the courtyard turf', 78),
+  'storefront-day':     (f'{S}/gmaps-owner/own-0.jpg', 'owner', [800, 1400, 2000], None, "The Humboldt's Premium storefront at 460 I St with the sunburst redwood mural", 78),
+  'storefront-dusk':    (f'{S}/gmaps-owner/own-8.jpg', 'owner', [700, 1441], None, 'The store at dusk with its wall lights on', 78),
+  'storefront-night':   (f'{S}/live/ba64af_091071175953464297e8ac6318d375bb-mv2.jpg', 'live', [800, 1400, 2000], None, 'The store and courtyard wall lit up at night, seen across the parking lot', 78),
+  'street-view':        (f'{S}/gmaps-owner/own-3.jpg', 'owner', [800, 1400], None, 'The building on I Street', 78),
+  'interior-wide':      (f'{S}/live/ba64af_4dd63dca4a464ceda299fb6660e8c619-mv2.jpg', 'live', [800, 1400, 2200], None, 'Inside the Arcata store: glass counters, slat walls and square pendant lights', 78),
+  'interior-counter':   (f'{S}/gmaps-owner/own-1.jpg', 'owner', [800, 1400, 2000], None, 'The counter and slat walls inside the store', 78),
+  'interior-door':      (f'{S}/live/ba64af_0fbd16be5bf64ce2bb76df0489b0a037-mv2.jpg', 'live', [800, 1400], None, 'The sales floor and front door inside the store', 78),
+  'glass-case':         (f'{S}/live/ba64af_d5600c20948f4958853a8a05710b5f57-mv2.jpg', 'live', [800, 1599], None, 'Glass pipes and bongs in a lit display case', 78),
+  'merch-tees':         (f'{S}/live/ba64af_6c0cadeb3c3c4417a2144ee8663c7b59-mv2.jpg', 'live', [600, 1000], None, "Humboldt AF and Humboldt's Premium t-shirts on the wall", 78),
+  'sign-pole':          (f'{S}/leaf/leaf-Sign.jpg', 'press', [667], None, "The Humboldt's Premium Dispensary pole sign against a blue sky", 78),
+  'leaf-gazebos':       (f'{S}/leaf/leaf-Arcata-Lounge-1.jpg', 'press', [889], None, 'Covered gazebos and teak chairs in the courtyard lounge on a sunny day', 78),
+  'leaf-interior':      (f'{S}/leaf/leaf-Arcata-Dispensary.jpg', 'press', [1392], None, 'A wide view of the sales floor with its glass counters and coolers', 78),
+  'house-products':     (f'{S}/leaf/leaf-Humboldts-Premium-Products.jpg', 'press', [889], None, "House-brand 707 Rolls preroll packs and a Widowmaker mini on the counter", 78),
+  'team-dustin':        (f'{S}/live/ba64af_7040f160ce454b5ca0298a983e7d189d-mv2.jpg', 'live', [631], None, 'Dustin', 78),
+  'team-justin':        (f'{S}/live/ba64af_9bf2ff8271db447da8cb5547b4fdf0bd-mv2.jpeg', 'live', [600, 1000], None, 'Justin', 78),
+  'team-misha':         (f'{S}/live/ba64af_518c90ac0cd443b69c5e13a58f46bce6-mv2.jpg', 'live', [600, 1000], None, 'Misha', 78),
+  'team-james':         (f'{S}/live/ba64af_54a013cb8c6c423f9e1a21db94ff9ee7-mv2.jpg', 'live', [600, 935], None, 'James', 78),
   # --- owner photos relit with AI (structure kept) ---
-  'courtyard-dusk':     (f'{G}/fal1/out/nb-courtyard-dusk-a.png', 'edited', [960, 1600, 2400, 3200], None, 'The courtyard at dusk: lanterns glowing, the waterfall softly lit, teal sofas and the teak table under a fading sky', 88),
-  'courtyard-night':    (f'{G}/fal1/out/nb-courtyard-night.png', 'edited', [960, 1600, 2400], None, 'The courtyard at night under the stars, the lanterns and waterfall lights glowing warm', 88),
-  'courtyard-sunset':   (f'{G}/hf2/out/rl2-courtyard-dusk-a.png', 'edited', [960, 1600, 2336], None, 'The courtyard at sunset with fog drifting through the tall trees', 88),
-  'waterfall-golden':   (f'{G}/fal1/out/nb-waterfall-golden.png', 'edited', [800, 1400, 2200], None, 'The rock waterfall and its Bigfoot statue in late golden-hour light', 88),
+  'courtyard-dusk':     (f'{G}/fal1/out/nb-courtyard-dusk-a.png', 'edited', [960, 1600, 2400], None, 'The courtyard at dusk: lanterns glowing, the waterfall softly lit, teal sofas and the teak table under a fading sky', 78),
+  'courtyard-night':    (f'{G}/fal1/out/nb-courtyard-night.png', 'edited', [960, 1600, 2400], None, 'The courtyard at night under the stars, the lanterns and waterfall lights glowing warm', 78),
+  'courtyard-sunset':   (f'{G}/hf2/out/rl2-courtyard-dusk-a.png', 'edited', [960, 1600, 2336], None, 'The courtyard at sunset with fog drifting through the tall trees', 78),
+  'waterfall-golden':   (f'{G}/fal1/out/nb-waterfall-golden.png', 'edited', [800, 1400, 2200], None, 'The rock waterfall and its Bigfoot statue in late golden-hour light', 78),
   # --- generated mood (never the store) ---
-  'redwood-fog':        (f'{G}/hf1/out/scene-redwood-fog.png', 'generated', [960, 1600, 2688], None, 'Fog drifting between old-growth redwood trunks at sunrise', 86),
-  'marsh-golden':       (f'{G}/hf1/out/scene-marsh-golden.png', 'generated', [960, 1600, 2688], None, 'Marsh grasses and still water at golden hour with fog on the far shore', 86),
-  'fire-table':         (f'{G}/hf1/out/scene-fire-table.png', 'generated', [800, 1400, 2048], None, 'Flames dancing along an outdoor fire table at blue hour', 86),
-  'fog-hills':          (f'{G}/hf1/out/scene-fog-hills.png', 'generated', [1200, 2000, 2688], None, 'Coastal fog rolling over dark redwood hills under an amber dusk sky', 86),
-  'plate-embers':       (f'{G}/hf1/out/plate-embers.png', 'generated', [1200, 2000], None, '', 82),
-  'plate-fog':          (f'{G}/hf1/out/plate-fog.png', 'generated', [1400, 2400], None, '', 82),
+  'redwood-fog':        (f'{G}/hf1/out/scene-redwood-fog.png', 'generated', [960, 1600, 2688], None, 'Fog drifting between old-growth redwood trunks at sunrise', 78),
+  'marsh-golden':       (f'{G}/hf1/out/scene-marsh-golden.png', 'generated', [960, 1600, 2688], None, 'Marsh grasses and still water at golden hour with fog on the far shore', 78),
+  'fire-table':         (f'{G}/hf1/out/scene-fire-table.png', 'generated', [800, 1400, 2048], None, 'Flames dancing along an outdoor fire table at blue hour', 78),
+  'fog-hills':          (f'{G}/hf1/out/scene-fog-hills.png', 'generated', [1200, 2000, 2688], None, 'Coastal fog rolling over dark redwood hills under an amber dusk sky', 78),
+  'plate-embers':       (f'{G}/hf1/out/plate-embers.png', 'generated', [1200, 2000], None, '', 78),
+  'plate-fog':          (f'{G}/hf1/out/plate-fog.png', 'generated', [1400, 2400], None, '', 78),
 }
 CUTS = {  # transparent cut-outs (fal BiRefNet v2) of generated category art + floating objects
   'cat-flower': 'Cannabis flower beside a small glass jar', 'cat-prerolls': 'Three pre-rolled joints', 'cat-vape': 'A vape cartridge on a slim battery',
@@ -97,7 +97,7 @@ def run_images(only):
         W, H = im.size; vs = []
         for w in sorted(set(min(w, W) for w in [360, 720, 1100])):
             h = round(H * w / W); fn = f'{k}-{w}.webp'
-            (im.resize((w, h), Image.LANCZOS) if w != W else im).save(os.path.join(OUT, fn), 'WEBP', quality=88, method=6)
+            (im.resize((w, h), Image.LANCZOS) if w != W else im).save(os.path.join(OUT, fn), 'WEBP', quality=82, method=6)
             vs.append({'src': f'img/{fn}', 'w': w, 'h': h})
         man[k] = {'kind': 'generated', 'w': W, 'h': H, 'variants': vs, 'alt': alt, 'ai': True, 'aiKind': 'generated', 'cutout': True, 'source': f'gen/cut/out/cut-{k}.png'}
         print('cut', k, W, H)
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     man = json.load(open(mf)) if os.path.exists(mf) else {}
     man.update(run_images(only))
     if not only or 'logo' in only: man.update(run_logo())
-    if not only or 'video' in only:
+    if (not only or 'video' in only) and '--no-video' not in sys.argv:
         vm = run_video(); man['_video'] = vm
     json.dump(man, open(mf, 'w'), indent=1)
     print('images.json', len([k for k in man if not k.startswith('_')]))

@@ -46,7 +46,8 @@ fs.mkdirSync(path.join(A, 'css'), { recursive: true });
 fs.mkdirSync(path.join(A, 'js'), { recursive: true });
 const cssFiles = fs.readdirSync(path.join(ROOT, 'src/styles')).filter((f) => f.endsWith('.css')).sort();
 const css = cssFiles.map((f) => `/* ${f} */\n` + fs.readFileSync(path.join(ROOT, 'src/styles', f), 'utf8')).join('\n');
-fs.writeFileSync(path.join(A, 'css/site.css'), css);
+const minCss = css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}').trim();
+fs.writeFileSync(path.join(A, 'css/site.css'), minCss);
 for (const f of ['site.js', 'fx.js']) fs.copyFileSync(path.join(ROOT, 'src/scripts', f), path.join(A, 'js', f));
 
 // robots + sitemap

@@ -1,0 +1,13 @@
+/* performance pass 2 */
+/* moving layers are positioned by script directly; CSS keeps only their starting state */
+.hero__media { transform: translate3d(0, 0, 0) scale(1.06); }
+.yhero__layer { transform: scale(1.04); }
+.phero__img { transform: scale(1.05); }
+.cta-band__img { transform: scale(1.08); }
+.yard__layer, .yard__fire, .phero__art, .visit__photo { transform: none; }
+/* the marquee's gold is a still gradient (a moving gradient repainted every letter on every frame) */
+.marquee span { animation: none; background-position: 30% 0; }
+/* the wheel's lacquer shine is a plain overlay (no blend mode over a turning layer) */
+.wheel2__light { mix-blend-mode: normal; opacity: .55; }
+/* the carousel glow is a wide soft gradient, no blur filter */
+.cflow__glow { filter: none; background: radial-gradient(closest-side, color-mix(in srgb, var(--cg) 34%, transparent), color-mix(in srgb, var(--cg) 10%, transparent) 55%, transparent); }

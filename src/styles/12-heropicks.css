@@ -1,0 +1,33 @@
+/* staff picks: tall hero cards in a rail; the product breaks out of the top of each card */
+.hrail .rail__track { grid-auto-columns: 300px; gap: 1.1rem; padding: 96px 4px 18px; }
+.hcard { position: relative; display: flex; flex-direction: column; border-radius: 30px; isolation: isolate; scroll-snap-align: start;
+  background: radial-gradient(95% 52% at 50% 0%, color-mix(in srgb, var(--glow) 30%, transparent), transparent 72%), linear-gradient(180deg, #2b1c12 0%, #170f0a 58%, #100a07 100%);
+  box-shadow: inset 0 0 0 1px rgba(252, 229, 148, .16), 0 40px 70px -42px rgba(0, 0, 0, .95); transition: box-shadow .5s var(--ease), translate .5s var(--ease); }
+.hcard:hover { translate: 0 -4px; box-shadow: inset 0 0 0 1px rgba(252, 229, 148, .42), 0 40px 70px -40px rgba(0, 0, 0, .95), 0 0 60px -22px var(--glow); }
+.hcard__art { position: relative; height: 210px; margin-top: -88px; display: grid; place-items: end center; padding: 0 1.2rem; pointer-events: none; }
+.hcard__art::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: 4px; height: 18px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .65), transparent); z-index: -1; }
+.hcard__art img { max-width: 92%; max-height: 210px; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, .7)) drop-shadow(0 0 26px color-mix(in srgb, var(--glow) 28%, transparent)); transition: transform .8s var(--ease); }
+.hcard:hover .hcard__art img { transform: translateY(-8px) scale(1.04); }
+.hcard__body { padding: .9rem 1.3rem .6rem; flex: 1; }
+.hcard__pill { display: inline-flex; align-items: center; gap: .3em; padding: .42em .95em; border-radius: 999px; font: 600 .8125rem/1 var(--f-ui); color: var(--fog); background: rgba(244, 237, 226, .09); box-shadow: inset 0 0 0 1px rgba(252, 229, 148, .24); }
+.hcard__pill i { font-style: normal; color: #b9d68f; }
+.hcard__name { margin: .75rem 0 .9rem; font: 700 1.55rem/1.08 var(--f-display); letter-spacing: .01em; }
+.hcard__label { margin: 0 0 .55rem; font: 700 .8125rem/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ember-hot); }
+.hcard__stats { display: grid; gap: .5rem; }
+.hcard__row { display: flex; justify-content: space-between; align-items: center; font: 500 .95rem/1.2 var(--f-ui); color: var(--fog-dim); }
+.hcard__row span { display: inline-flex; align-items: center; gap: .4em; }
+.hcard__row .ic { width: 15px; height: 15px; color: var(--ember-hot); }
+.hcard__row b { color: var(--sun); font-weight: 700; }
+.hcard__row s { color: var(--fog-mute); font-weight: 500; margin-right: .2em; }
+.hcard__bar { height: 7px; border-radius: 99px; background: rgba(244, 237, 226, .1); overflow: hidden; }
+.hcard__bar i { display: block; height: 100%; width: var(--v); border-radius: inherit; background: linear-gradient(90deg, var(--ember), var(--sun)); box-shadow: 0 0 12px rgba(253, 194, 50, .55); }
+.hcard__note { margin: 0; font: 400 1rem/1.45 var(--f-body); color: var(--fog-dim); }
+.hcard__foot { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin: .5rem .7rem .7rem; padding: .6rem .6rem .6rem .75rem; border-radius: 22px; background: rgba(244, 237, 226, .06); box-shadow: inset 0 0 0 1px rgba(244, 237, 226, .1); }
+.hcard__who { display: flex; align-items: center; gap: .6rem; min-width: 0; }
+.hcard__av { flex: none; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px rgba(252, 229, 148, .55); }
+.hcard__av img, .hcard__av svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hcard__who small { display: block; font: 500 .75rem/1.1 var(--f-ui); color: var(--fog-mute); }
+.hcard__who b { display: block; font: 700 .95rem/1.2 var(--f-ui); color: var(--fog); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hcard__cta { flex: none; width: auto !important; min-height: 42px; padding: .55em 1em; font-size: .875rem; }
+.hcard.is-live .hcard__cta { background: linear-gradient(135deg, var(--ember-hot), var(--ember)); color: var(--night-0); }
+@media (max-width: 760px) { .hrail .rail__track { grid-auto-columns: 82%; } }

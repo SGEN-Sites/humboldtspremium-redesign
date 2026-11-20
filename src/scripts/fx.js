@@ -5,14 +5,16 @@
   const W = window, d = document;
   if (W.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const fine = W.matchMedia('(pointer: fine)').matches;
-  const canvases = [...d.querySelectorAll('canvas[data-embers], canvas[data-splash-embers]')];
+  // embers live in the scenes (hero, courtyard, page heads, closing banner, splash); elsewhere the canvas is dropped
+  const canvases = [...d.querySelectorAll('canvas[data-embers], canvas[data-splash-embers]')].filter((c) => { const keep = c.hasAttribute('data-splash-embers') || c.closest('.hero, .yhero, .yard, .cta-band, .phero, .nf'); if (!keep) c.remove(); return keep; });
   if (!canvases.length) return;
-  const dpr = Math.min(2, W.devicePixelRatio || 1);
+  const dpr = Math.min(1.5, W.devicePixelRatio || 1);
+  const sprite = (() => { const c = d.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, 'rgba(255,240,205,1)'); g.addColorStop(.18, 'rgba(255,186,110,.85)'); g.addColorStop(.45, 'rgba(240,120,45,.35)'); g.addColorStop(1, 'rgba(232,115,44,0)'); x.fillStyle = g; x.fillRect(0, 0, 64, 64); return c; })();
   const mouse = { x: -9999, y: -9999 };
   if (fine) W.addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
   const fields = canvases.map((cv) => {
     const n = cv.hasAttribute('data-splash-embers') ? 70 : Number(cv.dataset.embers || 24);
-    return { cv, ctx: cv.getContext('2d'), n: W.innerWidth < 760 ? Math.ceil(n * 0.5) : n, parts: [], vis: false, w: 0, h: 0, rect: null };
+    return { cv, ctx: cv.getContext('2d'), n: Math.ceil((W.innerWidth < 760 ? 0.45 : 0.75) * n), parts: [], vis: false, w: 0, h: 0, rect: null };
   });
   const spawn = (f, anywhere) => ({
     x: Math.random() * f.w,
@@ -44,7 +46,7 @@
       if (t % 30 === 0) f.rect = f.cv.getBoundingClientRect();
       const { ctx } = f; ctx.clearRect(0, 0, f.w, f.h);
       const mx = (mouse.x - (f.rect ? f.rect.left : 0)) * dpr, my = (mouse.y - (f.rect ? f.rect.top : 0)) * dpr;
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = 1;
       for (let i = 0; i < f.parts.length; i++) {
         const p = f.parts[i];
         p.life++; p.ph += .04;
@@ -56,11 +58,7 @@
         const flick = .65 + Math.sin(p.ph * 3.1) * .2 + Math.random() * .15;
         const a = Math.max(0, Math.min(1, fade * flick + boost * .5));
         const r = p.r * (1 + boost * 1.2);
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 4);
-        g.addColorStop(0, `hsla(${p.hue + 18}, 100%, 82%, ${a})`);
-        g.addColorStop(.25, `hsla(${p.hue}, 100%, 60%, ${a * .7})`);
-        g.addColorStop(1, `hsla(${p.hue - 8}, 100%, 45%, 0)`);
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, r * 4, 0, Math.PI * 2); ctx.fill();
+        ctx.globalAlpha = a; ctx.drawImage(sprite, p.x - r * 4, p.y - r * 4, r * 8, r * 8);
         if (p.life > p.max || p.y < -20 || p.x < -40 || p.x > f.w + 40) f.parts[i] = spawn(f, false);
       }
     }

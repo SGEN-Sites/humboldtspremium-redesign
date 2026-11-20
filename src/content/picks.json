@@ -1,0 +1,20 @@
+{
+ "_about": "Staff picks as published in California Leaf (Feb 2025). 'slug' is set only where the same product is on the live menu captured 2026-11-20 (matched by brand and strain, checked by hand); those cards show the real product and open it in the live store. The others show their category's art and open the category page. 'photo' is set only for team members whose photo is on the live About page.",
+ "asOf": "February 2025",
+ "picks": [
+  { "cat": "Joints", "item": "Widowmaker Black Cherry Gelato", "who": "Ashleigh", "slug": "widowmaker-mini-black-cherry-gelato-30-7-thc-1g" },
+  { "cat": "Edibles", "item": "Heavy Hitters Cherry Lights Out", "who": "Leslie", "slug": "heavy-hitters-gummy-pack-midnight-cherry-lightsout-cbn-sleep-100mg-thc-100mg-cbn" },
+  { "cat": "Drink", "item": "St. Ides Georgia Peach", "who": "Gregg", "slug": "st-ides-high-tea-georgia-peach-12-oz-100mg" },
+  { "cat": "Drink", "item": "Space Gem Sweet", "who": "Brittan", "slug": "space-gem-space-drops-10-pack-sweet-100mgthc" },
+  { "cat": "Dabs", "item": "Humboldt's Premium Diamonds Sour Afghani", "who": "", "house": true, "slug": "humboldt-premium-cannabis-diamonds-sour-afghani-1g-74-8-thc" },
+  { "cat": "Flower", "item": "Willow Creekside Afghani", "who": "Travis" },
+  { "cat": "Flower", "item": "Willow Creekside Wedding Cake", "who": "Katie" },
+  { "cat": "Joints", "item": "Fig Farm Holy Moly", "who": "Dustin", "photo": "team-dustin" },
+  { "cat": "Joints", "item": "Baby Jetter Blue Berry Kush", "who": "Melissa" },
+  { "cat": "Carts", "item": "Papa's Herb Strawberry Cheesecake", "who": "Julia" },
+  { "cat": "Carts", "item": "Halara Diamond Sauce Purple Punch", "who": "Colin" },
+  { "cat": "Dabs", "item": "Almora Farm Live Resin Badder Ice Cream Cake", "who": "Colton" },
+  { "cat": "Dabs", "item": "Nasha Green Unpressed Hash Modified Sunset", "who": "Jarrett" },
+  { "cat": "Drink", "item": "Surplus Shots Tropical Trip", "who": "Justin", "photo": "team-justin" }
+ ]
+}

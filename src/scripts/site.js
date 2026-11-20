@@ -130,13 +130,24 @@
     }
     syncSticky();
     if (reduced) return;
-    for (const el of heroes) { const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) continue; const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height))); el.style.setProperty('--sy', p.toFixed(4)); if (el.classList.contains('cta-band')) el.style.setProperty('--sp', ((vh - r.top) / (vh + r.height)).toFixed(4)); }
-    if (W.innerWidth < 760) return;
-    for (const el of depthEls) {
-      const r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) continue;
+    // read every box first, then write: no forced layout between elements. Transforms go on the moving element itself
+    // (a custom property on a section would restyle everything inside it on every frame).
+    const hr = heroes.map((el) => [el, el.getBoundingClientRect()]);
+    const dr = W.innerWidth < 760 ? [] : depthEls.map((el) => [el, el.getBoundingClientRect()]);
+    for (const [el, r] of hr) {
+      if (r.bottom < 0 || r.top > vh) continue;
+      const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)));
+      const t = el.__mov || (el.__mov = el.querySelector('.hero__media, .phero__img, .yhero__layer, .cta-band__img'));
+      if (!t) continue;
+      if (t.classList.contains('hero__media')) t.style.transform = `translate3d(0, ${(p * 120).toFixed(1)}px, 0) scale(${(1.06 + p * .08).toFixed(4)})`;
+      else if (t.classList.contains('yhero__layer')) t.style.transform = `translate3d(0, ${(p * 140).toFixed(1)}px, 0) scale(${(1.04 + p * .1).toFixed(4)})`;
+      else if (t.classList.contains('phero__img')) t.style.transform = `translate3d(0, ${(p * 70).toFixed(1)}px, 0) scale(1.05)`;
+      else { const sp = (vh - r.top) / (vh + r.height); t.style.transform = `scale(${(1.08 + sp * .06).toFixed(4)})`; }
+    }
+    for (const [el, r] of dr) {
+      if (r.bottom < -200 || r.top > vh + 200) continue;
       const delta = (r.top + r.height / 2 - vh / 2) * Number(el.dataset.depth || 0);
-      el.style.setProperty('--py', delta.toFixed(1));
-      if (el.dataset.rot) el.style.setProperty('--pr', (delta * Number(el.dataset.rot) / 400).toFixed(2));
+      el.style.transform = `translate3d(0, ${delta.toFixed(1)}px, 0)`;
     }
   }
   W.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
@@ -177,7 +188,7 @@
       if (!raf) raf = requestAnimationFrame(() => { raf = 0; if (cl) cl.style.transform = `translate3d(${px}px, ${py}px, 0)`; });
     }, { passive: true });
     d.addEventListener('pointerleave', () => html.classList.remove('has-cursor'));
-    $$('[data-spot]').forEach((el) => el.addEventListener('pointermove', (e) => {
+    $$('[data-hero], [data-yhero]').forEach((el) => el.addEventListener('pointermove', (e) => {
       const r = el.getBoundingClientRect();
       el.style.setProperty('--lx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
       el.style.setProperty('--ly', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
@@ -198,10 +209,11 @@
   const hv = $('[data-hero-video]'), toggle = $('[data-video-toggle]');
   function playSafe(v) { const p = v.play(); if (p && p.catch) p.catch(() => { const go = () => { v.play().catch(() => {}); }; W.addEventListener('pointerdown', go, { once: true }); W.addEventListener('scroll', go, { once: true, passive: true }); }); }
   if (hv && !reduced && !saveData && W.innerWidth >= 700) {
-    hv.src = W.innerWidth >= 1280 ? hv.dataset.srcLg : hv.dataset.srcSm;
+    hv.preload = 'none'; const pickSrc = () => { if (!hv.src) hv.src = W.innerWidth >= 1280 ? hv.dataset.srcLg : hv.dataset.srcSm; };
     hv.addEventListener('playing', () => hv.classList.add('is-playing'));
-    const start = () => playSafe(hv);
-    if (html.classList.contains('splash-pending')) d.addEventListener('hp:splashdone', start, { once: true }); else setTimeout(start, 300);
+    const start = () => { pickSrc(); playSafe(hv); };
+    const whenIdle = (fn) => { const go = () => ('requestIdleCallback' in W ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 600)); if (d.readyState === 'complete') go(); else W.addEventListener('load', go, { once: true }); };
+    if (html.classList.contains('splash-pending')) d.addEventListener('hp:splashdone', () => whenIdle(start), { once: true }); else whenIdle(start);
     if ('IntersectionObserver' in W) new IntersectionObserver((es) => { if (es[0].isIntersecting) { if (!hv.dataset.paused) playSafe(hv); } else hv.pause(); }).observe(hv);
     toggle && toggle.addEventListener('click', () => { if (hv.paused) { delete hv.dataset.paused; playSafe(hv); toggle.setAttribute('aria-pressed', 'false'); toggle.setAttribute('aria-label', 'Pause the background video'); toggle.innerHTML = toggle.innerHTML.replace('M8 5v14l11-7z', 'M8 5v14M16 5v14'); } else { hv.dataset.paused = '1'; hv.pause(); toggle.setAttribute('aria-pressed', 'true'); toggle.setAttribute('aria-label', 'Play the background video'); toggle.innerHTML = toggle.innerHTML.replace('M8 5v14M16 5v14', 'M8 5v14l11-7z'); } });
   } else if (toggle) toggle.hidden = true;
@@ -210,6 +222,9 @@
     const vio = new IntersectionObserver((es) => es.forEach((e) => { const v = e.target; if (e.isIntersecting) { if (!v.src) v.src = v.dataset.srcSm; playSafe(v); } else if (v.src) v.pause(); }), { rootMargin: '200px 0px' });
     lazyV.forEach((v) => vio.observe(v));
   }
+
+  /* ---------- fog only renders while its section is near the viewport ---------- */
+  if ('IntersectionObserver' in W) { const fo2 = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('is-off', !e.isIntersecting)), { rootMargin: '120px 0px' }); $$('.fog').forEach((f) => fo2.observe(f)); }
 
   /* ---------- photos arrive (gilded frame: settle + one light sweep; morning mist: the fog lifts) ---------- */
   const phs = $$('[data-ph]');
@@ -260,6 +275,17 @@
     });
   });
 
+  /* ---------- expanding accordion (shop by feeling): hover, focus or tap opens a panel; a second tap opens the page ---------- */
+  $$('[data-accordion]').forEach((acc) => {
+    const tiles = $$('.feel__tile', acc);
+    const open = (t) => tiles.forEach((x) => x.classList.toggle('is-open', x === t));
+    tiles.forEach((t) => {
+      if (fine) t.addEventListener('pointerenter', () => open(t));
+      t.addEventListener('focus', () => open(t));
+      t.addEventListener('click', (e) => { if (!t.classList.contains('is-open')) { e.preventDefault(); open(t); } });
+    });
+  });
+
   /* ---------- category coverflow ---------- */
   $$('[data-cflow]').forEach((cf) => {
     const cards = $$('.cfc', cf), dots = $$('[data-cflow-dot]', cf), n = cards.length; if (!n) return;
@@ -295,7 +321,7 @@
     tr.addEventListener('pointerup', () => { sx = null; });
     tr.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
     W.addEventListener('resize', render, { passive: true });
-    if ('IntersectionObserver' in W) new IntersectionObserver((es) => { paused = !es[0].isIntersecting; }).observe(cf);
+    if ('IntersectionObserver' in W) new IntersectionObserver((es) => { paused = !es[0].isIntersecting; if (es[0].isIntersecting) render(); }).observe(cf);
     render(); auto();
   });
 

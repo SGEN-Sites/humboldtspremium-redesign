@@ -101,9 +101,10 @@ export function catFlow(slugs, { id = 'cats' } = {}) {
 
 // ---------- shop by feeling ----------
 export function feelingTiles() {
-  return `<div class="feel">${feelings.map((f, i) => `<a class="feel__tile feel__tile--${f.tone}" href="${u('/' + f.slug + '/')}" data-spot style="--i:${i}">
+  return `<div class="feel" data-accordion>${feelings.map((f, i) => `<a class="feel__tile feel__tile--${f.tone}${i === 0 ? ' is-open' : ''}" href="${u('/' + f.slug + '/')}" data-spot style="--i:${i}">
     <span class="feel__media">${img(f.img, { alt: '', sizes: '(max-width: 760px) 100vw, 33vw' })}</span>
     <span class="feel__shade"></span>
+    <span class="feel__spine" aria-hidden="true">${f.key}</span>
     <span class="feel__body"><span class="feel__k">${catCount(f.slug)} ${esc(CATS[f.slug].name.toLowerCase())} products</span><span class="feel__name">${f.key}</span><span class="feel__line">${esc(f.line)}</span><span class="feel__go">Shop ${f.key.toLowerCase()} ${icon('arrow')}</span></span>
   </a>`).join('')}</div>`;
 }
@@ -165,7 +166,7 @@ export function wheelCard() {
     <filter id="wgrain${k}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.16" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 .24  0 0 0 0 .12  0 0 0 0 .05  0 0 0 .7 0"/></filter>
     <mask id="wring${k}"><circle cx="200" cy="200" r="199" fill="#fff"/><circle cx="200" cy="200" r="174" fill="#000"/></mask>
     <radialGradient id="whub${k}" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff0c4"/><stop offset=".3" stop-color="#d9a640"/><stop offset=".75" stop-color="#8a5a18"/><stop offset="1" stop-color="#4a2f0a"/></radialGradient>
-    <clipPath id="whubclip${k}"><circle cx="200" cy="200" r="40"/></clipPath></defs>
+    <radialGradient id="whubcap${k}" cx=".4" cy=".34" r=".78"><stop offset="0" stop-color="#f7dc92"/><stop offset=".42" stop-color="#b98432"/><stop offset=".85" stop-color="#6a4512"/><stop offset="1" stop-color="#3e2809"/></radialGradient></defs>
     <circle cx="200" cy="200" r="199" fill="url(#wwood${k})"/>
     <rect width="400" height="400" filter="url(#wgrain${k})" mask="url(#wring${k})"/>
     <circle cx="200" cy="200" r="178" fill="none" stroke="url(#wgold${k})" stroke-width="6"/>
@@ -175,9 +176,12 @@ export function wheelCard() {
     <circle cx="200" cy="200" r="174" fill="none" stroke="#1a0d06" stroke-width="2" opacity=".6"/>
     <circle cx="200" cy="200" r="58" fill="url(#whub${k})"/>
     <circle cx="200" cy="200" r="58" fill="none" stroke="#3a2408" stroke-width="1.5" opacity=".6"/>
-    <circle cx="200" cy="200" r="43" fill="#140c07"/>
-    <image href="${asset('img/favicon.png')}" x="166" y="166" width="68" height="68" clip-path="url(#whubclip${k})" preserveAspectRatio="xMidYMid meet"/>
+    <circle cx="200" cy="200" r="43" fill="url(#whubcap${k})"/>
     <circle cx="200" cy="200" r="43" fill="none" stroke="url(#wgold${k})" stroke-width="2.5"/>
+    <circle cx="200" cy="200" r="31" fill="none" stroke="#3a2408" stroke-width="1.4" opacity=".55"/>
+    <circle cx="200" cy="200" r="30" fill="none" stroke="#fff1c2" stroke-width=".8" opacity=".35"/>
+    <circle cx="200" cy="201.2" r="11.5" fill="#2a1608" opacity=".55"/>
+    <circle cx="200" cy="200" r="11" fill="url(#wstud${k})"/>
   </svg>`;
   const light = `<svg class="wheel2__light" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs>
     <radialGradient id="wlit${k}" cx=".32" cy=".26" r=".85"><stop offset="0" stop-color="#fff6dc" stop-opacity=".34"/><stop offset=".45" stop-color="#fff6dc" stop-opacity=".04"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
@@ -197,22 +201,62 @@ export function wheelCard() {
     ${kicker('Every 1st of the month')}
     <h3>Spend $50 or more, <span class="acc">spin the wheel.</span></h3>
     <p>Includes both locations and delivery. **While supplies last!**</p>
-    <div class="wheel2__meta"><span class="wheel2__next" data-next-first>${icon('cal')}<span>Next spin: the 1st</span></span>
-    <button type="button" class="btn btn--ghost btn--sm" data-wheel-spin><span>Give it a spin</span>${icon('wheel')}</button></div>
+  </div>
+  <div class="wheel2__meta">
+    <span class="wheel2__next" data-next-first>${icon('cal')}<span>Next spin: the 1st</span></span>
+    <button type="button" class="btn btn--sm" data-wheel-spin><span>Give it a spin</span>${icon('wheel')}</button>
     <p class="wheel2__note" data-wheel-note hidden>Just for fun here. The real wheel comes out in the store on the 1st.</p>
   </div>
 </div>`;
 }
 
-// ---------- staff picks ----------
+// ---------- staff picks: tall hero cards. The product breaks out of the top of the card, a category pill and the
+// name, details from the live menu when the product is on today's shelf, and a "Picked by" strip with a round photo
+// (or one uniform placeholder) and the action. ----------
+const PICKS = JSON.parse(fs.readFileSync(new URL('../content/picks.json', import.meta.url), 'utf8'));
+const PICK_CAT = {
+  Flower: { art: 'cat-flower', glow: '#fdc232', href: '/a-all-flower-1/', label: 'flower' },
+  Joints: { art: 'cat-prerolls', glow: '#e8732c', href: '/a-prerolls/', label: 'prerolls' },
+  Carts: { art: 'cat-vape', glow: '#f2a93b', href: '/a-cartridges/', label: 'cartridges' },
+  Dabs: { art: 'cat-concentrates', glow: '#fce594', href: '/a-concentrates/', label: 'concentrates' },
+  Edibles: { art: 'cat-edibles', glow: '#c2622f', href: '/edibles/', label: 'edibles' },
+  Drink: { art: 'cat-drinks', glow: '#d17f45', href: '/a-drinks/', label: 'drinks' },
+};
+const AVATAR_PH = '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect width="40" height="40" fill="#3a2418"/><circle cx="20" cy="15.5" r="6.6" fill="#c9b9a2" opacity=".6"/><path d="M6.5 37c1.9-7.8 7.2-11.4 13.5-11.4S31.6 29.2 33.5 37z" fill="#c9b9a2" opacity=".6"/></svg>';
 export function staffPicks() {
-  const s = FACTS.staffPicks;
-  return `<div class="picks" data-picks>${s.value.filter((x) => x[2]).slice(0, 12).map(([k, item, who], i) => `<figure class="pick" style="--i:${i}" data-tilt>
-    <span class="pick__k">${esc(k)}</span>
-    <p class="pick__item">${esc(item)}</p>
-    <figcaption class="pick__who"><span class="pick__init" aria-hidden="true">${esc(who[0])}</span>${esc(who)}'s pick</figcaption>
-  </figure>`).join('')}</div>
-  <p class="board__src">Staff picks as published in California Leaf, ${esc(s.asOf)}. Ask the counter what the team is into this week.</p>`;
+  const cards = PICKS.picks.map((k, i) => {
+    const c = PICK_CAT[k.cat]; const p = k.slug ? CATALOG.products[k.slug] : null;
+    const thc = p ? thcOf(p.name) : null; const mg = p ? (p.name.match(/(\d{2,4})\s*mg\s*thc/i) || [])[1] : null; const t = p ? typeOf(p.name) : '';
+    const art = p && fs.existsSync(new URL('../assets/img/picks/' + p.slug + '.webp', import.meta.url))
+      ? `<img src="${asset('img/picks/' + p.slug + '.webp')}" alt="${esc(p.name)}" loading="lazy" decoding="async">`
+      : img(c.art, { alt: '', sizes: '260px', pick: 1 });
+    const who = k.house ? 'The house' : k.who;
+    const av = k.photo ? img(k.photo, { alt: '', sizes: '44px', pick: 0 }) : AVATAR_PH;
+    const stats = p ? `<p class="hcard__label">On today's menu</p>
+      <div class="hcard__stats">
+        ${t ? `<div class="hcard__row"><span>${icon('leaf')} Type</span><b>${t}</b></div>` : ''}
+        ${thc ? `<div class="hcard__row"><span>${icon('flame')} THC</span><b>${thc}%</b></div><div class="hcard__bar"><i style="--v:${Math.min(100, Math.round(thc / (thc > 50 ? 95 : 40) * 100))}%"></i></div>` : ''}
+        ${!thc && mg ? `<div class="hcard__row"><span>${icon('flame')} THC</span><b>${mg} mg</b></div>` : ''}
+        <div class="hcard__row"><span>${icon('tag')} Price</span><b>${p.was ? `<s>${esc(p.was)}</s> ` : ''}${esc(p.price)}</b></div>
+      </div>` : `<p class="hcard__label">The pick</p><p class="hcard__note">Not on the shelf today. Ask the counter what ${esc(k.who)} is into now, or browse the ${c.label}.</p>`;
+    const cta = p ? `<a class="btn btn--sm hcard__cta" href="${SHOP.product(p.slug)}" target="_blank" rel="noopener"><span>Add to cart</span>${icon('bag')}</a>`
+      : `<a class="btn btn--sm btn--ghost hcard__cta" href="${u(c.href)}"><span>Shop ${c.label}</span>${icon('arrow')}</a>`;
+    return `<article class="hcard${p ? ' is-live' : ''}" style="--glow:${c.glow};--i:${i}">
+      <div class="hcard__art">${art}</div>
+      <div class="hcard__body">
+        <span class="hcard__pill">${esc(k.cat)}${p ? ' <i>· in stock</i>' : ''}</span>
+        <h3 class="hcard__name">${esc(k.item)}</h3>
+        ${stats}
+      </div>
+      <div class="hcard__foot">
+        <span class="hcard__who"><span class="hcard__av">${av}</span><span><small>Picked by</small><b>${esc(who)}</b></span></span>
+        ${cta}
+      </div>
+    </article>`;
+  }).join('');
+  return `<div class="rail hrail" data-rail><div class="rail__track">${cards}</div>
+  <div class="rail__nav"><button type="button" class="rail__btn" data-rail-prev aria-label="Previous pick">${icon('left')}</button><button type="button" class="rail__btn" data-rail-next aria-label="Next pick">${icon('right')}</button></div></div>
+  <p class="board__src">Staff picks as published in California Leaf, ${esc(PICKS.asOf)}; stock and prices from today's live menu. Ask the counter what the team is into this week.</p>`;
 }
 
 // ---------- story stats ----------

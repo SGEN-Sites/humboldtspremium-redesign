@@ -1,0 +1,18 @@
+/* performance pass, 2026-11-20: the same look with far less work per frame */
+/* a full-page grain layer blended over everything forced the whole page to re-blend on every frame */
+body::after { display: none; }
+/* glows without blend modes; section key lights stay where they are (only the heroes follow the pointer) */
+.cursor-light { mix-blend-mode: normal; background: radial-gradient(circle, rgba(255, 160, 80, .075), rgba(232, 115, 44, .025) 40%, transparent 68%); }
+.key-light, .embers { mix-blend-mode: normal; }
+/* glass blurs only where something varied sits behind it (hero bar, age check, sticky bar); elsewhere a solid smoked fill */
+.glass { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(155deg, rgba(50, 35, 24, .92), rgba(28, 20, 14, .95)); }
+.hero .glass, .gate .glass { -webkit-backdrop-filter: blur(14px) saturate(130%); backdrop-filter: blur(14px) saturate(130%); background: var(--glass-fill); }
+/* fog: soft by its own gradients, no blur filter; drifting fog stays in the scenes, not behind every band */
+.fog__l { filter: none; will-change: auto; }
+.band .fog--low, .faq-band .fog, .visit .fog { display: none; }
+.div-fog .seam::before { filter: none; animation: none; }
+/* cards are flat until you point at them (a 3D transform on every card made each one its own layer) */
+.pc, .pick, .guide, .mate { transform: none; }
+.pc:hover, .pick:hover, .guide:hover, .mate:hover { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+/* sections far below the fold are not rendered until they come near the viewport */
+main > section:nth-of-type(n+3) { content-visibility: auto; contain-intrinsic-size: auto 900px; }
