@@ -1,0 +1,72 @@
+/* fix.css: loaded last. One commented rule per integration fix. */
+/* the gate shows from first paint when no age is stored (set in <head>); without JS it never appears */
+html.gate-pending .gate[hidden] { display: grid; }
+/* reduced motion keeps the fire cards' posters visible (the videos simply never play) */
+@media (prefers-reduced-motion: reduce) { .yard__video, .tour__video { display: block !important; } }
+/* no outlined text (house rule): the 404 numerals are a solid ember gradient instead */
+.nf__code { color: var(--ember); -webkit-text-stroke: 0; background: linear-gradient(180deg, var(--sun), var(--ember)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+/* the fixed header sits over the hero on home and courtyard; inner pages keep their own space */
+.pg-home main, .pg-yard main { margin-top: 0; }
+/* light sections (none by default) keep ink on fog */
+.band--fog .lead { color: var(--ink-2); }
+/* phones: every CTA full width, stacked and centred */
+@media (max-width: 760px) { .section-head .link-arrow { margin-top: .25rem; } .hero__h { max-width: 9ch; } }
+/* single-column grids on narrow screens: children may shrink below their media's intrinsic width (no sideways scroll) */
+.tour > *, .ways__grid > *, .feel > *, .news__grid > *, .today__grid > *, .about__grid > *, .builders__grid > *, .vals > *, .details__grid > *, .gh__grid > *, .locs > *, .contact__grid > *, .marsh__grid > *, .art > *, .visit__grid > *, .visit__cols > *, .story-band__grid > *, .faq-band__grid > *, .yard__in > *, .promos > *, .town-facts > *, .how__steps > *, .evts > *, .guides > *, .team__grid > *, .catwall > *, .pgrid > * { min-width: 0; }
+/* decorative floaters stay inside the viewport on narrow screens */
+@media (max-width: 900px) { .floater--builders { right: 6px; top: -30px; } .floater--story { left: 6px; } .floater--grown { right: 6px; } }
+/* the tall tour photo drops its desktop height on narrow screens (its 4:3 ratio then sets the height, not the width) */
+@media (max-width: 900px) { .tour__item--a .slat { height: auto; } }
+/* tilted seam strips and protruding art never create sideways scroll (clip is not a scroll container: sticky still works) */
+main { overflow-x: clip; }
+/* slat reveal: at rest you look THROUGH the slat wall (thin slats, the photo between them); hover/scroll opens it */
+.slat__bars { padding: 0 2%; }
+.slat__bars i { width: 46%; justify-self: center; border-radius: 3px; background: linear-gradient(90deg, #3a2516, #6b4527 45%, #3a2516); box-shadow: 6px 0 14px rgba(0, 0, 0, .45), inset 1px 0 0 rgba(255, 220, 170, .18); }
+.slat__img img { filter: saturate(.95) brightness(.8); }
+.slat.is-open .slat__img img, .slat:hover .slat__img img, a:hover > .slat .slat__img img { filter: saturate(1.05) brightness(1); }
+/* product card buttons never wrap; the price can sit on its own line in narrow cards */
+.pc__add { white-space: nowrap; }
+.pc__foot { flex-wrap: wrap; row-gap: .55rem; }
+.pc__foot .pc__add { margin-left: auto; }
+/* deals: breathing room between the board note and the sale rail */
+.deals-band__sale { margin-top: clamp(2.5rem, 4vw, 3.5rem); }
+.deals-band__sale-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.deals-band__sale-head h3 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); }
+/* the Humboldt-grown bud crosses the seam ABOVE the heading row, never over the words */
+.floater--grown { top: -150px; right: 1.5%; width: clamp(110px, 12vw, 190px); }
+.grown .section-head__side { max-width: 40ch; }
+/* category wall: 6 across on wide screens; slats sit behind the product, the words sit on a calm ground */
+@media (min-width: 1240px) { .catwall:not(.catwall--dense):not(.catwall--six) { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.cat__slats { bottom: 46%; -webkit-mask: linear-gradient(180deg, #000 55%, transparent); mask: linear-gradient(180deg, #000 55%, transparent); }
+/* hero words sit on a calm, darker left third (the building is bright behind them) */
+.hero__shade { background:
+  linear-gradient(90deg, rgba(14, 9, 6, .88) 0%, rgba(14, 9, 6, .62) 32%, rgba(14, 9, 6, .12) 60%, rgba(14, 9, 6, 0) 75%),
+  radial-gradient(120% 70% at 20% 100%, rgba(14, 9, 6, .85), rgba(14, 9, 6, .4) 45%, rgba(14, 9, 6, 0) 75%),
+  linear-gradient(180deg, rgba(14, 9, 6, .55) 0%, rgba(14, 9, 6, 0) 22%, rgba(14, 9, 6, 0) 55%, rgba(14, 9, 6, .88) 100%); }
+/* category art lives in a fixed box above each card; rows leave room for it */
+.catwall { row-gap: clamp(4.25rem, 3rem + 3vw, 5.5rem); }
+.cat__art { height: 150px; display: flex; align-items: flex-end; justify-content: center; top: -3.4rem; }
+.cat__art img { width: auto; max-width: 100%; max-height: 100%; }
+@media (max-width: 760px) { .catwall { row-gap: 3.6rem; } .cat__art { height: 112px; top: -2.6rem; } }
+/* ---------- phone pass ---------- */
+@media (max-width: 760px) {
+  .hide-sm { display: none; }
+  .hero__bar { padding-bottom: 2.75rem; }
+  .qbar__i b { white-space: normal; font-size: .875rem; line-height: 1.2; }
+  /* long stacks become swipe rows: same cards, a fraction of the height */
+  .picks, .evts, .ways__grid, .today__grid, .vals { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 80%; overflow-x: auto; scroll-snap-type: x mandatory; gap: .8rem; margin-inline: calc(-1 * var(--gutter)); padding: 6px var(--gutter) 14px; scrollbar-width: none; }
+  .picks::-webkit-scrollbar, .evts::-webkit-scrollbar, .ways__grid::-webkit-scrollbar, .today__grid::-webkit-scrollbar, .vals::-webkit-scrollbar { display: none; }
+  .picks > *, .evts > *, .ways__grid > *, .today__grid > *, .vals > * { scroll-snap-align: start; }
+  .picks { grid-template-rows: repeat(2, auto); grid-auto-columns: 70%; }
+  .way .slat { aspect-ratio: 16 / 10; }
+  .feel__tile { min-height: 230px; }
+  .feel { gap: .8rem; }
+  .yard { min-height: 0; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
+  .stat__n { font-size: 1.7rem; }
+  .stat__n--word { font-size: 1.15rem; }
+  .stat__l { font-size: .8125rem; }
+  .social__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+  .band { padding-block: clamp(3.5rem, 2.5rem + 5vw, 5rem); }
+}
+@media (max-width: 760px) { .floater--grown { display: none; } }

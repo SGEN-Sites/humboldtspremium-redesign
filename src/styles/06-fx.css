@@ -1,0 +1,65 @@
+/* fx: fog, embers, key light, cursor firelight, reveals, split words, day-to-night scroll tint.
+   Rules: transform / opacity / filter only; pointer effects for fine pointers only; everything off under reduced motion;
+   content is visible without JS (hidden states are gated on html.js). */
+
+/* ---------- key light: one per band, follows the pointer within the band ---------- */
+.key-light { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(42% 55% at var(--lx, 70%) var(--ly, 30%), rgba(255, 150, 70, .2), rgba(232, 115, 44, .06) 45%, transparent 70%); transition: background-position .6s; mix-blend-mode: screen; }
+
+/* ---------- coastal fog: three soft layers drifting at different speeds ---------- */
+.fog { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.fog__l { position: absolute; left: -50%; width: 200%; height: 46%; background-repeat: repeat-x; opacity: .5; filter: blur(2px); will-change: transform; }
+.fog__l--1 { bottom: -6%; background-image: radial-gradient(closest-side, rgba(244, 237, 226, .32), transparent), radial-gradient(closest-side, rgba(244, 237, 226, .22), transparent); background-size: 52% 100%, 38% 80%; background-position: 0 100%, 30% 60%; animation: fogDrift 70s linear infinite; }
+.fog__l--2 { bottom: 10%; height: 34%; opacity: .32; background-image: radial-gradient(closest-side, rgba(244, 237, 226, .3), transparent); background-size: 34% 100%; animation: fogDrift 52s linear infinite reverse; }
+.fog__l--3 { bottom: 28%; height: 26%; opacity: .2; background-image: radial-gradient(closest-side, rgba(255, 220, 180, .35), transparent); background-size: 44% 100%; animation: fogDrift 96s linear infinite; }
+@keyframes fogDrift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(25%, 0, 0); } }
+.fog--low .fog__l--2, .fog--low .fog__l--3 { display: none; }
+.fog--low .fog__l--1 { opacity: .22; }
+.fog--hero { z-index: 2; }
+.fog--hero .fog__l--1 { opacity: .55; }
+.fog--yard .fog__l--1 { opacity: .4; }
+/* the fog parts around the cursor (hero + courtyard): a soft clear ring via mask */
+@media (pointer: fine) {
+  [data-hero] .fog, [data-yhero] .fog { -webkit-mask: radial-gradient(260px 220px at var(--cx, -999px) var(--cy, -999px), transparent 0, rgba(0, 0, 0, .35) 45%, #000 70%); mask: radial-gradient(260px 220px at var(--cx, -999px) var(--cy, -999px), transparent 0, rgba(0, 0, 0, .35) 45%, #000 70%); }
+}
+
+/* ---------- embers (canvas, drawn by fx.js) ---------- */
+.embers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; mix-blend-mode: screen; }
+.embers--hero { z-index: 3; }
+
+/* ---------- cursor firelight: a warm glow that trails the pointer across dark grounds ---------- */
+.cursor-light { position: fixed; left: 0; top: 0; z-index: 50; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255, 160, 80, .13), rgba(232, 115, 44, .05) 40%, transparent 68%); mix-blend-mode: screen; opacity: 0; transform: translate3d(var(--cx, -600px), var(--cy, -600px), 0); transition: opacity .5s; }
+html.has-cursor .cursor-light { opacity: 1; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) { .cursor-light { display: none; } }
+
+/* ---------- day to night: the page warms as you scroll (home) ---------- */
+.pg-home main { background: linear-gradient(180deg, #120c08 0%, #160e09 30%, #1c110a 60%, #120c08 100%); }
+
+/* ---------- reveals: content "lights on" (individual translate, so hover transforms keep working) ---------- */
+html.js [data-reveal] { opacity: 0; translate: 0 26px; filter: blur(8px) brightness(.7); transition: opacity .9s var(--ease), translate .9s var(--ease), filter .9s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+html.js [data-reveal].is-in, html.reveal-all [data-reveal] { opacity: 1; translate: 0 0; filter: none; }
+html.js .catwall .cat, html.js .pgrid .pc { opacity: 0; translate: 0 30px; transition: opacity .8s var(--ease), translate .8s var(--ease), box-shadow .5s var(--ease); transition-delay: calc(var(--i, 0) * 60ms); }
+html.js .catwall.is-in .cat, html.js .pgrid.is-in .pc, html.reveal-all .catwall .cat, html.reveal-all .pgrid .pc { opacity: 1; translate: 0 0; }
+html.js .catwall.is-in .cat:hover { translate: 0 -6px; }
+html.js .pgrid.is-in .pc:hover { translate: 0 -4px; }
+
+/* ---------- split-word headings (the served heading stays whole for SEO; spans are aria-hidden) ---------- */
+.sw { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; margin-bottom: -.08em; }
+.sw > span { display: inline-block; transform: translateY(105%); transition: transform 1s var(--ease); transition-delay: calc(var(--w) * 70ms + 120ms); }
+.is-split.is-in .sw > span, html.reveal-all .sw > span { transform: none; }
+
+/* ---------- magnetic buttons (fine pointer) ---------- */
+@media (pointer: coarse) { .btn { transform: none !important; } }
+
+/* ---------- grain layer ---------- */
+.grain-layer { position: absolute; inset: 0; pointer-events: none; background-image: var(--grain); opacity: .06; mix-blend-mode: overlay; }
+body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; background-image: var(--grain); opacity: .035; mix-blend-mode: overlay; }
+
+/* ---------- reduced motion: everything still, everything visible ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  html.js [data-reveal], html.js .catwall .cat, html.js .pgrid .pc { opacity: 1 !important; translate: none !important; filter: none !important; }
+  .sw > span { transform: none !important; }
+  .fog__l, .marquee__track, .cat__art, .floater img, .phero__art, .wheel__spin svg { animation: none !important; }
+  .hero__video, .embers, .yard__video, .tour__video { display: none !important; }
+  .hero__media, .yhero__layer, .phero__img, .yard__layer, .floater, [data-depth] { transform: none !important; }
+}

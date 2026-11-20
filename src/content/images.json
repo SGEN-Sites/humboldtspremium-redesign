@@ -1,0 +1,1149 @@
+{
+ "courtyard-day": {
+  "kind": "owner",
+  "w": 4032,
+  "h": 3024,
+  "variants": [
+   {
+    "src": "img/courtyard-day-800.webp",
+    "w": 800,
+    "h": 600
+   },
+   {
+    "src": "img/courtyard-day-1400.webp",
+    "w": 1400,
+    "h": 1050
+   },
+   {
+    "src": "img/courtyard-day-2200.webp",
+    "w": 2200,
+    "h": 1650
+   }
+  ],
+  "alt": "The courtyard in daylight: teal-cushioned wicker sofas, a round teak table and chairs, the rock waterfall and the sunburst sign over the gate",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-7.jpg"
+ },
+ "waterfall-day": {
+  "kind": "owner",
+  "w": 3413,
+  "h": 2388,
+  "variants": [
+   {
+    "src": "img/waterfall-day-800.webp",
+    "w": 800,
+    "h": 560
+   },
+   {
+    "src": "img/waterfall-day-1400.webp",
+    "w": 1400,
+    "h": 980
+   },
+   {
+    "src": "img/waterfall-day-2000.webp",
+    "w": 2000,
+    "h": 1399
+   }
+  ],
+  "alt": "The rock waterfall in the courtyard, with a small Bigfoot statue sitting on the rocks",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-6.jpg"
+ },
+ "courtyard-teal": {
+  "kind": "owner",
+  "w": 640,
+  "h": 480,
+  "variants": [
+   {
+    "src": "img/courtyard-teal-640.webp",
+    "w": 640,
+    "h": 480
+   }
+  ],
+  "alt": "Teal wicker sofas and teak tables on the courtyard turf",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-2.jpg"
+ },
+ "storefront-day": {
+  "kind": "owner",
+  "w": 4032,
+  "h": 3024,
+  "variants": [
+   {
+    "src": "img/storefront-day-800.webp",
+    "w": 800,
+    "h": 600
+   },
+   {
+    "src": "img/storefront-day-1400.webp",
+    "w": 1400,
+    "h": 1050
+   },
+   {
+    "src": "img/storefront-day-2000.webp",
+    "w": 2000,
+    "h": 1500
+   }
+  ],
+  "alt": "The Humboldt's Premium storefront at 460 I St with the sunburst redwood mural",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-0.jpg"
+ },
+ "storefront-dusk": {
+  "kind": "owner",
+  "w": 1441,
+  "h": 1200,
+  "variants": [
+   {
+    "src": "img/storefront-dusk-700.webp",
+    "w": 700,
+    "h": 583
+   },
+   {
+    "src": "img/storefront-dusk-1441.webp",
+    "w": 1441,
+    "h": 1200
+   }
+  ],
+  "alt": "The store at dusk with its wall lights on",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-8.jpg"
+ },
+ "storefront-night": {
+  "kind": "live",
+  "w": 4032,
+  "h": 3024,
+  "variants": [
+   {
+    "src": "img/storefront-night-800.webp",
+    "w": 800,
+    "h": 600
+   },
+   {
+    "src": "img/storefront-night-1400.webp",
+    "w": 1400,
+    "h": 1050
+   },
+   {
+    "src": "img/storefront-night-2000.webp",
+    "w": 2000,
+    "h": 1500
+   }
+  ],
+  "alt": "The store and courtyard wall lit up at night, seen across the parking lot",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_091071175953464297e8ac6318d375bb-mv2.jpg"
+ },
+ "street-view": {
+  "kind": "owner",
+  "w": 3111,
+  "h": 1997,
+  "variants": [
+   {
+    "src": "img/street-view-800.webp",
+    "w": 800,
+    "h": 514
+   },
+   {
+    "src": "img/street-view-1400.webp",
+    "w": 1400,
+    "h": 899
+   }
+  ],
+  "alt": "The building on I Street",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-3.jpg"
+ },
+ "interior-wide": {
+  "kind": "live",
+  "w": 6718,
+  "h": 3864,
+  "variants": [
+   {
+    "src": "img/interior-wide-800.webp",
+    "w": 800,
+    "h": 460
+   },
+   {
+    "src": "img/interior-wide-1400.webp",
+    "w": 1400,
+    "h": 805
+   },
+   {
+    "src": "img/interior-wide-2200.webp",
+    "w": 2200,
+    "h": 1265
+   }
+  ],
+  "alt": "Inside the Arcata store: glass counters, slat walls and square pendant lights",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_4dd63dca4a464ceda299fb6660e8c619-mv2.jpg"
+ },
+ "interior-counter": {
+  "kind": "owner",
+  "w": 4032,
+  "h": 3024,
+  "variants": [
+   {
+    "src": "img/interior-counter-800.webp",
+    "w": 800,
+    "h": 600
+   },
+   {
+    "src": "img/interior-counter-1400.webp",
+    "w": 1400,
+    "h": 1050
+   },
+   {
+    "src": "img/interior-counter-2000.webp",
+    "w": 2000,
+    "h": 1500
+   }
+  ],
+  "alt": "The counter and slat walls inside the store",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/gmaps-owner/own-1.jpg"
+ },
+ "interior-door": {
+  "kind": "live",
+  "w": 4032,
+  "h": 3024,
+  "variants": [
+   {
+    "src": "img/interior-door-800.webp",
+    "w": 800,
+    "h": 600
+   },
+   {
+    "src": "img/interior-door-1400.webp",
+    "w": 1400,
+    "h": 1050
+   }
+  ],
+  "alt": "The sales floor and front door inside the store",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_0fbd16be5bf64ce2bb76df0489b0a037-mv2.jpg"
+ },
+ "glass-case": {
+  "kind": "live",
+  "w": 1599,
+  "h": 878,
+  "variants": [
+   {
+    "src": "img/glass-case-800.webp",
+    "w": 800,
+    "h": 439
+   },
+   {
+    "src": "img/glass-case-1599.webp",
+    "w": 1599,
+    "h": 878
+   }
+  ],
+  "alt": "Glass pipes and bongs in a lit display case",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_d5600c20948f4958853a8a05710b5f57-mv2.jpg"
+ },
+ "merch-tees": {
+  "kind": "live",
+  "w": 2066,
+  "h": 3656,
+  "variants": [
+   {
+    "src": "img/merch-tees-600.webp",
+    "w": 600,
+    "h": 1062
+   },
+   {
+    "src": "img/merch-tees-1000.webp",
+    "w": 1000,
+    "h": 1770
+   }
+  ],
+  "alt": "Humboldt AF and Humboldt's Premium t-shirts on the wall",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_6c0cadeb3c3c4417a2144ee8663c7b59-mv2.jpg"
+ },
+ "sign-pole": {
+  "kind": "press",
+  "w": 667,
+  "h": 667,
+  "variants": [
+   {
+    "src": "img/sign-pole-667.webp",
+    "w": 667,
+    "h": 667
+   }
+  ],
+  "alt": "The Humboldt's Premium Dispensary pole sign against a blue sky",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/leaf/leaf-Sign.jpg"
+ },
+ "leaf-gazebos": {
+  "kind": "press",
+  "w": 889,
+  "h": 667,
+  "variants": [
+   {
+    "src": "img/leaf-gazebos-889.webp",
+    "w": 889,
+    "h": 667
+   }
+  ],
+  "alt": "Covered gazebos and teak chairs in the courtyard lounge on a sunny day",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/leaf/leaf-Arcata-Lounge-1.jpg"
+ },
+ "leaf-interior": {
+  "kind": "press",
+  "w": 1392,
+  "h": 667,
+  "variants": [
+   {
+    "src": "img/leaf-interior-1392.webp",
+    "w": 1392,
+    "h": 667
+   }
+  ],
+  "alt": "A wide view of the sales floor with its glass counters and coolers",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/leaf/leaf-Arcata-Dispensary.jpg"
+ },
+ "house-products": {
+  "kind": "press",
+  "w": 889,
+  "h": 667,
+  "variants": [
+   {
+    "src": "img/house-products-889.webp",
+    "w": 889,
+    "h": 667
+   }
+  ],
+  "alt": "House-brand 707 Rolls preroll packs and a Widowmaker mini on the counter",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/leaf/leaf-Humboldts-Premium-Products.jpg"
+ },
+ "team-dustin": {
+  "kind": "live",
+  "w": 631,
+  "h": 790,
+  "variants": [
+   {
+    "src": "img/team-dustin-631.webp",
+    "w": 631,
+    "h": 790
+   }
+  ],
+  "alt": "Dustin",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_7040f160ce454b5ca0298a983e7d189d-mv2.jpg"
+ },
+ "team-justin": {
+  "kind": "live",
+  "w": 3024,
+  "h": 4032,
+  "variants": [
+   {
+    "src": "img/team-justin-600.webp",
+    "w": 600,
+    "h": 800
+   },
+   {
+    "src": "img/team-justin-1000.webp",
+    "w": 1000,
+    "h": 1333
+   }
+  ],
+  "alt": "Justin",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_9bf2ff8271db447da8cb5547b4fdf0bd-mv2.jpeg"
+ },
+ "team-misha": {
+  "kind": "live",
+  "w": 1199,
+  "h": 1332,
+  "variants": [
+   {
+    "src": "img/team-misha-600.webp",
+    "w": 600,
+    "h": 667
+   },
+   {
+    "src": "img/team-misha-1000.webp",
+    "w": 1000,
+    "h": 1111
+   }
+  ],
+  "alt": "Misha",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_518c90ac0cd443b69c5e13a58f46bce6-mv2.jpg"
+ },
+ "team-james": {
+  "kind": "live",
+  "w": 935,
+  "h": 1213,
+  "variants": [
+   {
+    "src": "img/team-james-600.webp",
+    "w": 600,
+    "h": 778
+   },
+   {
+    "src": "img/team-james-935.webp",
+    "w": 935,
+    "h": 1213
+   }
+  ],
+  "alt": "James",
+  "ai": false,
+  "aiKind": null,
+  "source": "sources/live/ba64af_54a013cb8c6c423f9e1a21db94ff9ee7-mv2.jpg"
+ },
+ "courtyard-dusk": {
+  "kind": "edited",
+  "w": 4800,
+  "h": 3584,
+  "variants": [
+   {
+    "src": "img/courtyard-dusk-960.webp",
+    "w": 960,
+    "h": 717
+   },
+   {
+    "src": "img/courtyard-dusk-1600.webp",
+    "w": 1600,
+    "h": 1195
+   },
+   {
+    "src": "img/courtyard-dusk-2400.webp",
+    "w": 2400,
+    "h": 1792
+   },
+   {
+    "src": "img/courtyard-dusk-3200.webp",
+    "w": 3200,
+    "h": 2389
+   }
+  ],
+  "alt": "The courtyard at dusk: lanterns glowing, the waterfall softly lit, teal sofas and the teak table under a fading sky",
+  "ai": true,
+  "aiKind": "edited",
+  "source": "gen/fal1/out/nb-courtyard-dusk-a.png"
+ },
+ "courtyard-night": {
+  "kind": "edited",
+  "w": 4800,
+  "h": 3584,
+  "variants": [
+   {
+    "src": "img/courtyard-night-960.webp",
+    "w": 960,
+    "h": 717
+   },
+   {
+    "src": "img/courtyard-night-1600.webp",
+    "w": 1600,
+    "h": 1195
+   },
+   {
+    "src": "img/courtyard-night-2400.webp",
+    "w": 2400,
+    "h": 1792
+   }
+  ],
+  "alt": "The courtyard at night under the stars, the lanterns and waterfall lights glowing warm",
+  "ai": true,
+  "aiKind": "edited",
+  "source": "gen/fal1/out/nb-courtyard-night.png"
+ },
+ "courtyard-sunset": {
+  "kind": "edited",
+  "w": 2336,
+  "h": 1744,
+  "variants": [
+   {
+    "src": "img/courtyard-sunset-960.webp",
+    "w": 960,
+    "h": 717
+   },
+   {
+    "src": "img/courtyard-sunset-1600.webp",
+    "w": 1600,
+    "h": 1195
+   },
+   {
+    "src": "img/courtyard-sunset-2336.webp",
+    "w": 2336,
+    "h": 1744
+   }
+  ],
+  "alt": "The courtyard at sunset with fog drifting through the tall trees",
+  "ai": true,
+  "aiKind": "edited",
+  "source": "gen/hf2/out/rl2-courtyard-dusk-a.png"
+ },
+ "waterfall-golden": {
+  "kind": "edited",
+  "w": 5056,
+  "h": 3392,
+  "variants": [
+   {
+    "src": "img/waterfall-golden-800.webp",
+    "w": 800,
+    "h": 537
+   },
+   {
+    "src": "img/waterfall-golden-1400.webp",
+    "w": 1400,
+    "h": 939
+   },
+   {
+    "src": "img/waterfall-golden-2200.webp",
+    "w": 2200,
+    "h": 1476
+   }
+  ],
+  "alt": "The rock waterfall and its Bigfoot statue in late golden-hour light",
+  "ai": true,
+  "aiKind": "edited",
+  "source": "gen/fal1/out/nb-waterfall-golden.png"
+ },
+ "redwood-fog": {
+  "kind": "generated",
+  "w": 2688,
+  "h": 1520,
+  "variants": [
+   {
+    "src": "img/redwood-fog-960.webp",
+    "w": 960,
+    "h": 543
+   },
+   {
+    "src": "img/redwood-fog-1600.webp",
+    "w": 1600,
+    "h": 905
+   },
+   {
+    "src": "img/redwood-fog-2688.webp",
+    "w": 2688,
+    "h": 1520
+   }
+  ],
+  "alt": "Fog drifting between old-growth redwood trunks at sunrise",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/scene-redwood-fog.png"
+ },
+ "marsh-golden": {
+  "kind": "generated",
+  "w": 2688,
+  "h": 1520,
+  "variants": [
+   {
+    "src": "img/marsh-golden-960.webp",
+    "w": 960,
+    "h": 543
+   },
+   {
+    "src": "img/marsh-golden-1600.webp",
+    "w": 1600,
+    "h": 905
+   },
+   {
+    "src": "img/marsh-golden-2688.webp",
+    "w": 2688,
+    "h": 1520
+   }
+  ],
+  "alt": "Marsh grasses and still water at golden hour with fog on the far shore",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/scene-marsh-golden.png"
+ },
+ "fire-table": {
+  "kind": "generated",
+  "w": 2048,
+  "h": 1360,
+  "variants": [
+   {
+    "src": "img/fire-table-800.webp",
+    "w": 800,
+    "h": 531
+   },
+   {
+    "src": "img/fire-table-1400.webp",
+    "w": 1400,
+    "h": 930
+   },
+   {
+    "src": "img/fire-table-2048.webp",
+    "w": 2048,
+    "h": 1360
+   }
+  ],
+  "alt": "Flames dancing along an outdoor fire table at blue hour",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/scene-fire-table.png"
+ },
+ "fog-hills": {
+  "kind": "generated",
+  "w": 2688,
+  "h": 1152,
+  "variants": [
+   {
+    "src": "img/fog-hills-1200.webp",
+    "w": 1200,
+    "h": 514
+   },
+   {
+    "src": "img/fog-hills-2000.webp",
+    "w": 2000,
+    "h": 857
+   },
+   {
+    "src": "img/fog-hills-2688.webp",
+    "w": 2688,
+    "h": 1152
+   }
+  ],
+  "alt": "Coastal fog rolling over dark redwood hills under an amber dusk sky",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/scene-fog-hills.png"
+ },
+ "plate-embers": {
+  "kind": "generated",
+  "w": 2688,
+  "h": 1520,
+  "variants": [
+   {
+    "src": "img/plate-embers-1200.webp",
+    "w": 1200,
+    "h": 679
+   },
+   {
+    "src": "img/plate-embers-2000.webp",
+    "w": 2000,
+    "h": 1131
+   }
+  ],
+  "alt": "",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/plate-embers.png"
+ },
+ "plate-fog": {
+  "kind": "generated",
+  "w": 2688,
+  "h": 1152,
+  "variants": [
+   {
+    "src": "img/plate-fog-1400.webp",
+    "w": 1400,
+    "h": 600
+   },
+   {
+    "src": "img/plate-fog-2400.webp",
+    "w": 2400,
+    "h": 1029
+   }
+  ],
+  "alt": "",
+  "ai": true,
+  "aiKind": "generated",
+  "source": "gen/hf1/out/plate-fog.png"
+ },
+ "cat-flower": {
+  "kind": "generated",
+  "w": 1236,
+  "h": 876,
+  "variants": [
+   {
+    "src": "img/cat-flower-360.webp",
+    "w": 360,
+    "h": 255
+   },
+   {
+    "src": "img/cat-flower-720.webp",
+    "w": 720,
+    "h": 510
+   },
+   {
+    "src": "img/cat-flower-1100.webp",
+    "w": 1100,
+    "h": 780
+   }
+  ],
+  "alt": "Cannabis flower beside a small glass jar",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-flower.png"
+ },
+ "cat-prerolls": {
+  "kind": "generated",
+  "w": 1230,
+  "h": 973,
+  "variants": [
+   {
+    "src": "img/cat-prerolls-360.webp",
+    "w": 360,
+    "h": 285
+   },
+   {
+    "src": "img/cat-prerolls-720.webp",
+    "w": 720,
+    "h": 570
+   },
+   {
+    "src": "img/cat-prerolls-1100.webp",
+    "w": 1100,
+    "h": 870
+   }
+  ],
+  "alt": "Three pre-rolled joints",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-prerolls.png"
+ },
+ "cat-vape": {
+  "kind": "generated",
+  "w": 196,
+  "h": 1408,
+  "variants": [
+   {
+    "src": "img/cat-vape-196.webp",
+    "w": 196,
+    "h": 1408
+   }
+  ],
+  "alt": "A vape cartridge on a slim battery",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-vape.png"
+ },
+ "cat-concentrates": {
+  "kind": "generated",
+  "w": 1215,
+  "h": 928,
+  "variants": [
+   {
+    "src": "img/cat-concentrates-360.webp",
+    "w": 360,
+    "h": 275
+   },
+   {
+    "src": "img/cat-concentrates-720.webp",
+    "w": 720,
+    "h": 550
+   },
+   {
+    "src": "img/cat-concentrates-1100.webp",
+    "w": 1100,
+    "h": 840
+   }
+  ],
+  "alt": "A jar of golden live resin with diamonds",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-concentrates.png"
+ },
+ "cat-edibles": {
+  "kind": "generated",
+  "w": 1179,
+  "h": 856,
+  "variants": [
+   {
+    "src": "img/cat-edibles-360.webp",
+    "w": 360,
+    "h": 261
+   },
+   {
+    "src": "img/cat-edibles-720.webp",
+    "w": 720,
+    "h": 523
+   },
+   {
+    "src": "img/cat-edibles-1100.webp",
+    "w": 1100,
+    "h": 799
+   }
+  ],
+  "alt": "Cannabis gummies in a stone dish",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-edibles.png"
+ },
+ "cat-drinks": {
+  "kind": "generated",
+  "w": 870,
+  "h": 1179,
+  "variants": [
+   {
+    "src": "img/cat-drinks-360.webp",
+    "w": 360,
+    "h": 488
+   },
+   {
+    "src": "img/cat-drinks-720.webp",
+    "w": 720,
+    "h": 976
+   },
+   {
+    "src": "img/cat-drinks-870.webp",
+    "w": 870,
+    "h": 1179
+   }
+  ],
+  "alt": "A cold beverage can",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-drinks.png"
+ },
+ "cat-tinctures": {
+  "kind": "generated",
+  "w": 523,
+  "h": 1479,
+  "variants": [
+   {
+    "src": "img/cat-tinctures-360.webp",
+    "w": 360,
+    "h": 1018
+   },
+   {
+    "src": "img/cat-tinctures-523.webp",
+    "w": 523,
+    "h": 1479
+   }
+  ],
+  "alt": "A tincture dropper bottle",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-tinctures.png"
+ },
+ "cat-topicals": {
+  "kind": "generated",
+  "w": 1094,
+  "h": 1201,
+  "variants": [
+   {
+    "src": "img/cat-topicals-360.webp",
+    "w": 360,
+    "h": 395
+   },
+   {
+    "src": "img/cat-topicals-720.webp",
+    "w": 720,
+    "h": 790
+   },
+   {
+    "src": "img/cat-topicals-1094.webp",
+    "w": 1094,
+    "h": 1201
+   }
+  ],
+  "alt": "A tin of balm and a lotion bottle",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-topicals.png"
+ },
+ "cat-cbd": {
+  "kind": "generated",
+  "w": 879,
+  "h": 1108,
+  "variants": [
+   {
+    "src": "img/cat-cbd-360.webp",
+    "w": 360,
+    "h": 454
+   },
+   {
+    "src": "img/cat-cbd-720.webp",
+    "w": 720,
+    "h": 908
+   },
+   {
+    "src": "img/cat-cbd-879.webp",
+    "w": 879,
+    "h": 1108
+   }
+  ],
+  "alt": "A CBD dropper bottle with soft gels",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-cbd.png"
+ },
+ "cat-accessories": {
+  "kind": "generated",
+  "w": 1403,
+  "h": 819,
+  "variants": [
+   {
+    "src": "img/cat-accessories-360.webp",
+    "w": 360,
+    "h": 210
+   },
+   {
+    "src": "img/cat-accessories-720.webp",
+    "w": 720,
+    "h": 420
+   },
+   {
+    "src": "img/cat-accessories-1100.webp",
+    "w": 1100,
+    "h": 642
+   }
+  ],
+  "alt": "A brass grinder, rolling papers and a glass pipe",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-accessories.png"
+ },
+ "cat-humboldt": {
+  "kind": "generated",
+  "w": 1029,
+  "h": 1323,
+  "variants": [
+   {
+    "src": "img/cat-humboldt-360.webp",
+    "w": 360,
+    "h": 463
+   },
+   {
+    "src": "img/cat-humboldt-720.webp",
+    "w": 720,
+    "h": 926
+   },
+   {
+    "src": "img/cat-humboldt-1029.webp",
+    "w": 1029,
+    "h": 1323
+   }
+  ],
+  "alt": "A cannabis bud on redwood bark",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-cat-humboldt.png"
+ },
+ "obj-redwood-sprig-a": {
+  "kind": "generated",
+  "w": 1058,
+  "h": 1252,
+  "variants": [
+   {
+    "src": "img/obj-redwood-sprig-a-360.webp",
+    "w": 360,
+    "h": 426
+   },
+   {
+    "src": "img/obj-redwood-sprig-a-720.webp",
+    "w": 720,
+    "h": 852
+   },
+   {
+    "src": "img/obj-redwood-sprig-a-1058.webp",
+    "w": 1058,
+    "h": 1252
+   }
+  ],
+  "alt": "",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-obj-redwood-sprig-a.png"
+ },
+ "obj-redwood-sprig-b": {
+  "kind": "generated",
+  "w": 972,
+  "h": 1346,
+  "variants": [
+   {
+    "src": "img/obj-redwood-sprig-b-360.webp",
+    "w": 360,
+    "h": 499
+   },
+   {
+    "src": "img/obj-redwood-sprig-b-720.webp",
+    "w": 720,
+    "h": 997
+   },
+   {
+    "src": "img/obj-redwood-sprig-b-972.webp",
+    "w": 972,
+    "h": 1346
+   }
+  ],
+  "alt": "",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-obj-redwood-sprig-b.png"
+ },
+ "obj-maple-leaf": {
+  "kind": "generated",
+  "w": 1240,
+  "h": 1357,
+  "variants": [
+   {
+    "src": "img/obj-maple-leaf-360.webp",
+    "w": 360,
+    "h": 394
+   },
+   {
+    "src": "img/obj-maple-leaf-720.webp",
+    "w": 720,
+    "h": 788
+   },
+   {
+    "src": "img/obj-maple-leaf-1100.webp",
+    "w": 1100,
+    "h": 1204
+   }
+  ],
+  "alt": "",
+  "ai": true,
+  "aiKind": "generated",
+  "cutout": true,
+  "source": "gen/cut/out/cut-obj-maple-leaf.png"
+ },
+ "logo": {
+  "kind": "live",
+  "w": 2421,
+  "h": 1287,
+  "variants": [
+   {
+    "src": "img/logo-240.webp",
+    "w": 240,
+    "h": 128
+   },
+   {
+    "src": "img/logo-480.webp",
+    "w": 480,
+    "h": 255
+   },
+   {
+    "src": "img/logo-960.webp",
+    "w": 960,
+    "h": 510
+   }
+  ],
+  "png": "img/logo.png",
+  "alt": "Humboldt's Premium",
+  "ai": false,
+  "source": "private/sources/live/logo-main.png"
+ },
+ "logo-af": {
+  "kind": "live",
+  "w": 1732,
+  "h": 739,
+  "variants": [
+   {
+    "src": "img/logo-af-240.webp",
+    "w": 240,
+    "h": 102
+   },
+   {
+    "src": "img/logo-af-480.webp",
+    "w": 480,
+    "h": 205
+   },
+   {
+    "src": "img/logo-af-960.webp",
+    "w": 960,
+    "h": 410
+   }
+  ],
+  "png": "img/logo-af.png",
+  "alt": "Humboldt's Premium",
+  "ai": false,
+  "source": "private/sources/live/ba64af_00_af-logo.png"
+ },
+ "_video": {
+  "courtyard-dusk": {
+   "files": [
+    {
+     "src": "video/courtyard-dusk-1920.mp4",
+     "w": 1920,
+     "bytes": 2590275
+    },
+    {
+     "src": "video/courtyard-dusk-1280.mp4",
+     "w": 1280,
+     "bytes": 1068054
+    }
+   ],
+   "poster": "video/courtyard-dusk-poster.webp",
+   "ai": true,
+   "source": "gen/vid/out/loop-courtyard-dusk.mp4"
+  },
+  "fire-table": {
+   "files": [
+    {
+     "src": "video/fire-table-1280.mp4",
+     "w": 1280,
+     "bytes": 703897
+    }
+   ],
+   "poster": "video/fire-table-poster.webp",
+   "ai": true,
+   "source": "gen/vid/out/loop-fire-table.mp4"
+  }
+ },
+ "logo-light": {
+  "kind": "live",
+  "w": 2421,
+  "h": 1287,
+  "variants": [
+   {
+    "src": "img/logo-light-240.webp",
+    "w": 240,
+    "h": 128
+   },
+   {
+    "src": "img/logo-light-480.webp",
+    "w": 480,
+    "h": 255
+   },
+   {
+    "src": "img/logo-light-960.webp",
+    "w": 960,
+    "h": 510
+   }
+  ],
+  "png": "img/logo-light.png",
+  "alt": "Humboldt's Premium",
+  "ai": false,
+  "source": "private/sources/live/logo-light.png"
+ }
+}
