@@ -136,7 +136,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-to
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0; min-height: 100vh; background: var(--night-0); color: var(--fog);
-  font: 400 var(--fs-body)/var(--lh-body) var(--f-ui); font-feature-settings: "ss01", "cv11";
+  font: 400 var(--fs-body)/var(--lh-body) var(--f-body, var(--f-ui)); font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: clip;
 }
 img, video, svg, canvas { display: block; max-width: 100%; }
@@ -151,7 +151,7 @@ input, select, textarea { font: inherit; color: inherit; }
 .skip { position: fixed; left: 12px; top: -60px; z-index: 200; padding: 10px 16px; border-radius: var(--r-pill); background: var(--sun); color: var(--night-0); font-weight: 700; text-decoration: none; }
 .skip:focus { top: 12px; }
 
-h1, h2, h3, h4 { margin: 0 0 .5em; font-family: var(--f-display); font-weight: 600; line-height: var(--lh-tight); letter-spacing: -.012em; font-variation-settings: var(--soft); font-optical-sizing: auto; text-wrap: balance; }
+h1, h2, h3, h4 { margin: 0 0 .5em; font-family: var(--f-display); font-weight: var(--w-display, 600); line-height: var(--lh-tight); letter-spacing: var(--ls-display, -.012em); font-variation-settings: var(--soft); font-optical-sizing: auto; text-wrap: balance; }
 h1 { font-size: var(--fs-h1); line-height: var(--lh-display); letter-spacing: -.022em; }
 h2 { font-size: var(--fs-h2); line-height: 1.04; letter-spacing: -.018em; }
 h3 { font-size: var(--fs-h3); }
@@ -160,12 +160,12 @@ p { margin: 0 0 1em; }
 .lead { font-size: var(--fs-lead); line-height: 1.55; color: var(--fog-dim); max-width: 46ch; }
 .on-fog .lead { color: var(--ink-2); }
 /* ONE accent per heading: an italic, slightly wonky ember word */
-.acc { font-style: italic; font-weight: 500; font-variation-settings: var(--soft-wonk); color: var(--ember-hot); }
+.acc { font-family: var(--f-accent, inherit); font-style: var(--acc-style, italic); font-weight: var(--acc-w, 500); font-variation-settings: var(--soft-wonk); color: var(--ember-hot); }
 .on-fog .acc { color: var(--ember-ink); }
 .acc--sun { color: var(--sun); }
-.t-mega { font-size: var(--fs-mega); line-height: .92; letter-spacing: -.035em; font-weight: 700; }
+.t-mega { font-size: var(--fs-mega); line-height: var(--lh-mega, .92); letter-spacing: var(--ls-mega, -.035em); font-weight: var(--w-mega, 700); }
 
-.kicker { display: inline-flex; align-items: center; gap: .6em; margin: 0 0 1.1rem; font: 700 var(--fs-kicker)/1.3 var(--f-ui); letter-spacing: var(--track-kicker); text-transform: uppercase; color: var(--sun); }
+.kicker { display: inline-flex; align-items: center; gap: .6em; margin: 0 0 1.1rem; font: 700 var(--fs-kicker)/1.3 var(--f-kicker, var(--f-ui)); letter-spacing: var(--track-kicker); text-transform: uppercase; color: var(--sun); }
 .kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 12px currentColor; }
 .on-fog .kicker { color: var(--ember-ink); }
 
@@ -184,7 +184,7 @@ p { margin: 0 0 1em; }
   --bg: var(--sun); --fg: var(--night-0);
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .6em;
   min-height: 52px; padding: .85em 1.6em; border-radius: var(--r-pill); isolation: isolate; overflow: hidden;
-  background: var(--bg); color: var(--fg); font: 700 1rem/1.1 var(--f-ui); letter-spacing: .01em; text-decoration: none;
+  background: var(--bg); color: var(--fg); font: 700 1rem/1.1 var(--f-btn, var(--f-ui)); letter-spacing: var(--ls-btn, .01em); text-decoration: none;
   box-shadow: 0 10px 30px -12px rgba(253, 194, 50, .55); transition: transform var(--t1) var(--ease), box-shadow var(--t2) var(--ease), background var(--t2);
   transform: translate(var(--mgx, 0), var(--mgy, 0));
 }
@@ -1132,6 +1132,54 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
   .hero__media, .yhero__layer, .phero__img, .yard__layer, .floater, [data-depth] { transform: none !important; }
 }
 
+/* 07-fontopts.css */
+/* font pairing options for review: applied to <html> by ?font=<id> (kept for the visit) and to specimen cards on
+   /lab/fonts/. Faces load from Google Fonts only when an option is active. font-synthesis: none stops faux bold and
+   faux italic on single-weight display faces. */
+.fo-live { --f-display: 'EB Garamond', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 600; --w-mega: 700; --ls-display: -.01em; --ls-mega: -.02em; --lh-mega: .95; --acc-w: 500; }
+.fo-logo { --f-display: 'Rye', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-kicker: 'Cinzel', serif; --f-btn: 'Cinzel', serif; --f-accent: 'Rye', serif; --soft: normal; --soft-wonk: normal; --w-display: 400; --w-mega: 400; --ls-display: 0; --ls-mega: .01em; --lh-mega: 1.02; --acc-style: normal; --acc-w: 400; --ls-btn: .06em; font-synthesis: none; }
+.fo-inknut { --f-display: 'Inknut Antiqua', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 700; --w-mega: 800; --ls-display: -.01em; --ls-mega: -.02em; --lh-mega: 1.12; --acc-w: 600; }
+.fo-caps { --f-display: 'Cinzel', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'EB Garamond', Georgia, serif; --f-kicker: 'Jost', sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 700; --w-mega: 800; --ls-display: .01em; --ls-mega: .01em; --lh-mega: 1; --acc-w: 500; }
+.fo-western { --f-display: 'Sancreek', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'EB Garamond', Georgia, serif; --f-kicker: 'Cinzel', serif; --f-btn: 'Cinzel', serif; --f-accent: 'Sancreek', serif; --soft: normal; --soft-wonk: normal; --w-display: 400; --w-mega: 400; --ls-display: .01em; --ls-mega: .02em; --lh-mega: 1; --acc-style: normal; --acc-w: 400; --ls-btn: .06em; font-synthesis: none; }
+.fo-current { }
+.fo-caps .acc, .fo-inknut .acc { text-transform: none; }
+.fo-caps h1, .fo-caps h2, .fo-caps h3 { font-variant-caps: normal; }
+html[class*="fo-"] body { font-size: 1.0625rem; }
+.fo-caps body, .fo-western body { font-size: 1.125rem; }
+
+/* the review chip shown while an option is active */
+.font-chip { position: fixed; left: 14px; bottom: 14px; z-index: 120; display: flex; align-items: center; gap: .5rem; padding: .45rem .5rem .45rem .9rem; border-radius: 999px; background: rgba(20, 13, 9, .95); box-shadow: 0 0 0 1px rgba(252, 229, 148, .35), 0 16px 30px -12px rgba(0, 0, 0, .8); font: 600 .8125rem/1 'Figtree', system-ui, sans-serif; color: var(--fog); letter-spacing: 0; }
+.font-chip b { color: var(--sun); }
+.font-chip a { color: var(--night-0); background: var(--sun); padding: .45em .8em; border-radius: 999px; text-decoration: none; font-weight: 700; }
+.font-chip a + a { background: rgba(244, 237, 226, .12); color: var(--fog); }
+
+/* /lab/fonts/ */
+.lab-hd { padding: calc(var(--header-h) + 2.5rem) 0 1.5rem; }
+.lab-hd h1 { font-family: 'Figtree', system-ui, sans-serif; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); letter-spacing: -.02em; font-variation-settings: normal; }
+.lab-hd p { color: var(--fog-dim); max-width: 70ch; }
+.lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding-bottom: 5rem; }
+.spec { position: relative; isolation: isolate; overflow: hidden; border-radius: 28px; box-shadow: inset 0 0 0 1px rgba(244, 237, 226, .12); font-family: var(--f-body, var(--f-ui)); }
+.spec__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.spec__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(14, 9, 6, .94), rgba(14, 9, 6, .78) 60%, rgba(14, 9, 6, .6)); }
+.spec__in { padding: 1.6rem 1.6rem 1.4rem; }
+.spec__tag { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.1rem; font: 700 .8125rem/1.3 'Figtree', system-ui, sans-serif; letter-spacing: .02em; color: var(--sun); }
+.spec__tag span { color: var(--fog-dim); font-weight: 500; }
+.spec h2.spec__h1 { font-size: clamp(2.4rem, 1.6rem + 2.6vw, 3.8rem); line-height: var(--lh-mega, .95); letter-spacing: var(--ls-mega, -.03em); font-weight: var(--w-mega, 700); margin: 0 0 .7rem; }
+.spec h3 { font-size: 1.6rem; margin: 1.3rem 0 .45rem; }
+.spec p { color: var(--fog-dim); margin: 0 0 .8rem; }
+.spec__row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 .4rem; }
+.spec__row .btn { width: auto; min-height: 46px; }
+.spec__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-top: .6rem; }
+.spec__card { padding: .8rem .9rem; border-radius: 14px; background: rgba(244, 237, 226, .06); box-shadow: inset 0 0 0 1px rgba(244, 237, 226, .1); }
+.spec__card b { display: block; font-family: var(--f-display); font-weight: var(--w-display, 600); font-size: 1.3rem; font-variation-settings: var(--soft); }
+.spec__card small { color: var(--ember-hot); font: 700 .6875rem/1 var(--f-kicker, var(--f-ui)); letter-spacing: .14em; text-transform: uppercase; }
+.spec__why { margin-top: 1rem !important; padding-top: .9rem; border-top: 1px dashed rgba(244, 237, 226, .18); font: 400 .875rem/1.5 'Figtree', system-ui, sans-serif !important; }
+.spec__go { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .8rem; }
+.spec__go a { font: 700 .875rem/1 'Figtree', system-ui, sans-serif; padding: .7em 1em; border-radius: 999px; background: var(--sun); color: var(--night-0); text-decoration: none; }
+.spec__go a + a { background: rgba(244, 237, 226, .1); color: var(--fog); }
+@media (max-width: 1000px) { .lab-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .spec__cards { grid-template-columns: 1fr 1fr; } }
+
 /* 99-fix.css */
 /* fix.css: loaded last. One commented rule per integration fix. */
 /* the gate shows from first paint when no age is stored (set in <head>); without JS it never appears */
@@ -1205,3 +1253,15 @@ main { overflow-x: clip; }
   .band { padding-block: clamp(3.5rem, 2.5rem + 5vw, 5rem); }
 }
 @media (max-width: 760px) { .floater--grown { display: none; } }
+/* splash: the client's real logo rises out of the fog in front of soft sun rays (no redrawn mark) */
+.splash { place-items: center; }
+.splash__sun { position: absolute; top: 50%; left: 50%; width: min(620px, 130vw); transform: translate(-50%, -62%); opacity: .5; }
+.splash__logo { position: relative; z-index: 2; width: min(340px, 74vw); height: auto; opacity: 0; transform: translateY(14px) scale(.94); filter: blur(6px) drop-shadow(0 18px 40px rgba(0, 0, 0, .6)); animation: logoIn 1s .2s var(--ease) forwards; }
+@keyframes logoIn { to { opacity: 1; transform: none; filter: blur(0) drop-shadow(0 18px 40px rgba(0, 0, 0, .6)); } }
+.splash__word { position: relative; z-index: 2; }
+/* the decal logo: a soft lift on dark grounds */
+.logo-img { filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .55)); }
+.hdr__logo .logo-img { height: 62px; }
+@media (max-width: 760px) { .hdr__logo .logo-img { height: 48px; } }
+.ft__logo .logo-img { height: 92px; }
+.gate__logo { width: 210px; }
