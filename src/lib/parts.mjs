@@ -141,10 +141,66 @@ export function promoCards() {
   </div>
   <p class="board__src">${esc(m.footnote)}. Promotions as posted by the Arcata store for ${esc(m.month)} 2026; ask the counter for this month's list.</p>`;
 }
+let WHEEL_N = 0;
+// A realistic premium prize wheel: wood rim with grain, brass studs, gilded bezel and dividers, jewel-tone segments,
+// a brass hub holding the logo's sun-and-tree mark, a static lacquer gloss and a brass pointer. The wheel turns; the
+// light and the pointer stay put, as they would in the room.
 export function wheelCard() {
-  return `<div class="wheel" id="wheel" data-spot>
-  <div class="wheel__spin" aria-hidden="true"><svg viewBox="0 0 200 200">${Array.from({ length: 12 }, (_, i) => { const a0 = (i * 30 - 90) * Math.PI / 180, a1 = ((i + 1) * 30 - 90) * Math.PI / 180; const x0 = 100 + 92 * Math.cos(a0), y0 = 100 + 92 * Math.sin(a0), x1 = 100 + 92 * Math.cos(a1), y1 = 100 + 92 * Math.sin(a1); return `<path d="M100 100L${x0.toFixed(1)} ${y0.toFixed(1)}A92 92 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}z" class="w${i % 4}"/>`; }).join('')}<circle cx="100" cy="100" r="18" class="wc"/></svg><span class="wheel__pin"></span></div>
-  <div class="wheel__txt">${kicker('Every 1st of the month')}<h3>Spend $50 or more, <span class="acc">spin the wheel.</span></h3><p>Includes both locations and delivery. **While supplies last!**</p></div>
+  const k = ++WHEEL_N, C = 200, R = 172, N = 12;
+  const pal = ['#5b1f10', '#b8642a', '#d9a63c', '#22463a'];
+  const pt = (r, a) => [C + r * Math.cos(a), C + r * Math.sin(a)];
+  const seg = Array.from({ length: N }, (_, i) => {
+    const a0 = (i / N) * 2 * Math.PI - Math.PI / 2, a1 = ((i + 1) / N) * 2 * Math.PI - Math.PI / 2;
+    const [x0, y0] = pt(R, a0), [x1, y1] = pt(R, a1); const am = (a0 + a1) / 2; const [dx, dy] = pt(122, am);
+    return `<path d="M${C} ${C}L${x0.toFixed(2)} ${y0.toFixed(2)}A${R} ${R} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}z" fill="url(#wseg${k}-${i % 4})"/>`
+      + `<g transform="translate(${dx.toFixed(1)} ${dy.toFixed(1)}) rotate(${(am * 180 / Math.PI + 90).toFixed(1)})"><path d="M0 -9 L5 0 L0 9 L-5 0z" fill="url(#wgold${k})" opacity=".95"/></g>`;
+  }).join('');
+  const divs = Array.from({ length: N }, (_, i) => { const a = (i / N) * 2 * Math.PI - Math.PI / 2; const [x, y] = pt(R, a); const [x2, y2] = pt(58, a); return `<line x1="${x2.toFixed(2)}" y1="${y2.toFixed(2)}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" stroke="#2a1608" stroke-width="3.6" opacity=".55"/><line x1="${x2.toFixed(2)}" y1="${y2.toFixed(2)}" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" stroke="url(#wgold${k})" stroke-width="1.8"/>`; }).join('');
+  const studs = Array.from({ length: 24 }, (_, i) => { const a = (i / 24) * 2 * Math.PI; const [x, y] = pt(186, a); return `<circle cx="${x.toFixed(2)}" cy="${(y + 1.2).toFixed(2)}" r="4.6" fill="#1a0d06" opacity=".6"/><circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4.4" fill="url(#wstud${k})"/>`; }).join('');
+  const segGrad = pal.map((c, j) => `<radialGradient id="wseg${k}-${j}" cx="200" cy="200" r="172" gradientUnits="userSpaceOnUse"><stop offset=".3" stop-color="${c}" stop-opacity=".82"/><stop offset=".86" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity=".78"/></radialGradient>`).join('');
+  const svg = `<svg class="wheel2__spin" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs>${segGrad}
+    <linearGradient id="wgold${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1c2"/><stop offset=".35" stop-color="#e2b453"/><stop offset=".6" stop-color="#9c6d22"/><stop offset="1" stop-color="#f3d98a"/></linearGradient>
+    <radialGradient id="wstud${k}" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff4cf"/><stop offset=".35" stop-color="#e0b04d"/><stop offset="1" stop-color="#6e4813"/></radialGradient>
+    <radialGradient id="wwood${k}" cx="200" cy="200" r="200" gradientUnits="userSpaceOnUse"><stop offset=".86" stop-color="#3b200f"/><stop offset=".93" stop-color="#6b3a1c"/><stop offset="1" stop-color="#2a160a"/></radialGradient>
+    <filter id="wgrain${k}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.16" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 .24  0 0 0 0 .12  0 0 0 0 .05  0 0 0 .7 0"/></filter>
+    <mask id="wring${k}"><circle cx="200" cy="200" r="199" fill="#fff"/><circle cx="200" cy="200" r="174" fill="#000"/></mask>
+    <radialGradient id="whub${k}" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff0c4"/><stop offset=".3" stop-color="#d9a640"/><stop offset=".75" stop-color="#8a5a18"/><stop offset="1" stop-color="#4a2f0a"/></radialGradient>
+    <clipPath id="whubclip${k}"><circle cx="200" cy="200" r="40"/></clipPath></defs>
+    <circle cx="200" cy="200" r="199" fill="url(#wwood${k})"/>
+    <rect width="400" height="400" filter="url(#wgrain${k})" mask="url(#wring${k})"/>
+    <circle cx="200" cy="200" r="178" fill="none" stroke="url(#wgold${k})" stroke-width="6"/>
+    ${studs}
+    ${seg}
+    ${divs}
+    <circle cx="200" cy="200" r="174" fill="none" stroke="#1a0d06" stroke-width="2" opacity=".6"/>
+    <circle cx="200" cy="200" r="58" fill="url(#whub${k})"/>
+    <circle cx="200" cy="200" r="58" fill="none" stroke="#3a2408" stroke-width="1.5" opacity=".6"/>
+    <circle cx="200" cy="200" r="43" fill="#140c07"/>
+    <image href="${asset('img/favicon.png')}" x="166" y="166" width="68" height="68" clip-path="url(#whubclip${k})" preserveAspectRatio="xMidYMid meet"/>
+    <circle cx="200" cy="200" r="43" fill="none" stroke="url(#wgold${k})" stroke-width="2.5"/>
+  </svg>`;
+  const light = `<svg class="wheel2__light" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs>
+    <radialGradient id="wlit${k}" cx=".32" cy=".26" r=".85"><stop offset="0" stop-color="#fff6dc" stop-opacity=".34"/><stop offset=".45" stop-color="#fff6dc" stop-opacity=".04"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
+    <linearGradient id="wgloss${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <circle cx="200" cy="200" r="199" fill="url(#wlit${k})"/>
+    <path d="M60 150 A150 120 0 0 1 340 150 A170 70 0 0 0 60 150z" fill="url(#wgloss${k})"/></svg>`;
+  const pointer = `<svg class="wheel2__pointer" viewBox="0 0 60 84" aria-hidden="true" focusable="false"><defs><linearGradient id="wptr${k}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a4e14"/><stop offset=".45" stop-color="#ffe9a8"/><stop offset=".6" stop-color="#d9a640"/><stop offset="1" stop-color="#5e3a0c"/></linearGradient></defs>
+    <path d="M30 82 L12 26 A20 20 0 1 1 48 26z" fill="url(#wptr${k})" stroke="#3a2408" stroke-width="1.5"/><circle cx="30" cy="22" r="7" fill="#2a1608" stroke="#f3d98a" stroke-width="2"/></svg>`;
+  return `<div class="wheel2" id="wheel" data-spot data-wheel>
+  <div class="wheel2__stage">
+    <span class="wheel2__shadow" aria-hidden="true"></span>
+    <div class="wheel2__rot" data-wheel-rot>${svg}</div>
+    ${light}
+    ${pointer}
+  </div>
+  <div class="wheel2__txt">
+    ${kicker('Every 1st of the month')}
+    <h3>Spend $50 or more, <span class="acc">spin the wheel.</span></h3>
+    <p>Includes both locations and delivery. **While supplies last!**</p>
+    <div class="wheel2__meta"><span class="wheel2__next" data-next-first>${icon('cal')}<span>Next spin: the 1st</span></span>
+    <button type="button" class="btn btn--ghost btn--sm" data-wheel-spin><span>Give it a spin</span>${icon('wheel')}</button></div>
+    <p class="wheel2__note" data-wheel-note hidden>Just for fun here. The real wheel comes out in the store on the 1st.</p>
+  </div>
 </div>`;
 }
 

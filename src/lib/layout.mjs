@@ -174,7 +174,7 @@ export function layout(p, ctx) {
   const og = p.ogImage ? imgSrc(p.ogImage, 1400) : imgSrc('courtyard-dusk', 1600);
   const bodyCls = ['pg', p.bodyClass || '', p.dark === false ? 'pg--light' : ''].join(' ').trim();
   return `<!doctype html>
-<html lang="en" class="no-js" data-lab="${u('/lab/fonts/')}">
+<html lang="en" class="no-js" data-lab="${u('/lab/fonts/')}"${p.noDiv ? ' data-nodiv' : ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -191,7 +191,7 @@ ${p.refresh ? `<meta http-equiv="refresh" content="0; url=${esc(u(p.refresh))}">
 <link rel="preload" href="${asset('fonts/eb-garamond-roman.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${asset('fonts/jost-roman.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${BUILD}">
-<script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'2'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
+<script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var dv=Q.get('div');if(dv==='default'||dv==='reset')sessionStorage.removeItem('hp.div');else if(/^(fog|gold|ridge|ember|none)$/.test(dv||''))sessionStorage.setItem('hp.div',dv);if(!D.hasAttribute('data-nodiv'))D.classList.add('div-'+(sessionStorage.getItem('hp.div')||'fog'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'2'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
 <script>(function(){try{var ids=${JSON.stringify(FONT_OPTIONS.map((o) => o.id))};var q=new URLSearchParams(location.search).get('font');if(q==='default'||q==='reset'){sessionStorage.removeItem('hp.font');q=null}else if(q&&ids.indexOf(q)>-1){sessionStorage.setItem('hp.font',q)}var f=q||sessionStorage.getItem('hp.font');if(f&&ids.indexOf(f)>-1){var d=document.documentElement;d.dataset.font=f;if(f!=='current'){d.classList.add('fo-'+f);var l=document.createElement('link');l.rel='stylesheet';l.href=${JSON.stringify(FONT_CSS)};document.head.appendChild(l)}}}catch(e){}})();</script>
 ${p.extraHead || ''}
 ${jsonLd(p)}
@@ -203,7 +203,7 @@ ${utility()}
 ${header(p)}
 ${drawer()}
 <main id="main" tabindex="-1">
-${p.body}
+${String(p.body).replace(/<\/section>(\s*)<section/g, '</section>$1<div class="seam" aria-hidden="true"></div><section')}
 </main>
 ${footer()}
 ${stickyBar()}

@@ -85,3 +85,10 @@ h1, h2, .t-mega { text-wrap: balance; }
 .pick__item, .way__t, .guide__t, .town__n, .learn-card b, .mega__card-t, .loc__body h2 { letter-spacing: .01em; }
 .about__big { font-size: clamp(1.4rem, 1.1rem + 1.3vw, 2.1rem); line-height: 1.25; }
 .gate__h { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.4rem); }
+/* every picture fills its frame: the fire videos run edge to edge, captions sit over them on a soft shade */
+.yard__fire { padding: 0; overflow: hidden; position: relative; }
+.yard__video { border-radius: 0; height: 100%; }
+.yard__fire figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem 1rem .9rem; background: linear-gradient(0deg, rgba(10, 6, 4, .88), transparent); }
+.tour__item--d { padding: 0; gap: 0; overflow: hidden; }
+.tour__video { border-radius: 0; height: 100%; display: block; }
+.tour__item--d figcaption { padding: 1.5rem 1.6rem; }

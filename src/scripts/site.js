@@ -236,14 +236,29 @@
 
   /* ---------- font review chip (only while a ?font= option is active) ---------- */
   const fo = html.dataset.font; let fxs = null, spv = null;
-  try { fxs = sessionStorage.getItem('hp.fx'); spv = sessionStorage.getItem('hp.splashv'); } catch (e) {}
-  if ((fo || fxs || spv) && !$('.lab-grid') && !$('.fxlab')) {
+  let dvs = null; try { fxs = sessionStorage.getItem('hp.fx'); spv = sessionStorage.getItem('hp.splashv'); dvs = sessionStorage.getItem('hp.div'); } catch (e) {}
+  if ((fo || fxs || spv || dvs) && !$('.lab-grid') && !$('.fxlab') && !$('.dvlab')) {
     const names = { live: 'A · Live site match', logo: 'B · Logo match', inknut: 'C · Inknut headlines', caps: 'D · Premium caps', western: 'E · Western + Garamond', current: 'F · First build' };
-    const parts = []; if (fo) parts.push(`Fonts <b>${names[fo] || fo}</b>`); if (fxs) parts.push(`Photos <b>${fxs === 'mist' ? '2 · Morning mist' : '1 · Gilded frame'}</b>`); if (spv) parts.push(`Splash <b>S${spv}</b>`);
+    const parts = []; if (fo) parts.push(`Fonts <b>${names[fo] || fo}</b>`); if (fxs) parts.push(`Photos <b>${fxs === 'mist' ? '2 · Morning mist' : '1 · Gilded frame'}</b>`); if (spv) parts.push(`Splash <b>S${spv}</b>`); if (dvs) parts.push(`Dividers <b>${dvs}</b>`);
     const chip = d.createElement('div'); chip.className = 'font-chip';
-    chip.innerHTML = `<span>${parts.join(' · ')}</span><a href="${html.dataset.lab.replace('fonts/', 'effects/')}">All options</a><a href="?font=default&fx=default&splash=reset">Reset</a>`;
+    chip.innerHTML = `<span>${parts.join(' · ')}</span><a href="${html.dataset.lab.replace('fonts/', 'effects/')}">All options</a><a href="?font=default&fx=default&splash=reset&div=default">Reset</a>`;
     d.body.appendChild(chip);
   }
+
+  /* ---------- the premium wheel: idle turn, a decelerating spin on request, the next 1st of the month ---------- */
+  $$('[data-wheel]').forEach((w) => {
+    const rot = $('[data-wheel-rot]', w), btn = $('[data-wheel-spin]', w), note = $('[data-wheel-note]', w), nx = $('[data-next-first] span', w);
+    let ang = 0; if (!reduced) rot.classList.add('is-idle');
+    try { const p = pacificNow(); const t = new Date(); const ym = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric' }).formatToParts(t); const g = (k) => Number(ym.find((x) => x.type === k).value); const y = g('year'), m = g('month'), dd = g('day');
+      if (dd === 1) nx.textContent = 'Spin day is today'; else { const n1 = new Date(Date.UTC(m === 12 ? y + 1 : y, m === 12 ? 0 : m, 1, 12)); const days = Math.round((n1 - Date.UTC(y, m - 1, dd, 12)) / 864e5); nx.textContent = `Next spin: ${n1.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' })} · in ${days} day${days === 1 ? '' : 's'}`; } } catch (e) {}
+    btn && btn.addEventListener('click', () => {
+      if (reduced) { note.hidden = false; return; }
+      const cur = getComputedStyle(rot).transform; let base = 0; if (cur && cur !== 'none') { const mm = cur.match(/matrix\(([^)]+)\)/); if (mm) { const v = mm[1].split(',').map(Number); base = Math.atan2(v[1], v[0]) * 180 / Math.PI; } }
+      rot.classList.remove('is-idle'); rot.style.transition = 'none'; rot.style.transform = `rotate(${base}deg)`; void rot.offsetWidth;
+      ang = base + 1440 + Math.floor(Math.random() * 360); rot.style.transition = ''; rot.style.transform = `rotate(${ang}deg)`;
+      w.classList.add('is-spinning'); btn.disabled = true; setTimeout(() => { w.classList.remove('is-spinning'); btn.disabled = false; note.hidden = false; }, 5200);
+    });
+  });
 
   /* ---------- category coverflow ---------- */
   $$('[data-cflow]').forEach((cf) => {

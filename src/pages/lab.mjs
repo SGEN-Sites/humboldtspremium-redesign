@@ -3,7 +3,7 @@ import { esc, u, icon, img } from '../lib/html.mjs';
 import { FONT_CSS, FONT_OPTIONS } from '../content/fonts.mjs';
 
 export default function lab() {
-  return [fontsLab(), effectsLab()];
+  return [fontsLab(), effectsLab(), dividersLab()];
 }
 function fontsLab() {
   const card = (o, i) => `<article class="spec fo-${o.id}">
@@ -54,5 +54,30 @@ export function effectsLab() {
   ${sp(2, 'Ember (chosen, the site default)', 'Darkness, then a single ember rises and blooms into firelight that uncovers the logo; a gold rule draws beneath it and ARCATA’S BACKYARD settles in spaced capitals.')}
   ${sp(3, 'Gilt fog', 'Two banks of coastal fog part to the sides, the logo surfaces through them, and a gold glint runs across the logo itself before the line appears.')}
 </section>`,
+  };
+}
+
+// /lab/dividers/: section divider options, each shown live between two sample sections.
+export function dividersLab() {
+  const opts = [
+    ['fog', 'D1 · Fog seam', 'A soft bank of coastal fog drifts slowly across the join. No line at all: the sections melt into each other.'],
+    ['gold', 'D2 · Gilded rule', 'A fine gold line that fades out at both ends, with a small gold diamond at its centre. Quiet, editorial and premium.'],
+    ['ridge', 'D3 · Redwood ridge', 'The treeline from the logo rises as a dark silhouette into the next section, with a faint warm glow behind it.'],
+    ['ember', 'D4 · Ember glow', 'Warm firelight pools across the join and a few embers rise through it. No line, just light.'],
+    ['none', 'D5 · Seamless only', 'No divider: the continuous ground and the fading backdrops alone carry you from one section to the next.'],
+  ];
+  const demo = ([id, name, why]) => `<div class="dvlab div-${id}">
+    <div class="dvlab__head"><p class="spec__tag">${esc(name)}</p><p class="fxlab__why">${esc(why)}</p></div>
+    <div class="dvlab__a"><p class="kicker"><span class="dot" aria-hidden="true"></span>Shop by feeling</p><h3>How do you want to <span class="acc">feel tonight?</span></h3><p>A loose guide, not a promise: everyone is different. Start low, go slow, and ask the counter.</p></div>
+    <div class="seam" aria-hidden="true"></div>
+    <div class="dvlab__b"><p class="kicker"><span class="dot" aria-hidden="true"></span>The courtyard &amp; lounge</p><h3>A courtyard built <span class="acc">for staying.</span></h3><p>Covered gazebos, fireplaces and a built-in rock waterfall, with Jolly Giant Creek running beside the lot.</p></div>
+    <div class="spec__go"><a href="${u('/?div=' + id)}">See it across the site</a></div>
+  </div>`;
+  return {
+    path: '/lab/dividers/', key: 'lab-dividers', lab: true, noDiv: true, bodyClass: 'pg-lab',
+    title: "Section divider options | Humboldt's Premium Arcata preview",
+    description: 'Section divider options for the Humboldt\u2019s Premium Arcata redesign.',
+    body: `<section class="lab-hd wrap"><h1>Section divider options</h1><p>Every section now sits on one continuous ground: photos, glows, fog and embers fade out before they reach a section's edge, so nothing is cut off at a border. On top of that, pick how sections meet. Fog (D1) is on by default while you decide; <b>See it across the site</b> switches every page.</p></section>
+<section class="wrap" style="padding-bottom:4rem">${opts.map(demo).join('')}</section>`,
   };
 }
