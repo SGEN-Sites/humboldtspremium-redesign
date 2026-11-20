@@ -23,7 +23,8 @@
   }
   if (html.classList.contains('splash-pending') && splash) {
     splash.hidden = false;
-    const t = setTimeout(endSplash, 1650);
+    const dur = html.classList.contains('sp-1') ? 1650 : 2450;
+    const t = setTimeout(endSplash, dur);
     ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((e) => W.addEventListener(e, () => { clearTimeout(t); endSplash(); }, { once: true, passive: true }));
   } else { showGate(); }
   if (gate) {
@@ -210,8 +211,16 @@
     lazyV.forEach((v) => vio.observe(v));
   }
 
-  /* ---------- slats open on touch screens when the photo is in view ---------- */
-  if (!fine && 'IntersectionObserver' in W) { const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.intersectionRatio > .5) e.target.classList.add('is-open'); }), { threshold: [0, .5, 1] }); $$('[data-slat]').forEach((s) => so.observe(s)); }
+  /* ---------- photos arrive (gilded frame: settle + one light sweep; morning mist: the fog lifts) ---------- */
+  const phs = $$('[data-ph]');
+  if ('IntersectionObserver' in W && !reduced) { const po = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); po.unobserve(e.target); } }), { threshold: .3 }); phs.forEach((p) => po.observe(p)); }
+  else phs.forEach((p) => p.classList.add('is-in'));
+  if (fine && !reduced) phs.forEach((p) => { p.addEventListener('pointermove', (e) => { const r = p.getBoundingClientRect(); p.style.setProperty('--phx', (((e.clientX - r.left) / r.width - .5) * -16).toFixed(1) + 'px'); p.style.setProperty('--phy', (((e.clientY - r.top) / r.height - .5) * -12).toFixed(1) + 'px'); }, { passive: true }); p.addEventListener('pointerleave', () => { p.style.setProperty('--phx', '0px'); p.style.setProperty('--phy', '0px'); }); });
+  /* review hooks for the options page: replay a splash variant, re-run the photo arrival */
+  W.HP = {
+    playSplash(n) { if (!splash) return; html.classList.remove('sp-1', 'sp-2', 'sp-3'); html.classList.add('sp-' + n); delete splash.dataset.done; splash.classList.remove('is-out'); splash.hidden = false; html.classList.add('splash-replay', 'splash-pending'); void splash.offsetWidth; html.classList.remove('splash-replay'); setTimeout(() => { endSplash(); }, n == 1 ? 1650 : 2450); },
+    replayPhotos(root) { $$('[data-ph]', root).forEach((p) => { p.classList.remove('is-in'); void p.offsetWidth; setTimeout(() => p.classList.add('is-in'), 80); }); },
+  };
 
   /* ---------- rails ---------- */
   $$('[data-rail]').forEach((r) => { const tr = $('.rail__track', r); const step = () => (tr.firstElementChild ? tr.firstElementChild.getBoundingClientRect().width + 16 : 260) * (W.innerWidth < 760 ? 1 : 2); $('[data-rail-prev]', r).addEventListener('click', () => tr.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' })); $('[data-rail-next]', r).addEventListener('click', () => tr.scrollBy({ left: step(), behavior: reduced ? 'auto' : 'smooth' })); });
@@ -226,13 +235,59 @@
   $$('[data-map]').forEach((m) => { const b = $('[data-map-load]', m); b && b.addEventListener('click', () => { const tpl = $('[data-map-tpl]', m); m.appendChild(tpl.content.cloneNode(true)); $('[data-map-ph]', m).remove(); }); });
 
   /* ---------- font review chip (only while a ?font= option is active) ---------- */
-  const fo = html.dataset.font;
-  if (fo && !$('.lab-grid')) {
-    const names = { live: 'A · Live site match', logo: 'B · Logo match', inknut: 'C · Inknut headlines', caps: 'D · Premium caps', western: 'E · Western + Garamond', current: 'F · Current build' };
+  const fo = html.dataset.font; let fxs = null, spv = null;
+  try { fxs = sessionStorage.getItem('hp.fx'); spv = sessionStorage.getItem('hp.splashv'); } catch (e) {}
+  if ((fo || fxs || spv) && !$('.lab-grid') && !$('.fxlab')) {
+    const names = { live: 'A · Live site match', logo: 'B · Logo match', inknut: 'C · Inknut headlines', caps: 'D · Premium caps', western: 'E · Western + Garamond', current: 'F · First build' };
+    const parts = []; if (fo) parts.push(`Fonts <b>${names[fo] || fo}</b>`); if (fxs) parts.push(`Photos <b>${fxs === 'mist' ? '2 · Morning mist' : '1 · Gilded frame'}</b>`); if (spv) parts.push(`Splash <b>S${spv}</b>`);
     const chip = d.createElement('div'); chip.className = 'font-chip';
-    chip.innerHTML = `<span>Fonts: <b>${names[fo] || fo}</b></span><a href="${html.dataset.lab}">All options</a><a href="?font=default">Reset</a>`;
+    chip.innerHTML = `<span>${parts.join(' · ')}</span><a href="${html.dataset.lab.replace('fonts/', 'effects/')}">All options</a><a href="?font=default&fx=default&splash=reset">Reset</a>`;
     d.body.appendChild(chip);
   }
+
+  /* ---------- category coverflow ---------- */
+  $$('[data-cflow]').forEach((cf) => {
+    const cards = $$('.cfc', cf), dots = $$('[data-cflow-dot]', cf), n = cards.length; if (!n) return;
+    let act = 0, timer = 0, paused = false;
+    const geo = () => { const w = cf.clientWidth; const cw = cards[0].offsetWidth; return { s1: Math.min(cw * 0.86, w * 0.24), s2: Math.min(cw * 1.5, w * 0.40), s3: Math.min(cw * 2.0, w * 0.52) }; };
+    function render() {
+      const g = geo();
+      cards.forEach((c, i) => {
+        let dd = i - act; if (dd > n / 2) dd -= n; if (dd < -n / 2) dd += n; const a = Math.abs(dd), sg = Math.sign(dd);
+        const x = a === 0 ? 0 : a === 1 ? g.s1 : a === 2 ? g.s2 : g.s3 + (a - 3) * 40;
+        const sc = [1.08, .84, .7, .58][Math.min(a, 3)];
+        c.style.transform = `translateX(${sg * x}px) scale(${sc})`;
+        c.style.opacity = a > 3 ? 0 : [1, .82, .5, .22][a];
+        c.style.filter = a ? `brightness(${[1, .66, .48, .36][Math.min(a, 3)]}) saturate(.85)` : 'none';
+        c.style.zIndex = 20 - a; c.style.pointerEvents = a > 2 ? 'none' : 'auto';
+        c.classList.toggle('is-active', a === 0); c.tabIndex = a === 0 ? 0 : -1; c.setAttribute('aria-hidden', a > 2 ? 'true' : 'false');
+      });
+      dots.forEach((dt, i) => dt.setAttribute('aria-selected', i === act ? 'true' : 'false'));
+      cf.style.setProperty('--cg', getComputedStyle(cards[act]).getPropertyValue('--glow').trim() || '#fdc232');
+    }
+    const go = (k) => { act = ((k % n) + n) % n; render(); };
+    const auto = () => { clearInterval(timer); if (!reduced) timer = setInterval(() => { if (!paused && !d.hidden) go(act + 1); }, 3400); };
+    cards.forEach((c, i) => c.addEventListener('click', (e) => { if (i !== act) { e.preventDefault(); go(i); auto(); } }));
+    dots.forEach((dt, i) => dt.addEventListener('click', () => { go(i); auto(); }));
+    $('[data-cflow-prev]', cf).addEventListener('click', () => { go(act - 1); auto(); });
+    $('[data-cflow-next]', cf).addEventListener('click', () => { go(act + 1); auto(); });
+    cf.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { go(act + 1); auto(); cards[act].focus(); } if (e.key === 'ArrowLeft') { go(act - 1); auto(); cards[act].focus(); } });
+    cf.addEventListener('pointerenter', () => { paused = true; }); cf.addEventListener('pointerleave', () => { paused = false; });
+    cf.addEventListener('focusin', () => { paused = true; }); cf.addEventListener('focusout', () => { paused = false; });
+    let sx = null, moved = false; const tr = $('[data-cflow-track]', cf);
+    tr.addEventListener('pointerdown', (e) => { sx = e.clientX; moved = false; }, { passive: true });
+    tr.addEventListener('pointermove', (e) => { if (sx !== null && Math.abs(e.clientX - sx) > 50) { go(act + (e.clientX < sx ? 1 : -1)); sx = e.clientX; moved = true; auto(); } }, { passive: true });
+    tr.addEventListener('pointerup', () => { sx = null; });
+    tr.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
+    W.addEventListener('resize', render, { passive: true });
+    if ('IntersectionObserver' in W) new IntersectionObserver((es) => { paused = !es[0].isIntersecting; }).observe(cf);
+    render(); auto();
+  });
+
+  /* ---------- options page controls ---------- */
+  $$('[data-replay]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); W.HP.replayPhotos(a.closest('[data-fxcol]')); }));
+  $$('[data-play]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); W.HP.playSplash(a.dataset.play); }));
+  if ($('.fxlab__grid') && !reduced) setTimeout(() => $$('[data-fxcol]').forEach((c) => W.HP.replayPhotos(c)), 900);
 
   /* ---------- product grids: search, type, sort, show more ---------- */
   $$('[data-grid]').forEach((wrap) => {
