@@ -2,12 +2,13 @@
 // drawer, footer, sticky pickup bar, scripts.
 import { esc, u, asset, icon, img, imgSrc, btn, IMG } from './html.mjs';
 import { store, NAV, MEGA, CATS, catCount, FACTS, SHOP, hoursShort, DAYS, LIVE } from '../content/site.mjs';
+import { FONT_CSS, FONT_OPTIONS } from '../content/fonts.mjs';
 
 const SITE = 'https://www.humboldtspremiumarcata.com';
 let BUILD = Date.now().toString(36);
 export const setBuild = (b) => { BUILD = b; };
 
-const logo = (cls = '', eager = false) => `<img class="logo-img ${cls}" src="${asset(IMG['logo-light'].variants[1].src)}" srcset="${IMG['logo-light'].variants.map((v) => `${asset(v.src)} ${v.w}w`).join(', ')}" sizes="(max-width: 760px) 132px, 168px" width="${IMG['logo-light'].variants[1].w}" height="${IMG['logo-light'].variants[1].h}" alt="Humboldt's Premium"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async">`;
+const logo = (cls = '', eager = false) => `<img class="logo-img ${cls}" src="${asset(IMG['logo-sticker'].variants[1].src)}" srcset="${IMG['logo-sticker'].variants.map((v) => `${asset(v.src)} ${v.w}w`).join(', ')}" sizes="(max-width: 760px) 132px, 168px" width="${IMG['logo-sticker'].variants[1].w}" height="${IMG['logo-sticker'].variants[1].h}" alt="Humboldt's Premium"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async">`;
 
 function jsonLd(p) {
   const blocks = [];
@@ -116,9 +117,9 @@ function splash() {
   <div class="splash__fog"></div>
   <svg class="splash__sun" viewBox="0 0 200 110" aria-hidden="true"><defs><radialGradient id="sg" cx="50%" cy="100%" r="90%"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#fdc232"/><stop offset="1" stop-color="#e8732c" stop-opacity="0"/></radialGradient></defs>
     <g class="splash__rays">${Array.from({ length: 13 }, (_, i) => { const a = Math.PI * (i / 12); const x = 100 - Math.cos(a) * 96, y = 104 - Math.sin(a) * 96; return `<line x1="100" y1="104" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('')}</g>
-    <path class="splash__arc" d="M8 104a92 92 0 0 1 184 0"/><circle class="splash__core" cx="100" cy="104" r="34" fill="url(#sg)"/>
-    <path class="splash__tree" d="M100 30l-9 18h5l-8 14h6l-9 16h11v26h8V78h11l-9-16h6l-8-14h5z"/>
+    <circle class="splash__core" cx="100" cy="104" r="34" fill="url(#sg)"/>
   </svg>
+  <img class="splash__logo" src="${asset(IMG['logo-sticker'].variants.at(-1).src)}" width="${IMG['logo-sticker'].variants.at(-1).w}" height="${IMG['logo-sticker'].variants.at(-1).h}" alt="" decoding="async">
   <p class="splash__word">Arcata's <span class="acc">Backyard</span></p>
   <canvas class="splash__embers" data-splash-embers></canvas>
 </div>`;
@@ -166,7 +167,7 @@ export function layout(p, ctx) {
   const og = p.ogImage ? imgSrc(p.ogImage, 1400) : imgSrc('courtyard-dusk', 1600);
   const bodyCls = ['pg', p.bodyClass || '', p.dark === false ? 'pg--light' : ''].join(' ').trim();
   return `<!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" data-lab="${u('/lab/fonts/')}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -183,6 +184,8 @@ ${p.refresh ? `<meta http-equiv="refresh" content="0; url=${esc(u(p.refresh))}">
 <link rel="preload" href="${asset('fonts/figtree-roman.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${BUILD}">
 <script>document.documentElement.classList.replace('no-js','js');try{if(!localStorage.getItem('hp.age'))document.documentElement.classList.add('gate-pending');if(!sessionStorage.getItem('hp.splash')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/[?&]splash=off/.test(location.search))document.documentElement.classList.add('splash-pending')}catch(e){}</script>
+<script>(function(){try{var ids=${JSON.stringify(FONT_OPTIONS.map((o) => o.id))};var q=new URLSearchParams(location.search).get('font');if(q==='default'||q==='reset'){sessionStorage.removeItem('hp.font');q=null}else if(q&&ids.indexOf(q)>-1){sessionStorage.setItem('hp.font',q)}var f=q||sessionStorage.getItem('hp.font');if(f&&ids.indexOf(f)>-1){var d=document.documentElement;d.dataset.font=f;if(f!=='current'){d.classList.add('fo-'+f);var l=document.createElement('link');l.rel='stylesheet';l.href=${JSON.stringify(FONT_CSS)};document.head.appendChild(l)}}}catch(e){}})();</script>
+${p.extraHead || ''}
 ${jsonLd(p)}
 </head>
 <body class="${bodyCls}" data-page="${esc(p.key || p.path)}">

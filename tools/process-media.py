@@ -106,14 +106,14 @@ def run_images(only):
 def run_logo():
     # the client's own logo files from the live site (wixstatic), kept as-is; WebP with alpha for the page, PNG for og:image
     man = {}
-    for k, src in [('logo', f'{S}/live/logo-main.png'), ('logo-light', f'{S}/live/logo-light.png'), ('logo-af', f'{S}/live/ba64af_00_af-logo.png')]:
+    for k, src in [('logo', f'{S}/live/logo-client-provided.png'), ('logo-sticker', f'{S}/live/logo-sticker.png'), ('logo-af', f'{S}/live/ba64af_00_af-logo.png')]:
         if not os.path.exists(P(src)): print('MISSING logo', src); continue
         im = Image.open(P(src)).convert('RGBA'); bbox = im.getchannel('A').point(lambda a: 255 if a > 8 else 0).getbbox()
         if bbox: im = im.crop(bbox)
         W, H = im.size; vs = []
         for w in sorted(set(min(w, W) for w in [240, 480, 960])):
             h = round(H * w / W); fn = f'{k}-{w}.webp'
-            (im.resize((w, h), Image.LANCZOS) if w != W else im).save(os.path.join(OUT, fn), 'WEBP', quality=92, method=6)
+            (im.resize((w, h), Image.LANCZOS) if w != W else im).save(os.path.join(OUT, fn), 'WEBP', lossless=True, method=6, exact=True)
             vs.append({'src': f'img/{fn}', 'w': w, 'h': h})
         im.resize((960, round(H * 960 / W)), Image.LANCZOS).save(os.path.join(OUT, f'{k}.png'), optimize=True)
         man[k] = {'kind': 'live', 'w': W, 'h': H, 'variants': vs, 'png': f'img/{k}.png', 'alt': "Humboldt's Premium", 'ai': False, 'source': src}

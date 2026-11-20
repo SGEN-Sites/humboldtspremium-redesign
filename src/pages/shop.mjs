@@ -2,7 +2,7 @@
 // "Add to cart" opens that product in the live store, where the bag and checkout live.
 import { esc, u, icon, img, btn, kicker, linkArrow, acc } from '../lib/html.mjs';
 import { CATS, CATALOG, catCount, SHOP, feelings } from '../content/site.mjs';
-import { pageHero, productGrid, catWall, feelingTiles, ctaBand, floater } from '../lib/parts.mjs';
+import { pageHero, productGrid, catWall, feelingTiles, ctaBand } from '../lib/parts.mjs';
 
 const LEARN_FOR = {
   'a-all-flower-1': ['/learn/indica-sativa-hybrid/', 'Indica, sativa, hybrid: what the labels mean'],

@@ -1,0 +1,46 @@
+/* font pairing options for review: applied to <html> by ?font=<id> (kept for the visit) and to specimen cards on
+   /lab/fonts/. Faces load from Google Fonts only when an option is active. font-synthesis: none stops faux bold and
+   faux italic on single-weight display faces. */
+.fo-live { --f-display: 'EB Garamond', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 600; --w-mega: 700; --ls-display: -.01em; --ls-mega: -.02em; --lh-mega: .95; --acc-w: 500; }
+.fo-logo { --f-display: 'Rye', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-kicker: 'Cinzel', serif; --f-btn: 'Cinzel', serif; --f-accent: 'Rye', serif; --soft: normal; --soft-wonk: normal; --w-display: 400; --w-mega: 400; --ls-display: 0; --ls-mega: .01em; --lh-mega: 1.02; --acc-style: normal; --acc-w: 400; --ls-btn: .06em; font-synthesis: none; }
+.fo-inknut { --f-display: 'Inknut Antiqua', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'Jost', system-ui, sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 700; --w-mega: 800; --ls-display: -.01em; --ls-mega: -.02em; --lh-mega: 1.12; --acc-w: 600; }
+.fo-caps { --f-display: 'Cinzel', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'EB Garamond', Georgia, serif; --f-kicker: 'Jost', sans-serif; --f-accent: 'EB Garamond', serif; --soft: normal; --soft-wonk: normal; --w-display: 700; --w-mega: 800; --ls-display: .01em; --ls-mega: .01em; --lh-mega: 1; --acc-w: 500; }
+.fo-western { --f-display: 'Sancreek', Georgia, serif; --f-ui: 'Jost', system-ui, sans-serif; --f-body: 'EB Garamond', Georgia, serif; --f-kicker: 'Cinzel', serif; --f-btn: 'Cinzel', serif; --f-accent: 'Sancreek', serif; --soft: normal; --soft-wonk: normal; --w-display: 400; --w-mega: 400; --ls-display: .01em; --ls-mega: .02em; --lh-mega: 1; --acc-style: normal; --acc-w: 400; --ls-btn: .06em; font-synthesis: none; }
+.fo-current { }
+.fo-caps .acc, .fo-inknut .acc { text-transform: none; }
+.fo-caps h1, .fo-caps h2, .fo-caps h3 { font-variant-caps: normal; }
+html[class*="fo-"] body { font-size: 1.0625rem; }
+.fo-caps body, .fo-western body { font-size: 1.125rem; }
+
+/* the review chip shown while an option is active */
+.font-chip { position: fixed; left: 14px; bottom: 14px; z-index: 120; display: flex; align-items: center; gap: .5rem; padding: .45rem .5rem .45rem .9rem; border-radius: 999px; background: rgba(20, 13, 9, .95); box-shadow: 0 0 0 1px rgba(252, 229, 148, .35), 0 16px 30px -12px rgba(0, 0, 0, .8); font: 600 .8125rem/1 'Figtree', system-ui, sans-serif; color: var(--fog); letter-spacing: 0; }
+.font-chip b { color: var(--sun); }
+.font-chip a { color: var(--night-0); background: var(--sun); padding: .45em .8em; border-radius: 999px; text-decoration: none; font-weight: 700; }
+.font-chip a + a { background: rgba(244, 237, 226, .12); color: var(--fog); }
+
+/* /lab/fonts/ */
+.lab-hd { padding: calc(var(--header-h) + 2.5rem) 0 1.5rem; }
+.lab-hd h1 { font-family: 'Figtree', system-ui, sans-serif; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); letter-spacing: -.02em; font-variation-settings: normal; }
+.lab-hd p { color: var(--fog-dim); max-width: 70ch; }
+.lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding-bottom: 5rem; }
+.spec { position: relative; isolation: isolate; overflow: hidden; border-radius: 28px; box-shadow: inset 0 0 0 1px rgba(244, 237, 226, .12); font-family: var(--f-body, var(--f-ui)); }
+.spec__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.spec__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(14, 9, 6, .94), rgba(14, 9, 6, .78) 60%, rgba(14, 9, 6, .6)); }
+.spec__in { padding: 1.6rem 1.6rem 1.4rem; }
+.spec__tag { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.1rem; font: 700 .8125rem/1.3 'Figtree', system-ui, sans-serif; letter-spacing: .02em; color: var(--sun); }
+.spec__tag span { color: var(--fog-dim); font-weight: 500; }
+.spec h2.spec__h1 { font-size: clamp(2.4rem, 1.6rem + 2.6vw, 3.8rem); line-height: var(--lh-mega, .95); letter-spacing: var(--ls-mega, -.03em); font-weight: var(--w-mega, 700); margin: 0 0 .7rem; }
+.spec h3 { font-size: 1.6rem; margin: 1.3rem 0 .45rem; }
+.spec p { color: var(--fog-dim); margin: 0 0 .8rem; }
+.spec__row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 .4rem; }
+.spec__row .btn { width: auto; min-height: 46px; }
+.spec__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-top: .6rem; }
+.spec__card { padding: .8rem .9rem; border-radius: 14px; background: rgba(244, 237, 226, .06); box-shadow: inset 0 0 0 1px rgba(244, 237, 226, .1); }
+.spec__card b { display: block; font-family: var(--f-display); font-weight: var(--w-display, 600); font-size: 1.3rem; font-variation-settings: var(--soft); }
+.spec__card small { color: var(--ember-hot); font: 700 .6875rem/1 var(--f-kicker, var(--f-ui)); letter-spacing: .14em; text-transform: uppercase; }
+.spec__why { margin-top: 1rem !important; padding-top: .9rem; border-top: 1px dashed rgba(244, 237, 226, .18); font: 400 .875rem/1.5 'Figtree', system-ui, sans-serif !important; }
+.spec__go { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .8rem; }
+.spec__go a { font: 700 .875rem/1 'Figtree', system-ui, sans-serif; padding: .7em 1em; border-radius: 999px; background: var(--sun); color: var(--night-0); text-decoration: none; }
+.spec__go a + a { background: rgba(244, 237, 226, .1); color: var(--fog); }
+@media (max-width: 1000px) { .lab-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .spec__cards { grid-template-columns: 1fr 1fr; } }

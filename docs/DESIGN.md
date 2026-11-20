@@ -5,13 +5,16 @@ hour, dusk, then the fire. It leads with the place (the courtyard and the newly 
 
 ## Brand
 
-- **Logo:** the client's own mark, unchanged. A light variant (gold-to-cream lettering, like the store's pole sign)
-  is used on dark grounds; the original on light grounds.
+- **Logo:** the client's own file, pixel for pixel (supplied by the operator; same artwork as the live site's logo).
+  On dark grounds it sits on a cream die-cut backing shaped like the store's pole sign (a dome over the sunburst,
+  a rounded panel behind the lettering) so the black "PREMIUM" line stays readable. The artwork is never recoloured.
 - **Palette** (from the logo file, measured): sun gold `#FDC232`, pale sun `#FCE594`, slate outline `#6592B6`,
   evergreen `#00353F`, redwood trunk `#C2622F`. Derived: redwood-night grounds (`#120C08` to `#3A2418`), ember
   `#E8732C`, fog `#F4EDE2`, marsh sage `#8F9D74`. Contrast notes live beside each token in `src/styles/01-tokens.css`.
 - **Type:** Fraunces (soft, warm lodge serif; italic "wonky" accents for one word per heading) and Figtree (UI and
-  body). Both SIL OFL, self-hosted, latin subset.
+  body). Both SIL OFL, self-hosted, latin subset. **Open decision:** five pairings closer to the store's own fonts
+  (EB Garamond, Futura via Jost, Inknut Antiqua, and the logo's Western display + Roman caps via Rye, Sancreek, Cinzel)
+  are on `/lab/fonts/`; `?font=<id>` previews any of them across the whole site.
 
 ## The three planes
 

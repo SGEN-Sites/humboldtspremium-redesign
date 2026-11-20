@@ -47,6 +47,8 @@ Design concept preview, built 2026-11-20. Every page carries `noindex`. Shop and
     the DCC licence record). Approve the wording, and whether the Magic Bus chapter should be told.
 12. **"Humboldt AF".** OK in public copy? (It appears on the live About page.)
 13. **Rewards / loyalty, student or veteran discounts.** Nothing is published, so no page was built.
+14. **Fonts.** Pick a pairing on `/lab/fonts/` (A live-site match, B logo match, C Inknut headlines, D premium caps,
+    E Western + Garamond, F current). The chosen faces then get self-hosted like the current ones.
 
 ## Defects found on the live site
 

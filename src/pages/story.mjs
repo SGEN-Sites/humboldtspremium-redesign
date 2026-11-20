@@ -1,7 +1,7 @@
 // story.mjs: /about-us/ (Our Story). The live About words, verbatim, inside a family story told from sourced facts.
 import { esc, u, icon, img, btn, kicker, linkArrow, acc } from '../lib/html.mjs';
 import { store, FACTS } from '../content/site.mjs';
-import { pageHero, fog, embers, floater, slatPhoto, storyStats, ctaBand } from '../lib/parts.mjs';
+import { pageHero, fog, embers, slatPhoto, storyStats, ctaBand } from '../lib/parts.mjs';
 
 export default function story() {
   const tl = FACTS.story.value;
@@ -42,7 +42,7 @@ ${pageHero({ kicker: 'Our story', title: 'Built in Humboldt. *Grown in Humboldt.
 <section class="band builders" data-spot style="--lx:80%;--ly:30%">
   <div class="band__clip"><span class="key-light"></span></div>
   <div class="wrap builders__grid">
-    <div class="builders__media" data-reveal>${slatPhoto('leaf-interior', { alt: 'A wide view of the sales floor: glass counters, coolers, slat walls and the front door', sizes: '(max-width: 900px) 100vw, 50vw' })}${floater('obj-redwood-sprig-b', 'floater--builders', -0.2, 10)}</div>
+    <div class="builders__media" data-reveal>${slatPhoto('leaf-interior', { alt: 'A wide view of the sales floor: glass counters, coolers, slat walls and the front door', sizes: '(max-width: 900px) 100vw, 50vw' })}</div>
     <div data-reveal>
       ${kicker('The builders')}
       <h2>${acc('A contractor *built this store.*')}</h2>

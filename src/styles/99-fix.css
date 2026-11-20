@@ -70,3 +70,15 @@ main { overflow-x: clip; }
   .band { padding-block: clamp(3.5rem, 2.5rem + 5vw, 5rem); }
 }
 @media (max-width: 760px) { .floater--grown { display: none; } }
+/* splash: the client's real logo rises out of the fog in front of soft sun rays (no redrawn mark) */
+.splash { place-items: center; }
+.splash__sun { position: absolute; top: 50%; left: 50%; width: min(620px, 130vw); transform: translate(-50%, -62%); opacity: .5; }
+.splash__logo { position: relative; z-index: 2; width: min(340px, 74vw); height: auto; opacity: 0; transform: translateY(14px) scale(.94); filter: blur(6px) drop-shadow(0 18px 40px rgba(0, 0, 0, .6)); animation: logoIn 1s .2s var(--ease) forwards; }
+@keyframes logoIn { to { opacity: 1; transform: none; filter: blur(0) drop-shadow(0 18px 40px rgba(0, 0, 0, .6)); } }
+.splash__word { position: relative; z-index: 2; }
+/* the decal logo: a soft lift on dark grounds */
+.logo-img { filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .55)); }
+.hdr__logo .logo-img { height: 62px; }
+@media (max-width: 760px) { .hdr__logo .logo-img { height: 48px; } }
+.ft__logo .logo-img { height: 92px; }
+.gate__logo { width: 210px; }

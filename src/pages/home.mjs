@@ -1,7 +1,7 @@
 // home.mjs: "Arcata's Backyard". The page runs like one evening in the courtyard: golden hour to firelight.
 import { esc, u, asset, icon, img, imgSrc, btn, kicker, linkArrow, acc, video } from '../lib/html.mjs';
 import { store, CATS, catCount, FACTS, SHOP, LEARN } from '../content/site.mjs';
-import { fog, embers, floater, catWall, feelingTiles, dealsBoard, saleRail, catRail, wheelCard, staffPicks, storyStats, visitBand, faqList, marquee, slatPhoto } from '../lib/parts.mjs';
+import { fog, embers, catWall, feelingTiles, dealsBoard, saleRail, catRail, wheelCard, staffPicks, storyStats, visitBand, faqList, marquee, slatPhoto } from '../lib/parts.mjs';
 
 export default function home() {
   const v = video('courtyard-dusk');
@@ -17,8 +17,6 @@ export default function home() {
   <div class="hero__shade" aria-hidden="true"></div>
   ${fog('fog--hero')}
   ${embers(46, 'embers--hero')}
-  ${floater('obj-redwood-sprig-a', 'floater--h1', -0.35, 18)}
-  ${floater('obj-maple-leaf', 'floater--h2', 0.25, -24)}
   <div class="hero__in wrap">
     <p class="hero__k kicker"><span class="dot" aria-hidden="true"></span><span class="hide-sm">Humboldt's Premium · </span>Cannabis dispensary <span class="hide-sm">&amp; courtyard </span>· Arcata, CA</p>
     <h1 class="hero__h t-mega" data-split>Arcata's <span class="acc">Backyard.</span></h1>
@@ -82,7 +80,6 @@ ${marquee(['Arcata’s backyard', 'Humboldt grown', 'Farm to counter', 'Stay a w
 
 <section class="band band--lit grown" data-spot style="--lx:85%;--ly:40%">
   <div class="band__clip">${img('redwood-fog', { alt: '', cls: 'band__bg grown__bg', sizes: '100vw' })}<div class="grown__shade"></div>${fog()}</div>
-  ${floater('cat-humboldt', 'floater--grown', -0.18, 8)}
   <div class="wrap">
     <div class="section-head" data-reveal>
       <div>${kicker('Humboldt grown')}<h2>${acc('From our own *backyard.*')}</h2></div>
@@ -158,7 +155,6 @@ ${marquee(['Arcata’s backyard', 'Humboldt grown', 'Farm to counter', 'Stay a w
   <div class="wrap story-band__grid">
     <div class="story-band__media" data-reveal>
       ${slatPhoto('interior-wide', { alt: 'Inside the store James built: glass counters, slat walls, square pendant lights', sizes: '(max-width: 900px) 100vw, 46vw', cls: 'slat--tall' })}
-      ${floater('obj-redwood-sprig-b', 'floater--story', -0.2, -12)}
     </div>
     <div class="story-band__copy" data-reveal>
       ${kicker('Our story')}

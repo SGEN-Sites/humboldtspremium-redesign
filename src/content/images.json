@@ -1039,29 +1039,29 @@
  },
  "logo": {
   "kind": "live",
-  "w": 2421,
-  "h": 1287,
+  "w": 658,
+  "h": 360,
   "variants": [
    {
     "src": "img/logo-240.webp",
     "w": 240,
-    "h": 128
+    "h": 131
    },
    {
     "src": "img/logo-480.webp",
     "w": 480,
-    "h": 255
+    "h": 263
    },
    {
-    "src": "img/logo-960.webp",
-    "w": 960,
-    "h": 510
+    "src": "img/logo-658.webp",
+    "w": 658,
+    "h": 360
    }
   ],
   "png": "img/logo.png",
   "alt": "Humboldt's Premium",
   "ai": false,
-  "source": "private/sources/live/logo-main.png"
+  "source": "private/sources/live/logo-client-provided.png"
  },
  "logo-af": {
   "kind": "live",
@@ -1120,30 +1120,30 @@
    "source": "gen/vid/out/loop-fire-table.mp4"
   }
  },
- "logo-light": {
+ "logo-sticker": {
   "kind": "live",
-  "w": 2421,
-  "h": 1287,
+  "w": 680,
+  "h": 382,
   "variants": [
    {
-    "src": "img/logo-light-240.webp",
+    "src": "img/logo-sticker-240.webp",
     "w": 240,
-    "h": 128
+    "h": 135
    },
    {
-    "src": "img/logo-light-480.webp",
+    "src": "img/logo-sticker-480.webp",
     "w": 480,
-    "h": 255
+    "h": 270
    },
    {
-    "src": "img/logo-light-960.webp",
-    "w": 960,
-    "h": 510
+    "src": "img/logo-sticker-680.webp",
+    "w": 680,
+    "h": 382
    }
   ],
-  "png": "img/logo-light.png",
+  "png": "img/logo-sticker.png",
   "alt": "Humboldt's Premium",
   "ai": false,
-  "source": "private/sources/live/logo-light.png"
+  "source": "private/sources/live/logo-sticker.png"
  }
 }

@@ -1,7 +1,7 @@
 // courtyard.mjs: the courtyard & lounge (the hero of the experience) and What's on.
 import { esc, u, icon, img, imgSrc, btn, kicker, linkArrow, acc, video, asset } from '../lib/html.mjs';
 import { store, FACTS, LEARN, DAYS } from '../content/site.mjs';
-import { pageHero, fog, embers, floater, slatPhoto, faqList, ctaBand, marquee, wheelCard, dealsBoard } from '../lib/parts.mjs';
+import { pageHero, fog, embers, slatPhoto, faqList, ctaBand, marquee, wheelCard, dealsBoard } from '../lib/parts.mjs';
 
 function courtyard() {
   const fire = video('fire-table');
@@ -14,8 +14,6 @@ function courtyard() {
     ${fog('fog--hero')}
     ${embers(52, 'embers--hero')}
   </div>
-  ${floater('obj-redwood-sprig-a', 'floater--y1', -0.4, 20)}
-  ${floater('obj-maple-leaf', 'floater--y2', 0.3, -30)}
   <div class="wrap yhero__in">
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="${u('/')}">Home</a></li><li aria-current="page">Courtyard &amp; Lounge</li></ol></nav>
     <p class="badge-ember">${icon('flame')} Outdoor smoking lounge approved · Nov 10, 2026</p>

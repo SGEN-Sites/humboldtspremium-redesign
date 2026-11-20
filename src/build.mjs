@@ -19,7 +19,8 @@ setBuild(build);
 const pages = [];
 for (const mod of ['home', 'shop', 'courtyard', 'story', 'visit', 'more']) pages.push(...(await import(`./pages/${mod}.mjs`)).default());
 const more = await import('./pages/more.mjs');
-pages.push(more.sitemapPage(pages));
+pages.push(more.sitemapPage(pages.filter((p) => !p.lab)));
+pages.push(...(await import('./pages/lab.mjs')).default());
 pages.push(more.notFound());
 
 // duplicate-path guard (fail closed)
@@ -51,7 +52,7 @@ for (const f of ['site.js', 'fx.js']) fs.copyFileSync(path.join(ROOT, 'src/scrip
 // robots + sitemap
 const SITE = 'https://www.humboldtspremiumarcata.com';
 fs.writeFileSync(path.join(OUT, 'robots.txt'), preview ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
-const urls = pages.filter((p) => !p.file && !p.refresh).map((p) => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n');
+const urls = pages.filter((p) => !p.file && !p.refresh && !p.lab).map((p) => `<url><loc>${SITE}${p.path}</loc></url>`).join('\n');
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 if (preview) fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 console.log(`built ${pages.length} pages -> ${path.relative(ROOT, OUT)} (base ${BASE}${preview ? ', preview/noindex' : ''})`);

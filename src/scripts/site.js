@@ -225,6 +225,15 @@
   /* ---------- map: load Google only on request ---------- */
   $$('[data-map]').forEach((m) => { const b = $('[data-map-load]', m); b && b.addEventListener('click', () => { const tpl = $('[data-map-tpl]', m); m.appendChild(tpl.content.cloneNode(true)); $('[data-map-ph]', m).remove(); }); });
 
+  /* ---------- font review chip (only while a ?font= option is active) ---------- */
+  const fo = html.dataset.font;
+  if (fo && !$('.lab-grid')) {
+    const names = { live: 'A · Live site match', logo: 'B · Logo match', inknut: 'C · Inknut headlines', caps: 'D · Premium caps', western: 'E · Western + Garamond', current: 'F · Current build' };
+    const chip = d.createElement('div'); chip.className = 'font-chip';
+    chip.innerHTML = `<span>Fonts: <b>${names[fo] || fo}</b></span><a href="${html.dataset.lab}">All options</a><a href="?font=default">Reset</a>`;
+    d.body.appendChild(chip);
+  }
+
   /* ---------- product grids: search, type, sort, show more ---------- */
   $$('[data-grid]').forEach((wrap) => {
     const grid = $('.pgrid', wrap); const cards = $$('.pc', grid); const limit = Number(wrap.dataset.limit || 24);

@@ -20,21 +20,21 @@ describes the pixels, and the footer note. Product photos on category pages are 
 | `courtyard-teal` | owner | Business's own photo (Google Maps listing, By owner) | 640x480 |
 | `storefront-day` | owner | Business's own photo (Google Maps listing, By owner) | 4032x3024 |
 | `storefront-dusk` | owner | Business's own photo (Google Maps listing, By owner) | 1441x1200 |
-| `storefront-night` | live | Live site image (wixstatic) | 4032x3024 |
+| `storefront-night` | live | Live site image (wixstatic) / client-supplied logo file | 4032x3024 |
 | `street-view` | owner | Business's own photo (Google Maps listing, By owner) | 3111x1997 |
-| `interior-wide` | live | Live site image (wixstatic) | 6718x3864 |
+| `interior-wide` | live | Live site image (wixstatic) / client-supplied logo file | 6718x3864 |
 | `interior-counter` | owner | Business's own photo (Google Maps listing, By owner) | 4032x3024 |
-| `interior-door` | live | Live site image (wixstatic) | 4032x3024 |
-| `glass-case` | live | Live site image (wixstatic) | 1599x878 |
-| `merch-tees` | live | Live site image (wixstatic) | 2066x3656 |
+| `interior-door` | live | Live site image (wixstatic) / client-supplied logo file | 4032x3024 |
+| `glass-case` | live | Live site image (wixstatic) / client-supplied logo file | 1599x878 |
+| `merch-tees` | live | Live site image (wixstatic) / client-supplied logo file | 2066x3656 |
 | `sign-pole` | press | California Leaf, Feb 2025 (photo: Amy Alves) | 667x667 |
 | `leaf-gazebos` | press | California Leaf, Feb 2025 (photo: Amy Alves) | 889x667 |
 | `leaf-interior` | press | California Leaf, Feb 2025 (photo: Amy Alves) | 1392x667 |
 | `house-products` | press | California Leaf, Feb 2025 (photo: Amy Alves) | 889x667 |
-| `team-dustin` | live | Live site image (wixstatic) | 631x790 |
-| `team-justin` | live | Live site image (wixstatic) | 3024x4032 |
-| `team-misha` | live | Live site image (wixstatic) | 1199x1332 |
-| `team-james` | live | Live site image (wixstatic) | 935x1213 |
+| `team-dustin` | live | Live site image (wixstatic) / client-supplied logo file | 631x790 |
+| `team-justin` | live | Live site image (wixstatic) / client-supplied logo file | 3024x4032 |
+| `team-misha` | live | Live site image (wixstatic) / client-supplied logo file | 1199x1332 |
+| `team-james` | live | Live site image (wixstatic) / client-supplied logo file | 935x1213 |
 | `courtyard-dusk` | edited | Owner photo relit with AI (structure kept) | 4800x3584 |
 | `courtyard-night` | edited | Owner photo relit with AI (structure kept) | 4800x3584 |
 | `courtyard-sunset` | edited | Owner photo relit with AI (structure kept) | 2336x1744 |
@@ -59,9 +59,9 @@ describes the pixels, and the footer note. Product photos on category pages are 
 | `obj-redwood-sprig-a` | generated | AI-generated mood or category art | 1058x1252 |
 | `obj-redwood-sprig-b` | generated | AI-generated mood or category art | 972x1346 |
 | `obj-maple-leaf` | generated | AI-generated mood or category art | 1240x1357 |
-| `logo` | live | Live site image (wixstatic) | 2421x1287 |
-| `logo-af` | live | Live site image (wixstatic) | 1732x739 |
-| `logo-light` | live | Live site image (wixstatic) | 2421x1287 |
+| `logo` | live | Live site image (wixstatic) / client-supplied logo file | 658x360 |
+| `logo-af` | live | Live site image (wixstatic) / client-supplied logo file | 1732x739 |
+| `logo-sticker` | live | Live site image (wixstatic) / client-supplied logo file | 680x382 |
 
 ## Video
 
