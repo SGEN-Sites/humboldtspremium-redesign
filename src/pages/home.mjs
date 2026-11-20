@@ -1,7 +1,7 @@
 // home.mjs: "Arcata's Backyard". The page runs like one evening in the courtyard: golden hour to firelight.
 import { esc, u, asset, icon, img, imgSrc, btn, kicker, linkArrow, acc, video } from '../lib/html.mjs';
 import { store, CATS, catCount, FACTS, SHOP, LEARN } from '../content/site.mjs';
-import { fog, embers, catWall, feelingTiles, dealsBoard, saleRail, catRail, wheelCard, staffPicks, storyStats, visitBand, faqList, marquee, slatPhoto } from '../lib/parts.mjs';
+import { fog, embers, catFlow, feelingTiles, dealsBoard, saleRail, catRail, wheelCard, staffPicks, storyStats, visitBand, faqList, marquee, slatPhoto } from '../lib/parts.mjs';
 
 export default function home() {
   const v = video('courtyard-dusk');
@@ -34,7 +34,7 @@ export default function home() {
   <button class="hero__pause" type="button" data-video-toggle aria-pressed="false" aria-label="Pause the background video">${icon('pause')}</button>
 </section>
 
-${marquee(['Arcata’s backyard', 'Humboldt grown', 'Farm to counter', 'Stay a while', 'No ID, no sale', 'Fireside on I Street'], 'marquee--seam')}
+${marquee(['Arcata’s Backyard', 'Premium Humboldt Cannabis', 'Farm to Counter', 'Fireside on I Street', 'Since 2015', 'Stay a While'], 'marquee--seam')}
 
 <section class="band ways" data-spot style="--lx:80%;--ly:10%">
   <div class="band__clip"><span class="key-light"></span></div>
@@ -58,7 +58,7 @@ ${marquee(['Arcata’s backyard', 'Humboldt grown', 'Farm to counter', 'Stay a w
       <div>${kicker('Shop by category')}<h2>${acc('Everything on the *slat wall.*')}</h2></div>
       <div class="section-head__side"><p class="lead">Every button opens a page full of real products. Add to cart drops you straight into your bag.</p>${linkArrow('Shop all ' + catCount('shop') + ' products', '/shop/')}</div>
     </div>
-    ${catWall(['a-all-flower-1', 'a-prerolls', 'a-cartridges', 'a-concentrates', 'edibles', 'a-drinks', 'a-humboldt-grown', 'a-tintctures', 'a-topicals', 'a-cbd-cbn', 'accessories', 'a-sale-items'])}
+    ${catFlow(['a-all-flower-1', 'a-prerolls', 'a-cartridges', 'a-concentrates', 'edibles', 'a-drinks', 'a-humboldt-grown', 'a-tintctures', 'a-topicals', 'a-cbd-cbn', 'accessories', 'a-sale-items'], { id: 'cats-home' })}
   </div>
 </section>
 

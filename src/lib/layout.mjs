@@ -113,14 +113,21 @@ function gate() {
 }
 
 function splash() {
+  const lg = IMG['logo-sticker'].variants.at(-1);
   return `<div class="splash" data-splash hidden aria-hidden="true">
   <div class="splash__fog"></div>
+  <span class="sp-fog sp-fog--l"></span><span class="sp-fog sp-fog--r"></span>
+  <span class="sp-ember"></span>
   <svg class="splash__sun" viewBox="0 0 200 110" aria-hidden="true"><defs><radialGradient id="sg" cx="50%" cy="100%" r="90%"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#fdc232"/><stop offset="1" stop-color="#e8732c" stop-opacity="0"/></radialGradient></defs>
     <g class="splash__rays">${Array.from({ length: 13 }, (_, i) => { const a = Math.PI * (i / 12); const x = 100 - Math.cos(a) * 96, y = 104 - Math.sin(a) * 96; return `<line x1="100" y1="104" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('')}</g>
     <circle class="splash__core" cx="100" cy="104" r="34" fill="url(#sg)"/>
   </svg>
-  <img class="splash__logo" src="${asset(IMG['logo-sticker'].variants.at(-1).src)}" width="${IMG['logo-sticker'].variants.at(-1).w}" height="${IMG['logo-sticker'].variants.at(-1).h}" alt="" decoding="async">
-  <p class="splash__word">Arcata's <span class="acc">Backyard</span></p>
+  <div class="splash__stage">
+    <span class="splash__mark" style="--logo-mask:url('${asset(lg.src)}')"><img class="splash__logo" src="${asset(lg.src)}" width="${lg.w}" height="${lg.h}" alt="" decoding="async"><span class="sp-sheen"></span></span>
+    <span class="sp-rule"></span>
+    <p class="sp-tag">Arcata's Backyard</p>
+    <p class="splash__word">Arcata's <span class="acc">Backyard</span></p>
+  </div>
   <canvas class="splash__embers" data-splash-embers></canvas>
 </div>`;
 }
@@ -180,10 +187,11 @@ ${p.refresh ? `<meta http-equiv="refresh" content="0; url=${esc(u(p.refresh))}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#120c08">
 <link rel="icon" type="image/png" href="${asset('img/favicon.png')}">
-<link rel="preload" href="${asset('fonts/fraunces-roman.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="${asset('fonts/figtree-roman.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('fonts/cinzel-roman.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('fonts/eb-garamond-roman.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${asset('fonts/jost-roman.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${asset('css/site.css')}?v=${BUILD}">
-<script>document.documentElement.classList.replace('no-js','js');try{if(!localStorage.getItem('hp.age'))document.documentElement.classList.add('gate-pending');if(!sessionStorage.getItem('hp.splash')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!/[?&]splash=off/.test(location.search))document.documentElement.classList.add('splash-pending')}catch(e){}</script>
+<script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'1'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
 <script>(function(){try{var ids=${JSON.stringify(FONT_OPTIONS.map((o) => o.id))};var q=new URLSearchParams(location.search).get('font');if(q==='default'||q==='reset'){sessionStorage.removeItem('hp.font');q=null}else if(q&&ids.indexOf(q)>-1){sessionStorage.setItem('hp.font',q)}var f=q||sessionStorage.getItem('hp.font');if(f&&ids.indexOf(f)>-1){var d=document.documentElement;d.dataset.font=f;if(f!=='current'){d.classList.add('fo-'+f);var l=document.createElement('link');l.rel='stylesheet';l.href=${JSON.stringify(FONT_CSS)};document.head.appendChild(l)}}}catch(e){}})();</script>
 ${p.extraHead || ''}
 ${jsonLd(p)}

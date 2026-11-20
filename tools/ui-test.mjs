@@ -48,7 +48,7 @@ await p.fill('[data-grid-q]', ''); await p.click('[data-grid-type="Indica"]'); a
 ok('type chip filters the grid', await p.evaluate(() => [...document.querySelectorAll('.pgrid .pc')].filter((c) => c.offsetParent).every((c) => c.dataset.type === 'Indica')));
 // every category tile on home + shop leads to a page that has products
 await p.goto(B, { waitUntil: 'load' });
-const tiles = await p.evaluate(() => [...new Set([...document.querySelectorAll('.cat, .feel__tile, #mega-shop .mega__col a, #mega-shop .mega__side a, [href$="/shop/"]')].map((a) => a.getAttribute('href')))]);
+const tiles = await p.evaluate(() => [...new Set([...document.querySelectorAll('.cat, .cfc, .feel__tile, #mega-shop .mega__col a, #mega-shop .mega__side a, [href$="/shop/"]')].map((a) => a.getAttribute('href')))]);
 const empty = [];
 for (const href of tiles) { const r = await p.request.get(new URL(href, B).href); const t = await r.text(); const n = (t.match(/class="pc"/g) || []).length; if (r.status() !== 200 || n === 0) empty.push(`${href} (${r.status()}, ${n})`); }
 ok('every category / feeling / mega link lands on a page with products', empty.length === 0, `${tiles.length} links checked${empty.length ? ': ' + empty.join(', ') : ''}`);

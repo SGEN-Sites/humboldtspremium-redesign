@@ -69,12 +69,34 @@ export function catWall(slugs, { cls = '' } = {}) {
   return `<div class="catwall ${cls}" data-catwall>${slugs.map((s, i) => {
     const c = CATS[s]; const n = catCount(s);
     return `<a class="cat" href="${u('/' + s + '/')}" style="--i:${i}" data-tilt data-spot>
-      <span class="cat__slats" aria-hidden="true">${'<i></i>'.repeat(9)}</span>
+      <span class="cat__halo" aria-hidden="true"></span>
       <span class="cat__light" aria-hidden="true"></span>
       <span class="cat__art">${img(c.art, { alt: '', sizes: '(max-width: 760px) 40vw, 220px', pick: 1 })}</span>
       <span class="cat__body"><span class="cat__n">${n} products</span><span class="cat__name">${esc(c.name)}</span><span class="cat__blurb">${esc(c.blurb)}</span><span class="cat__go">Shop ${esc(c.name.toLowerCase())} ${icon('arrow')}</span></span>
     </a>`;
   }).join('')}</div>`;
+}
+
+// ---------- category coverflow: poster cards in one row, the centre card large and lit, neighbours recede ----------
+const GLOW = { 'a-all-flower-1': '#fdc232', 'a-indica-flower': '#6592b6', 'a-sativa-flower': '#fdc232', 'a-hybrid-flower': '#8f9d74', 'a-humboldt-grown': '#8f9d74', 'a-prerolls': '#e8732c', 'a-cartridges': '#f2a93b', 'a-concentrates': '#fce594', 'edibles': '#c2622f', 'a-drinks': '#d17f45', 'a-tintctures': '#b5652a', 'a-topicals': '#e8dece', 'a-cbd-cbn': '#6592b6', 'accessories': '#c9a24a', 'a-sale-items': '#ff9a4a' };
+export function catFlow(slugs, { id = 'cats' } = {}) {
+  return `<div class="cflow" id="${id}" data-cflow aria-roledescription="carousel" aria-label="Shop by category">
+  <div class="cflow__glow" aria-hidden="true"></div>
+  <div class="cflow__track" data-cflow-track>${slugs.map((s, i) => {
+    const c = CATS[s]; const n = catCount(s);
+    return `<a class="cfc" href="${u('/' + s + '/')}" data-i="${i}" style="--glow:${GLOW[s] || '#fdc232'}" aria-label="${esc(c.name)}: ${n} products">
+      <span class="cfc__bg" aria-hidden="true"></span>
+      <span class="cfc__top"><img class="cfc__mark" src="${asset('img/favicon.png')}" alt="" width="28" height="28"><span class="cfc__n"><b>${n}</b> products</span></span>
+      <span class="cfc__art">${img(c.art, { alt: '', sizes: '(max-width: 760px) 50vw, 260px', pick: 1 })}</span>
+      <span class="cfc__body"><span class="cfc__name">${esc(c.name)}</span><span class="cfc__blurb">${esc(c.blurb)}</span><span class="cfc__go">Shop ${esc(c.name.toLowerCase())} ${icon('arrow')}</span></span>
+    </a>`;
+  }).join('')}</div>
+  <div class="cflow__bar">
+    <button type="button" class="rail__btn" data-cflow-prev aria-label="Previous category">${icon('left')}</button>
+    <div class="cflow__dots" role="tablist" aria-label="Choose a category">${slugs.map((s, i) => `<button type="button" role="tab" class="cflow__dot" data-cflow-dot="${i}" aria-label="${esc(CATS[s].name)}"></button>`).join('')}</div>
+    <button type="button" class="rail__btn" data-cflow-next aria-label="Next category">${icon('right')}</button>
+  </div>
+</div>`;
 }
 
 // ---------- shop by feeling ----------
@@ -206,15 +228,15 @@ export function ctaBand({ k = 'Arcata’s backyard', title = 'Stay a *while.*', 
 
 // ---------- slat reveal photo (the slatted wood wall from the store) ----------
 export function slatPhoto(id, { alt, cls = '', sizes = '(max-width: 900px) 100vw, 50vw', caption = '' } = {}) {
-  return `<figure class="slat ${cls}" data-slat>
-  <span class="slat__img">${img(id, { alt, sizes })}</span>
-  <span class="slat__bars" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<i style="--s:${i}"></i>`).join('')}</span>
+  return `<figure class="slat ph ${cls}" data-ph>
+  <span class="slat__img ph__img">${img(id, { alt, sizes })}</span>
+  <span class="ph__sheen" aria-hidden="true"></span><span class="ph__mist" aria-hidden="true"></span><span class="ph__edge" aria-hidden="true"></span>
   ${caption ? `<figcaption>${caption}</figcaption>` : ''}
 </figure>`;
 }
 export function marquee(words, cls = '') {
-  const run = words.map((w) => `<span>${esc(w)}</span><i aria-hidden="true">${icon('spark')}</i>`).join('');
-  return `<div class="marquee ${cls}" aria-hidden="true"><div class="marquee__track">${run}${run}</div></div>`;
+  const run = words.map((w) => `<span>${esc(w)}</span><i aria-hidden="true"></i>`).join('');
+  return `<div class="marquee ${cls}" aria-hidden="true"><div class="marquee__track">${run}${run}${run}${run}</div></div>`;
 }
 export function aiNote(kind = 'edited') {
   return kind === 'edited' ? 'Photo: the store’s own courtyard photo, relit to dusk with AI.' : 'Illustrative image, AI-generated.';

@@ -1,7 +1,7 @@
 // visit.mjs: /arcata-details/ (live words verbatim), delivery + town pages, locations, contact, the Marsh, FAQ.
 import { esc, u, icon, img, btn, kicker, linkArrow, acc, md } from '../lib/html.mjs';
 import { store, FACTS, LEARN, deliveryTowns, catCount } from '../content/site.mjs';
-import { pageHero, fog, embers, hoursList, mapEmbed, visitBand, faqList, ctaBand, catWall, slatPhoto } from '../lib/parts.mjs';
+import { pageHero, fog, embers, hoursList, mapEmbed, visitBand, faqList, ctaBand, catFlow, slatPhoto } from '../lib/parts.mjs';
 
 function details() {
   const pol = FACTS.policies.value;
@@ -94,7 +94,7 @@ ${pageHero({ kicker: `Delivery · ${t.name}`, title: `Humboldt cannabis, *delive
   <div class="band__clip"><span class="key-light"></span></div>
   <div class="wrap">
     <div class="section-head" data-reveal><div>${kicker('What we deliver')}<h2>${acc(`The whole menu, *to ${t.name}.*`)}</h2></div><p class="lead">Free Home Delivery. Pick from ${catCount('shop')} products, then call or email your order in.</p></div>
-    ${catWall(['a-all-flower-1', 'a-prerolls', 'a-cartridges', 'edibles', 'a-drinks', 'a-humboldt-grown'], { cls: 'catwall--six' })}
+    ${catFlow(['a-all-flower-1', 'a-prerolls', 'a-cartridges', 'edibles', 'a-drinks', 'a-humboldt-grown'], { id: 'cats-town' })}
   </div>
 </section>
 <section class="band" data-spot style="--lx:15%;--ly:10%">

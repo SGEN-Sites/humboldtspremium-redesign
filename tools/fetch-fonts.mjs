@@ -1,16 +1,17 @@
 // fetch-fonts.mjs: self-host the open fonts this design uses (latin subset), writing src/assets/fonts/*.woff2 and
-// src/styles/00-fonts.css. Fraunces (SIL OFL; variable opsz/wght/SOFT/WONK, roman + italic) for display,
-// Figtree (SIL OFL; variable wght) for UI and body. Every descriptor Google sends is copied (weight ranges included).
+// src/styles/00-fonts.css. Owner's pick (option D, 2026-11-20): Cinzel (Roman capitals like the logo's PREMIUM) for
+// headlines, EB Garamond (the live age check's face, roman + italic) for reading and accent words, Jost (open Futura
+// stand-in, the live site's body face) for buttons and labels. All SIL OFL. Every descriptor Google sends is copied.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const OUT = path.resolve('src/assets/fonts');
 fs.mkdirSync(OUT, { recursive: true });
-const CSS_URL = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Figtree:ital,wght@0,300..800;1,400..600&display=swap';
+const CSS_URL = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:wght@300..800&display=swap';
 const UA = { 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' };
 const css = await fetch(CSS_URL, { headers: UA }).then((r) => r.text());
 const parts = css.split(/(?=\/\*\s*[\w-]+\s*\*\/\s*@font-face)/);
-let out = '/* Self-hosted, latin subset. Fraunces and Figtree, both SIL Open Font License. */\n';
+let out = '/* Self-hosted, latin subset. Cinzel, EB Garamond and Jost, all SIL Open Font License. */\n';
 for (const part of parts) {
   const subset = (part.match(/^\/\*\s*([\w-]+)\s*\*\//) || [])[1];
   if (subset !== 'latin') continue;

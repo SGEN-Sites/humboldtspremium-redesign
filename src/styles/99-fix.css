@@ -19,11 +19,6 @@ html.gate-pending .gate[hidden] { display: grid; }
 @media (max-width: 900px) { .tour__item--a .slat { height: auto; } }
 /* tilted seam strips and protruding art never create sideways scroll (clip is not a scroll container: sticky still works) */
 main { overflow-x: clip; }
-/* slat reveal: at rest you look THROUGH the slat wall (thin slats, the photo between them); hover/scroll opens it */
-.slat__bars { padding: 0 2%; }
-.slat__bars i { width: 46%; justify-self: center; border-radius: 3px; background: linear-gradient(90deg, #3a2516, #6b4527 45%, #3a2516); box-shadow: 6px 0 14px rgba(0, 0, 0, .45), inset 1px 0 0 rgba(255, 220, 170, .18); }
-.slat__img img { filter: saturate(.95) brightness(.8); }
-.slat.is-open .slat__img img, .slat:hover .slat__img img, a:hover > .slat .slat__img img { filter: saturate(1.05) brightness(1); }
 /* product card buttons never wrap; the price can sit on its own line in narrow cards */
 .pc__add { white-space: nowrap; }
 .pc__foot { flex-wrap: wrap; row-gap: .55rem; }
@@ -37,7 +32,6 @@ main { overflow-x: clip; }
 .grown .section-head__side { max-width: 40ch; }
 /* category wall: 6 across on wide screens; slats sit behind the product, the words sit on a calm ground */
 @media (min-width: 1240px) { .catwall:not(.catwall--dense):not(.catwall--six) { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-.cat__slats { bottom: 46%; -webkit-mask: linear-gradient(180deg, #000 55%, transparent); mask: linear-gradient(180deg, #000 55%, transparent); }
 /* hero words sit on a calm, darker left third (the building is bright behind them) */
 .hero__shade { background:
   linear-gradient(90deg, rgba(14, 9, 6, .88) 0%, rgba(14, 9, 6, .62) 32%, rgba(14, 9, 6, .12) 60%, rgba(14, 9, 6, 0) 75%),
@@ -82,3 +76,12 @@ main { overflow-x: clip; }
 @media (max-width: 760px) { .hdr__logo .logo-img { height: 48px; } }
 .ft__logo .logo-img { height: 92px; }
 .gate__logo { width: 210px; }
+/* type D: small print, captions, crumbs and data stay in Jost (Garamond's hairlines get thin at 13 px on dark) */
+.tiny, .small, .crumbs, .pg-note, .board__src, .ft__legal, .ft__nap, .ft__hours, .tline__src, .hours, .visit__facts .small, .mega__n, .chip, .pc__body, .pg-tools, .stat__l, .town__s, .evt__when, .cal__when, .faq__item summary, .qbar__i, .stk__txt, .util { font-family: var(--f-ui); }
+/* Cinzel is all capitals: headings breathe a little more and never go below a comfortable size */
+h1, h2, .t-mega { text-wrap: balance; }
+.prose h2, .prose h3 { letter-spacing: .015em; }
+.cat__name { font-size: 1.35rem; letter-spacing: .01em; }
+.pick__item, .way__t, .guide__t, .town__n, .learn-card b, .mega__card-t, .loc__body h2 { letter-spacing: .01em; }
+.about__big { font-size: clamp(1.4rem, 1.1rem + 1.3vw, 2.1rem); line-height: 1.25; }
+.gate__h { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.4rem); }

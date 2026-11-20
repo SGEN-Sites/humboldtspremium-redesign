@@ -2,7 +2,7 @@
 // "Add to cart" opens that product in the live store, where the bag and checkout live.
 import { esc, u, icon, img, btn, kicker, linkArrow, acc } from '../lib/html.mjs';
 import { CATS, CATALOG, catCount, SHOP, feelings } from '../content/site.mjs';
-import { pageHero, productGrid, catWall, feelingTiles, ctaBand } from '../lib/parts.mjs';
+import { pageHero, productGrid, catFlow, feelingTiles, ctaBand } from '../lib/parts.mjs';
 
 const LEARN_FOR = {
   'a-all-flower-1': ['/learn/indica-sativa-hybrid/', 'Indica, sativa, hybrid: what the labels mean'],
@@ -80,7 +80,7 @@ ${pageHero({
   <div class="band__clip"><span class="key-light"></span></div>
   <div class="wrap">
     <div class="section-head">${kicker('Shop by category')}<h2>${acc('Pick a *corner of the wall.*')}</h2></div>
-    ${catWall(['a-all-flower-1', 'a-indica-flower', 'a-sativa-flower', 'a-hybrid-flower', 'a-humboldt-grown', 'a-prerolls', 'a-cartridges', 'a-concentrates', 'edibles', 'a-drinks', 'a-tintctures', 'a-topicals', 'a-cbd-cbn', 'accessories', 'a-sale-items'], { cls: 'catwall--dense' })}
+    ${catFlow(['a-all-flower-1', 'a-indica-flower', 'a-sativa-flower', 'a-hybrid-flower', 'a-humboldt-grown', 'a-prerolls', 'a-cartridges', 'a-concentrates', 'edibles', 'a-drinks', 'a-tintctures', 'a-topicals', 'a-cbd-cbn', 'accessories', 'a-sale-items'], { id: 'cats-shop' })}
   </div>
 </section>
 <section class="band shop-band" id="all" data-spot style="--lx:80%;--ly:0%">
