@@ -15,7 +15,7 @@
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/cinzel-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/eb-garamond-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/jost-roman.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/humboldtspremium-redesign/assets/css/site.css?v=mwocqwsw">
+<link rel="stylesheet" href="/humboldtspremium-redesign/assets/css/site.css?v=mwodss65">
 <script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var dv=Q.get('div');if(dv==='default'||dv==='reset')sessionStorage.removeItem('hp.div');else if(/^(fog|gold|ridge|ember|none)$/.test(dv||''))sessionStorage.setItem('hp.div',dv);if(!D.hasAttribute('data-nodiv'))D.classList.add('div-'+(sessionStorage.getItem('hp.div')||'fog'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'2'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
 <script>(function(){try{var ids=["live","logo","inknut","caps","western","current"];var q=new URLSearchParams(location.search).get('font');if(q==='default'||q==='reset'){sessionStorage.removeItem('hp.font');q=null}else if(q&&ids.indexOf(q)>-1){sessionStorage.setItem('hp.font',q)}var f=q||sessionStorage.getItem('hp.font');if(f&&ids.indexOf(f)>-1){var d=document.documentElement;d.dataset.font=f;if(f!=='current'){d.classList.add('fo-'+f);var l=document.createElement('link');l.rel='stylesheet';l.href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Figtree:wght@300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,300..800;1,300..700&family=Rye&family=Sancreek&family=Cinzel:wght@400..900&family=Inknut+Antiqua:wght@400;600;700;800&display=swap";document.head.appendChild(l)}}}catch(e){}})();</script>
 
@@ -137,7 +137,7 @@
     <filter id="wgrain3" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.16" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 .24  0 0 0 0 .12  0 0 0 0 .05  0 0 0 .7 0"/></filter>
     <mask id="wring3"><circle cx="200" cy="200" r="199" fill="#fff"/><circle cx="200" cy="200" r="174" fill="#000"/></mask>
     <radialGradient id="whub3" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#fff0c4"/><stop offset=".3" stop-color="#d9a640"/><stop offset=".75" stop-color="#8a5a18"/><stop offset="1" stop-color="#4a2f0a"/></radialGradient>
-    <clipPath id="whubclip3"><circle cx="200" cy="200" r="40"/></clipPath></defs>
+    <radialGradient id="whubcap3" cx=".4" cy=".34" r=".78"><stop offset="0" stop-color="#f7dc92"/><stop offset=".42" stop-color="#b98432"/><stop offset=".85" stop-color="#6a4512"/><stop offset="1" stop-color="#3e2809"/></radialGradient></defs>
     <circle cx="200" cy="200" r="199" fill="url(#wwood3)"/>
     <rect width="400" height="400" filter="url(#wgrain3)" mask="url(#wring3)"/>
     <circle cx="200" cy="200" r="178" fill="none" stroke="url(#wgold3)" stroke-width="6"/>
@@ -147,9 +147,12 @@
     <circle cx="200" cy="200" r="174" fill="none" stroke="#1a0d06" stroke-width="2" opacity=".6"/>
     <circle cx="200" cy="200" r="58" fill="url(#whub3)"/>
     <circle cx="200" cy="200" r="58" fill="none" stroke="#3a2408" stroke-width="1.5" opacity=".6"/>
-    <circle cx="200" cy="200" r="43" fill="#140c07"/>
-    <image href="/humboldtspremium-redesign/assets/img/favicon.png" x="166" y="166" width="68" height="68" clip-path="url(#whubclip3)" preserveAspectRatio="xMidYMid meet"/>
+    <circle cx="200" cy="200" r="43" fill="url(#whubcap3)"/>
     <circle cx="200" cy="200" r="43" fill="none" stroke="url(#wgold3)" stroke-width="2.5"/>
+    <circle cx="200" cy="200" r="31" fill="none" stroke="#3a2408" stroke-width="1.4" opacity=".55"/>
+    <circle cx="200" cy="200" r="30" fill="none" stroke="#fff1c2" stroke-width=".8" opacity=".35"/>
+    <circle cx="200" cy="201.2" r="11.5" fill="#2a1608" opacity=".55"/>
+    <circle cx="200" cy="200" r="11" fill="url(#wstud3)"/>
   </svg></div>
     <svg class="wheel2__light" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs>
     <radialGradient id="wlit3" cx=".32" cy=".26" r=".85"><stop offset="0" stop-color="#fff6dc" stop-opacity=".34"/><stop offset=".45" stop-color="#fff6dc" stop-opacity=".04"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
@@ -163,8 +166,10 @@
     <p class="kicker "><span class="dot" aria-hidden="true"></span>Every 1st of the month</p>
     <h3>Spend $50 or more, <span class="acc">spin the wheel.</span></h3>
     <p>Includes both locations and delivery. **While supplies last!**</p>
-    <div class="wheel2__meta"><span class="wheel2__next" data-next-first><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Next spin: the 1st</span></span>
-    <button type="button" class="btn btn--ghost btn--sm" data-wheel-spin><span>Give it a spin</span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/><path d="M12 3v7.5M12 13.5V21M3 12h7.5M13.5 12H21M5.6 5.6l5.3 5.3M13.1 13.1l5.3 5.3M18.4 5.6l-5.3 5.3M10.9 13.1l-5.3 5.3"/></svg></button></div>
+  </div>
+  <div class="wheel2__meta">
+    <span class="wheel2__next" data-next-first><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Next spin: the 1st</span></span>
+    <button type="button" class="btn btn--sm" data-wheel-spin><span>Give it a spin</span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/><path d="M12 3v7.5M12 13.5V21M3 12h7.5M13.5 12H21M5.6 5.6l5.3 5.3M13.1 13.1l5.3 5.3M18.4 5.6l-5.3 5.3M10.9 13.1l-5.3 5.3"/></svg></button>
     <p class="wheel2__note" data-wheel-note hidden>Just for fun here. The real wheel comes out in the store on the 1st.</p>
   </div>
 </div></div></section>
@@ -322,7 +327,7 @@
     <p class="gate__fine">By entering you agree you are of legal age to view cannabis content in California. Lic. C10-0001327-LIC</p>
   </div></div>
 <div class="cursor-light" data-cursor-light aria-hidden="true"></div>
-<script src="/humboldtspremium-redesign/assets/js/site.js?v=mwocqwsw" defer></script>
-<script src="/humboldtspremium-redesign/assets/js/fx.js?v=mwocqwsw" defer></script>
+<script src="/humboldtspremium-redesign/assets/js/site.js?v=mwodss65" defer></script>
+<script src="/humboldtspremium-redesign/assets/js/fx.js?v=mwodss65" defer></script>
 </body>
 </html>
