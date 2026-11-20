@@ -18,7 +18,7 @@ const p = await ctx.newPage(); const errs = [];
 p.on('pageerror', (e) => errs.push(e.message)); p.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource|ERR_FAILED|ERR_BLOCKED/.test(m.text())) errs.push(m.text().slice(0, 160)); });
 await p.goto(B, { waitUntil: 'domcontentloaded' });
 ok('splash shows on first visit', await p.evaluate(() => { const s = document.querySelector('[data-splash]'); return s && getComputedStyle(s).display !== 'none'; }));
-await p.waitForTimeout(2600);
+await p.waitForTimeout(3400);
 ok('splash hands off to the 21+ gate', await p.evaluate(() => !document.documentElement.classList.contains('splash-pending') && document.documentElement.classList.contains('gate-on')));
 await p.click('[data-gate-yes]'); await p.waitForTimeout(400);
 ok('gate closes on YES and remembers', await p.evaluate(() => !document.documentElement.classList.contains('gate-on') && localStorage.getItem('hp.age') === '1'));

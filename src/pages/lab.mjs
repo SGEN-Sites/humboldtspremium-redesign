@@ -46,12 +46,12 @@ export function effectsLab() {
     description: 'Photo treatment and splash animation options for the Humboldt’s Premium Arcata redesign.',
     body: `<section class="lab-hd wrap fxlab"><h1>Photo and splash options</h1><p>The slatted blinds are gone. Two premium treatments to replace them are below, each live: hover the photos, or press <b>Replay the arrival</b>. Then the opening animation: the current one and two new ones. <b>See it across the site</b> switches every page; the chip in the corner switches back.</p></section>
 <section class="wrap fxlab__grid">
-  ${col('', 'Option 1', 'Gilded frame', 'A clean photo with a fine gold edge. It settles in slowly as it arrives, one warm sweep of light crosses it like candlelight on glass, and on hover the edge warms and the light passes again.', 'frame')}
+  ${col('', 'Option 1 · chosen, the site default', 'Gilded frame', 'A clean photo with a fine gold edge. It settles in slowly as it arrives, one warm sweep of light crosses it like candlelight on glass, and on hover the edge warms and the light passes again.', 'frame')}
   ${col('fx-mist', 'Option 2', 'Morning mist', 'The photo arrives soft and veiled, then the coastal fog lifts off it from the bottom up and the picture sharpens. On hover it drifts slightly with the pointer, like looking out of a window.', 'mist')}
 </section>
 <section class="wrap fxlab__sps">
-  ${sp(1, 'Sunrise (current)', 'The logo’s sun rays rise behind the real logo, embers lift, then "Arcata’s Backyard".')}
-  ${sp(2, 'Ember', 'Darkness, then a single ember rises and blooms into firelight that uncovers the logo; a gold rule draws beneath it and ARCATA’S BACKYARD settles in spaced capitals.')}
+  ${sp(1, 'Sunrise', 'The logo’s sun rays rise behind the real logo, embers lift, then "Arcata’s Backyard".')}
+  ${sp(2, 'Ember (chosen, the site default)', 'Darkness, then a single ember rises and blooms into firelight that uncovers the logo; a gold rule draws beneath it and ARCATA’S BACKYARD settles in spaced capitals.')}
   ${sp(3, 'Gilt fog', 'Two banks of coastal fog part to the sides, the logo surfaces through them, and a gold glint runs across the logo itself before the line appears.')}
 </section>`,
   };

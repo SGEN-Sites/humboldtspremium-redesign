@@ -25,12 +25,18 @@ hour, dusk, then the fire. It leads with the place (the courtyard and the newly 
 
 ## Signature moments
 
-- **Splash:** the logo's sunburst rises out of the fog, embers lift; once per visit, about 1.6 s, any input skips it,
-  then hands off to the 21+ check (which overlays the real page instead of replacing it).
+- **Splash (owner's pick S2 "Ember"):** darkness, then a single ember rises and blooms into firelight that uncovers the
+  client's logo; a gold rule draws beneath it and ARCATA'S BACKYARD settles in spaced capitals. Once per visit, about
+  2.5 s, any input skips it, then it hands off to the 21+ check (which overlays the real page instead of replacing it).
+- **Photos (owner's pick "Gilded frame"):** a fine gold edge, a slow settle as the photo arrives and one candlelight
+  sweep across it; on hover the edge warms and the light passes again. (The earlier slatted blinds are retired.)
 - **Hero:** the store's own courtyard photo, relit to dusk, in motion (AI loop: water, fog, lantern flicker), fog layers
   that part around the cursor, rising embers that scatter from the pointer, a cursor firelight glow.
-- **Slat wall:** the store's slatted walls become the reveal: at rest you look through thin slats at the photo; hover
-  (or scrolling into view on touch) turns them open. The category wall puts each product above slatted cards.
+- **Category carousel:** poster cards in one row (a coverflow): the centre card is large and lit with a glow in its
+  category's colour, neighbours recede; auto-advance with pause, arrows, dots, swipe and keyboard. The centre card
+  opens that category's page of real products.
+- **Marquee:** a slim dark band between fine gold rules, Cinzel capitals in a slow gold shimmer, gold diamonds between
+  the phrases.
 - **Daily deals board:** split-flap style, today lights up gold automatically (Pacific time).
 - **Open-now status** everywhere (utility line, hero bar, sticky bar, hours lists), computed from the posted hours.
 - **Shop by feeling:** Relax (fireside), Balance (golden marsh), Uplift (morning fog in the redwoods).
