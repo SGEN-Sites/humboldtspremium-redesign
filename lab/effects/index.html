@@ -15,8 +15,8 @@
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/cinzel-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/eb-garamond-roman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/humboldtspremium-redesign/assets/fonts/jost-roman.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/humboldtspremium-redesign/assets/css/site.css?v=mwoccm14">
-<script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'2'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
+<link rel="stylesheet" href="/humboldtspremium-redesign/assets/css/site.css?v=mwocqwsw">
+<script>document.documentElement.classList.replace('no-js','js');try{var D=document.documentElement,Q=new URLSearchParams(location.search),sp=Q.get('splash'),fx=Q.get('fx');if(!localStorage.getItem('hp.age'))D.classList.add('gate-pending');if(fx==='default'||fx==='reset')sessionStorage.removeItem('hp.fx');else if(fx==='frame'||fx==='mist')sessionStorage.setItem('hp.fx',fx);D.classList.add('fx-'+(sessionStorage.getItem('hp.fx')||'frame'));var dv=Q.get('div');if(dv==='default'||dv==='reset')sessionStorage.removeItem('hp.div');else if(/^(fog|gold|ridge|ember|none)$/.test(dv||''))sessionStorage.setItem('hp.div',dv);if(!D.hasAttribute('data-nodiv'))D.classList.add('div-'+(sessionStorage.getItem('hp.div')||'fog'));var force=false;if(sp==='reset'){sessionStorage.removeItem('hp.splashv')}else if(/^[123]$/.test(sp||'')){sessionStorage.setItem('hp.splashv',sp);force=true}D.classList.add('sp-'+(sessionStorage.getItem('hp.splashv')||'2'));if((force||!sessionStorage.getItem('hp.splash'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&sp!=='off')D.classList.add('splash-pending')}catch(e){}</script>
 <script>(function(){try{var ids=["live","logo","inknut","caps","western","current"];var q=new URLSearchParams(location.search).get('font');if(q==='default'||q==='reset'){sessionStorage.removeItem('hp.font');q=null}else if(q&&ids.indexOf(q)>-1){sessionStorage.setItem('hp.font',q)}var f=q||sessionStorage.getItem('hp.font');if(f&&ids.indexOf(f)>-1){var d=document.documentElement;d.dataset.font=f;if(f!=='current'){d.classList.add('fo-'+f);var l=document.createElement('link');l.rel='stylesheet';l.href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Figtree:wght@300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,300..800;1,300..700&family=Rye&family=Sancreek&family=Cinzel:wght@400..900&family=Inknut+Antiqua:wght@400;600;700;800&display=swap";document.head.appendChild(l)}}}catch(e){}})();</script>
 
 
@@ -73,7 +73,7 @@
   </div></div>
 <main id="main" tabindex="-1">
 <section class="lab-hd wrap fxlab"><h1>Photo and splash options</h1><p>The slatted blinds are gone. Two premium treatments to replace them are below, each live: hover the photos, or press <b>Replay the arrival</b>. Then the opening animation: the current one and two new ones. <b>See it across the site</b> switches every page; the chip in the corner switches back.</p></section>
-<section class="wrap fxlab__grid">
+<div class="seam" aria-hidden="true"></div><section class="wrap fxlab__grid">
   <div class="fxlab__col " data-fxcol>
     <p class="spec__tag">Option 1 · chosen, the site default</p><h2 class="fxlab__h">Gilded frame</h2><p class="fxlab__why">A clean photo with a fine gold edge. It settles in slowly as it arrives, one warm sweep of light crosses it like candlelight on glass, and on hover the edge warms and the light passes again.</p>
     <div class="fxlab__pics"><figure class="slat ph " data-ph>
@@ -101,7 +101,7 @@
     <div class="spec__go"><a href="#" data-replay>Replay the arrival</a><a href="/humboldtspremium-redesign/?fx=mist">See it across the site</a></div>
   </div>
 </section>
-<section class="wrap fxlab__sps">
+<div class="seam" aria-hidden="true"></div><section class="wrap fxlab__sps">
   <article class="fxlab__sp"><p class="spec__tag">S1</p><h3>Sunrise</h3><p class="fxlab__why">The logo’s sun rays rise behind the real logo, embers lift, then "Arcata’s Backyard".</p><div class="spec__go"><a href="#" data-play="1">Play here</a><a href="/humboldtspremium-redesign/?splash=1">Open the home page with it</a></div></article>
   <article class="fxlab__sp"><p class="spec__tag">S2</p><h3>Ember (chosen, the site default)</h3><p class="fxlab__why">Darkness, then a single ember rises and blooms into firelight that uncovers the logo; a gold rule draws beneath it and ARCATA’S BACKYARD settles in spaced capitals.</p><div class="spec__go"><a href="#" data-play="2">Play here</a><a href="/humboldtspremium-redesign/?splash=2">Open the home page with it</a></div></article>
   <article class="fxlab__sp"><p class="spec__tag">S3</p><h3>Gilt fog</h3><p class="fxlab__why">Two banks of coastal fog part to the sides, the logo surfaces through them, and a gold glint runs across the logo itself before the line appears.</p><div class="spec__go"><a href="#" data-play="3">Play here</a><a href="/humboldtspremium-redesign/?splash=3">Open the home page with it</a></div></article>
@@ -147,7 +147,7 @@
     <p class="gate__fine">By entering you agree you are of legal age to view cannabis content in California. Lic. C10-0001327-LIC</p>
   </div></div>
 <div class="cursor-light" data-cursor-light aria-hidden="true"></div>
-<script src="/humboldtspremium-redesign/assets/js/site.js?v=mwoccm14" defer></script>
-<script src="/humboldtspremium-redesign/assets/js/fx.js?v=mwoccm14" defer></script>
+<script src="/humboldtspremium-redesign/assets/js/site.js?v=mwocqwsw" defer></script>
+<script src="/humboldtspremium-redesign/assets/js/fx.js?v=mwocqwsw" defer></script>
 </body>
 </html>
