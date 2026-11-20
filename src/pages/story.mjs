@@ -78,7 +78,7 @@ ${pageHero({ kicker: 'Our story', title: 'Built in Humboldt. *Grown in Humboldt.
 </section>
 
 <section class="band join" id="join" data-spot>
-  <div class="band__clip">${img('storefront-night', { alt: '', cls: 'band__bg', sizes: '100vw' })}<div class="join__shade"></div>${embers(20)}</div>
+  <div class="band__clip">${img('storefront-night', { alt: '', cls: 'band__bg', sizes: '(max-width: 760px) 400vw, 100vw' })}<div class="join__shade"></div>${embers(20)}</div>
   <div class="wrap join__in" data-reveal>
     ${kicker('JOIN US')}
     <h2>${acc('Work in *the backyard.*')}</h2>

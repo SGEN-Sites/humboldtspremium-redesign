@@ -1,0 +1,48 @@
+{
+ "_about": "CSS size (px) and available densities of each staff-pick product image in src/assets/img/picks/ (<slug>-<k>x.webp). Written by the private picks-finish tool.",
+ "widowmaker-mini-black-cherry-gelato-30-7-thc-1g": {
+  "w": 240,
+  "h": 88,
+  "x": [
+   1,
+   2,
+   3
+  ]
+ },
+ "heavy-hitters-gummy-pack-midnight-cherry-lightsout-cbn-sleep-100mg-thc-100mg-cbn": {
+  "w": 141,
+  "h": 210,
+  "x": [
+   1,
+   2,
+   3
+  ]
+ },
+ "st-ides-high-tea-georgia-peach-12-oz-100mg": {
+  "w": 88,
+  "h": 210,
+  "x": [
+   1,
+   2,
+   3
+  ]
+ },
+ "space-gem-space-drops-10-pack-sweet-100mgthc": {
+  "w": 240,
+  "h": 118,
+  "x": [
+   1,
+   2,
+   3
+  ]
+ },
+ "humboldt-premium-cannabis-diamonds-sour-afghani-1g-74-8-thc": {
+  "w": 210,
+  "h": 210,
+  "x": [
+   1,
+   2,
+   3
+  ]
+ }
+}

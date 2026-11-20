@@ -1,0 +1,48 @@
+/* daily deals: every day pictures its lead deal; each deal is a row with a round product thumb and the price called out */
+.board__day { display: flex; flex-direction: column; padding: .95rem .85rem 1rem; }
+.board__art { position: relative; height: 92px; margin: .15rem 0 .55rem; display: grid; place-items: end center; isolation: isolate; }
+.board__art::before { content: ""; position: absolute; inset: 4% 8% -6%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(232, 115, 44, .32), rgba(232, 115, 44, .08) 62%, transparent); }
+.board__art::after { content: ""; position: absolute; left: 24%; right: 24%; bottom: -3px; height: 10px; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), transparent); }
+.board__art img { max-width: 100%; max-height: 92px; width: auto; height: auto; filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .55)); }
+.board__art img[data-tile] { border-radius: 12px; }
+.board__day .board__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.board__day .dl { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: .6rem; padding: .5rem 0; border-top: 1px solid rgba(244, 237, 226, .08); }
+.board__day .dl:first-child { border-top: 0; padding-top: .2rem; }
+.dl__thumb { position: relative; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, #3b2719, #150d08 75%); box-shadow: 0 0 0 1.5px rgba(252, 229, 148, .42), 0 6px 12px -6px rgba(0, 0, 0, .8); }
+.dl__thumb img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.dl__thumb img[data-tile] { padding: 0; object-fit: cover; }
+.dl__thumb--pair { background: none; box-shadow: none; overflow: visible; }
+.dl__thumb--pair > span { position: absolute; width: 25px; height: 25px; border-radius: 50%; overflow: hidden; background: #150d08; box-shadow: 0 0 0 1.5px rgba(252, 229, 148, .45), 0 4px 8px -4px rgba(0, 0, 0, .8); }
+.dl__thumb--pair > span:first-child { left: -2px; top: 0; }
+.dl__thumb--pair > span:last-child { right: -2px; bottom: 0; }
+.dl__thumb--pair img { width: 100%; height: 100%; object-fit: cover; }
+.dl__txt { min-width: 0; display: grid; gap: .12rem; }
+.dl__price { font: 700 1.2rem/1 var(--f-display); color: var(--sun); letter-spacing: .01em; }
+.dl__price small { margin-left: .3em; font: 700 .6875rem/1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ember-hot); }
+.dl__item { font: 500 .875rem/1.25 var(--f-ui); color: var(--fog-dim); }
+.board__day.is-today .board__art::before { background: radial-gradient(closest-side, rgba(255, 250, 235, .6), rgba(255, 250, 235, .12) 62%, transparent); }
+.board__day.is-today .dl { border-top-color: rgba(26, 16, 10, .14); }
+.board__day.is-today .dl__price, .board__day.is-today .dl__price small { color: var(--night-0); }
+.board__day.is-today .dl__item { color: rgba(26, 16, 10, .8); }
+.board__day.is-today .dl__thumb { box-shadow: 0 0 0 1.5px rgba(26, 16, 10, .6), 0 6px 12px -6px rgba(0, 0, 0, .5); }
+.board__day.is-today .dl__thumb--pair { box-shadow: none; }
+
+/* promos: the product beside each offer, the free item on a coin, the price on a chip */
+.promo-card { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 1rem; align-items: center; padding: .85rem 1.1rem .85rem .85rem; }
+.promo-card__art { position: relative; height: 88px; display: grid; place-items: center; border-radius: 14px; isolation: isolate;
+  background: radial-gradient(closest-side, rgba(232, 115, 44, .24), transparent 78%), rgba(0, 0, 0, .2); }
+.promo-card__art > img { max-width: 84px; max-height: 74px; width: auto; height: auto; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .55)); }
+.promo-card__art > img[data-tile] { border-radius: 10px; }
+.promo-card__get { position: absolute; right: -6px; bottom: -6px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, #3b2719, #150d08 75%); box-shadow: 0 0 0 1.5px rgba(252, 229, 148, .5), 0 8px 14px -6px rgba(0, 0, 0, .8); }
+.promo-card__get img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.promo-card__get img[data-tile] { object-fit: cover; padding: 0; }
+.promo-card__chip { position: absolute; left: 6px; top: 6px; padding: .32em .55em; border-radius: 999px; font: 700 .75rem/1 var(--f-ui); color: var(--night-0); background: linear-gradient(135deg, var(--sun), var(--amber)); box-shadow: 0 6px 14px -6px rgba(253, 194, 50, .7); }
+.promo-card__txt { min-width: 0; }
+.promo-card p { margin: .35rem 0 0; font: 500 1rem/1.4 var(--f-body); color: var(--fog); }
+@media (max-width: 760px) {
+  .promo-card { grid-template-columns: 86px minmax(0, 1fr); gap: .85rem; }
+  .promo-card__art { height: 78px; }
+  .promo-card__art > img { max-width: 70px; max-height: 64px; }
+}

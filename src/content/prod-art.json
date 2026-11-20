@@ -1,0 +1,223 @@
+{
+ "_about": "Product art for the deals board and promo cards: <key>-<k>x.webp in src/assets/img/prod, made from the store's own product photos (tiny ones upscaled with a text-preserving model, then cut out). CSS size in px at 1x, densities available, and the live-menu slug each key shows. Written by the private prodart tool.",
+ "widowmaker-gold": {
+  "slug": "widowmaker-gold-pluto-runtz-i-35-57-thc-1-9g",
+  "w": 81,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "widowmaker-mini": {
+  "slug": "widowmaker-mini-black-cherry-gelato-30-7-thc-1g",
+  "w": 150,
+  "h": 55,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-6pk": {
+  "slug": "humboldt-premium-cannabis-707-rolls-6-pack-peanut-butter-breath-h-26-2-thc-3",
+  "w": 70,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "ef-12pk": {
+  "slug": "emeralds-finest-12-pk-gushmintz-h-i-s-19-75-thc",
+  "w": 95,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-15pk": {
+  "slug": "humboldt-premium-cannabis-707-rolls-15-pack-flavor-of-humboldt-20-30-thc-9g",
+  "w": 132,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-single": {
+  "slug": "humboldt-premium-cannabis-single-peanut-butter-breath-275-thc",
+  "w": 61,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-smalls": {
+  "slug": "humboldt-premium-cannabis-sungrown-1-4-smalls-space-queen-h-23-05-thc-7g",
+  "w": 142,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-diamonds": {
+  "slug": "humboldt-premium-cannabis-diamonds-sour-afghani-1g-74-8-thc",
+  "w": 100,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "zip-littles": {
+  "slug": "zip-littles-master-kush-h-i-s-21-48-thc-7g",
+  "w": 98,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hp-eighth": {
+  "slug": "humboldt-premium-cannabis-sungrown-1-8-hot-berry-h-25-54-thc-3-5g",
+  "w": 90,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "ho-cart": {
+  "slug": "humboldt-origins-cartridge-apple-fritter-i-1g-84-9-thc",
+  "w": 79,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "quarter-zip": {
+  "slug": "zip-quarter-zip-1-4oz-gelpaya-h-i-s-21-6-thc-7g",
+  "w": 72,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "willow-ak": {
+  "slug": "willow-creekside-farms-mixed-light-afghani-i-3-5g-31-2-thc",
+  "w": 91,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "upnorth-pr": {
+  "slug": "up-north-preroll-black-cherry-soda-h-1g-24-96-thc",
+  "w": 127,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "solis-cc": {
+  "slug": "solis-sungrown-cosmic-crisp-h-3-5g-21-45-thc",
+  "w": 139,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "hhg-pr": {
+  "slug": "humboldt-homegrown-preroll-amore-de-uva-h-i-s-1g-18-02-thc",
+  "w": 100,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": true
+ },
+ "chico-pr": {
+  "slug": "chico-verde-preroll-forbidden-fruit-i-1g-270thc",
+  "w": 100,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": true
+ },
+ "fig-eighth": {
+  "slug": "fig-farms-indoor-chems-and-cherry-h-i-s-3-5g-33-37-thc",
+  "w": 123,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "fig-pr": {
+  "slug": "fig-farms-preroll-blue-face-h-1g-32-64-thc",
+  "w": 93,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ },
+ "qk-pr": {
+  "slug": "quiet-kings-preroll-white-truffle-i-1g-2738thc",
+  "w": 36,
+  "h": 100,
+  "x": [
+   1,
+   2,
+   3
+  ],
+  "tile": false
+ }
+}

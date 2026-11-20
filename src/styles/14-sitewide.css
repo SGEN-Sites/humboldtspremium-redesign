@@ -1,0 +1,10 @@
+/* site-wide pass */
+/* courtyard tour: the tall waterfall photo keeps its caption inside its own grid area */
+.tour__item--a { display: flex; flex-direction: column; }
+.tour__item--a .slat { flex: 1 1 auto; height: auto; }
+/* "By the fire": one cinematic strip, the caption set on the footage like the gilded photos (no empty half) */
+.tour__item--d { display: block; position: relative; padding: 0; overflow: hidden; border-radius: var(--r-xl); }
+.tour__item--d .tour__video { display: block; width: 100%; height: auto; aspect-ratio: 21 / 8; object-fit: cover; }
+.tour__item--d figcaption { position: absolute; inset: auto 0 0 0; margin: 0; padding: 4rem 1.75rem 1.5rem; color: var(--fog-dim);
+  background: linear-gradient(180deg, rgba(14, 9, 6, 0), rgba(14, 9, 6, .55) 40%, rgba(14, 9, 6, .9)); }
+@media (max-width: 900px) { .tour__item--d .tour__video { aspect-ratio: 4 / 3; } .tour__item--d figcaption { padding: 3rem 1.2rem 1.1rem; } }

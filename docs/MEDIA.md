@@ -69,3 +69,17 @@ describes the pixels, and the footer note. Product photos on category pages are 
 - `fire-table`: 1280px 0.7 MB; poster `video/fire-table-poster.webp`
 
 Product thumbnails: `src/assets/img/p/<product-slug>.webp`, 480px, from the live store's image CDN (316 files).
+
+## Product photos (all from the store's own uploads)
+
+- `src/assets/img/p/<slug>.webp`: up to 480px, from the live store's image CDN (316 files).
+- `src/assets/img/p/<slug>-640.webp`: a 640px photo for 2x and 3x screens. Where the store's original is 640px or
+  larger it is the store's original scaled down by its CDN; where the original is smaller (86 products, many 176-480px)
+  it is a text-preserving AI upscale of that original (fal Topaz "Text Refine", x2 or x4 under 320px). Product cards
+  offer both through `srcset`; real sizes are in `src/content/p-sizes.json`.
+- `src/assets/img/picks/<slug>-<k>x.webp` (staff picks) and `src/assets/img/prod/<key>-<k>x.webp` (deals board and
+  promos): cut-outs of the store's product photos at 1x/2x/3x. Small originals were upscaled with Topaz (High
+  Fidelity V2 or Text Refine) before the cut-out (fal BiRefNet v2); on the St. Ides can, two lines of tiny label text
+  the upscaler had to guess were replaced with a plain enlargement of the original so no invented lettering ships.
+  Logo-only uploads (Chico Verde, Humboldt Homegrown) are shown whole as rounded tiles. Which product pictures which
+  deal is set in `src/content/deals.json` (a product from the same line on today's menu).

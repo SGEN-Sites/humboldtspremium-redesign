@@ -47,8 +47,12 @@ Design concept preview, built 2026-11-20. Every page carries `noindex`. Shop and
     the DCC licence record). Approve the wording, and whether the Magic Bus chapter should be told.
 12. **"Humboldt AF".** OK in public copy? (It appears on the live About page.)
 13. **Rewards / loyalty, student or veteran discounts.** Nothing is published, so no page was built.
-14. **Fonts.** Pick a pairing on `/lab/fonts/` (A live-site match, B logo match, C Inknut headlines, D premium caps,
-    E Western + Garamond, F current). The chosen faces then get self-hosted like the current ones.
+14. **Fonts.** Chosen: D, premium caps (Cinzel display, EB Garamond body and accents, Jost for small UI text),
+    self-hosted. The other pairings stay on `/lab/fonts/` for reference.
+15. **Deals pictures.** Each daily deal is pictured with a product from the same line on today's menu. Please confirm: the
+    $12 6pk shows HP 707 Rolls 6-Pack and the $20 12pk shows Emeralds Finest 12-Pk (the only 6- and 12-packs on the menu);
+    HP dry sift is not on today's menu, so that deal shows HP Diamonds; a GMOZ 1/8th and Up North 1/8ths are not on the
+    menu, so those promos picture only the $0.01 preroll.
 
 ## Defects found on the live site
 

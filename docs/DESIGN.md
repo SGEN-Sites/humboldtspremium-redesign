@@ -37,7 +37,16 @@ hour, dusk, then the fire. It leads with the place (the courtyard and the newly 
   opens that category's page of real products.
 - **Marquee:** a slim dark band between fine gold rules, Cinzel capitals in a slow gold shimmer, gold diamonds between
   the phrases.
-- **Daily deals board:** split-flap style, today lights up gold automatically (Pacific time).
+- **Daily deals board:** one card per day, today lit gold automatically (Pacific time). Each day pictures its lead deal
+  (a cut-out from the store's own product photo, lit from behind), and every deal is a row: a round product thumb, the
+  price in gold Cinzel, the item in plain words. `src/content/deals.json` maps each posted deal to its words and picture;
+  a posted deal with no entry fails the build.
+- **Promotions:** each offer card shows its product, the free-with-purchase item on a coin and the price on a gold chip.
+- **Staff picks:** tall hero cards; the product breaks out of the top of the card, a category pill and the name, today's
+  type, THC bar and price for products on the live menu, and a "Picked by" strip with a round photo (one uniform
+  placeholder where the store has no photo of that person).
+- **Wheel card:** the brass-hubbed prize wheel overflows a slim card; the words and actions use the width.
+- **Shop by feeling:** an expanding accordion (one panel open, the others as tall spines).
 - **Open-now status** everywhere (utility line, hero bar, sticky bar, hours lists), computed from the posted hours.
 - **Shop by feeling:** Relax (fireside), Balance (golden marsh), Uplift (morning fog in the redwoods).
 - **Sticky pickup bar** past the hero; hidden at the footer, with the menu open and while typing; x hides it for the visit.
@@ -60,3 +69,14 @@ under reduced motion or Save-Data; everything is visible without JavaScript; all
 No dashes before eyebrows; one accent per heading; no outlined text; flush cards (no overlapping cards); full-width
 stacked buttons on phones; equal-width buttons in a group; no product shelves; no visible "AI" tags (AI imagery is
 labelled in alt text, `data-ai` and the footer note).
+
+Owner principles (applied site-wide, checked by the private site audit on every page at desktop and phone):
+
+- **Images fill their frames.** No letterboxing in any photo or product frame.
+- **Images are sharp.** Product photos come from the store's original uploads; small originals are upscaled with a
+  text-preserving model, and every product card offers a 640px photo to 2x and 3x screens. Size hints describe the
+  rendered size (including cover scaling), so browsers fetch a file big enough.
+- **Nothing is cropped on hover.** Scrolling rails carry padding for lifted cards, protruding art and glows.
+- **Sections are seamless:** a soft seam (or the marquee band) joins every pair of sections.
+- **Pictures over copy:** offers and picks lead with the product, not a block of capitals.
+- **One type system:** Cinzel, EB Garamond, Jost, self-hosted. **One logo:** the client's own file.

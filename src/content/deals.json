@@ -1,0 +1,39 @@
+{
+ "_about": "Presentation of the daily deals and monthly promos in facts/client-facts.json (the source of every word). Each key is a deal or promo exactly as posted; 'price' and 'item' are the same words split for display (sentence case instead of the poster's all caps), 'art' names product art in prod-art.json (a product on today's live menu from the same line), 'cats' names category art for store-wide category deals. 'lead' picks the deal pictured large on each day's card. Promos: 'art' is the product pictured, 'get' the free-with-purchase item when it differs, 'chip' the price called out. A promo item not on today's menu (HP dry sift, a GMOZ 1/8th, an Up North 1/8th) is not pictured; the build fails if a posted deal or promo has no entry here.",
+ "daily": {
+  "10% OFF EDIBLES & DRINKS": { "price": "10%", "unit": "off", "item": "Edibles & drinks", "cats": ["cat-edibles", "cat-drinks"] },
+  "$12 6PK OF PREROLLS": { "price": "$12", "item": "6pk of prerolls", "art": "hp-6pk" },
+  "$10 WIDOWMAKER GOLD": { "price": "$10", "item": "Widowmaker Gold", "art": "widowmaker-gold" },
+  "$20 12PK PREROLLS": { "price": "$20", "item": "12pk prerolls", "art": "ef-12pk" },
+  "$2 HP PREROLLS": { "price": "$2", "item": "HP prerolls", "art": "hp-single" },
+  "10% OFF VAPE & CONCENTRATES": { "price": "10%", "unit": "off", "item": "Vape & concentrates", "cats": ["cat-vape", "cat-concentrates"] },
+  "$21 ¼oz SMALL BUDS": { "price": "$21", "item": "¼oz small buds", "art": "hp-smalls" },
+  "$5 MINI WIDOWMAKERS": { "price": "$5", "item": "Mini Widowmakers", "art": "widowmaker-mini" },
+  "$22 15PK PREROLLS": { "price": "$22", "item": "15pk prerolls", "art": "hp-15pk" },
+  "$10 HP DRY SIFT & DIAMONDS": { "price": "$10", "item": "HP dry sift & diamonds", "art": "hp-diamonds" },
+  "$21 ¼oz LITTLES": { "price": "$21", "item": "¼oz Littles", "art": "zip-littles" },
+  "HP 1/8th'S FOR $10": { "price": "$10", "item": "HP 1/8th's", "art": "hp-eighth" },
+  "$15 VAPE CARTRIDGES 1g HUMBOLDT ORIGINS": { "price": "$15", "item": "Humboldt Origins 1g vape cartridges", "art": "ho-cart" },
+  "¼oz ZIP FOR $25": { "price": "$25", "item": "¼oz zip", "art": "quarter-zip" },
+  "$3 HP PREROLLS": { "price": "$3", "item": "HP prerolls", "art": "hp-single" }
+ },
+ "lead": {
+  "Monday": "$12 6PK OF PREROLLS",
+  "Tuesday": "$21 ¼oz SMALL BUDS",
+  "Wednesday": "$5 MINI WIDOWMAKERS",
+  "Thursday": "$10 WIDOWMAKER GOLD",
+  "Friday": "$10 HP DRY SIFT & DIAMONDS",
+  "Saturday": "$15 VAPE CARTRIDGES 1g HUMBOLDT ORIGINS",
+  "Sunday": "$3 HP PREROLLS"
+ },
+ "promos": {
+  "Buy Willow Creekside 1/8th Cherry AK and get a select UP North 1g preroll for $0.01": { "art": "willow-ak", "get": "upnorth-pr", "chip": "$0.01" },
+  "Buy a Solis 1/8th of Cosmic Crisp or Cherry Rita, get a select Humboldt homegrown preroll for $0.01": { "art": "solis-cc", "get": "hhg-pr", "chip": "$0.01" },
+  "Buy any 4 Chico Verde 1g prerolls, get any Chico Verde 1g preroll for $0.01": { "art": "chico-pr", "chip": "$0.01" },
+  "Buy a Humboldt Homegrown GMOZ 1/8th and get a select UP North preroll for $0.01": { "art": "upnorth-pr", "chip": "$0.01" },
+  "Buy 2 Up North 1/8th's for $51 each, get an Up North Preroll for $0.01 (value of $118 for only $102)": { "art": "upnorth-pr", "chip": "$0.01" },
+  "Buy 1 Fig Farms 1/8th's for $51 each, get a Fig Farms Preroll for $0.01 (value of $118 for only $102)": { "art": "fig-eighth", "get": "fig-pr", "chip": "$0.01" },
+  "Buy 4 Quiet Kings 1g Prerolls, get any Quiet Kings 1g Preroll for $0.01 ($25 value for $20)": { "art": "qk-pr", "chip": "$0.01" },
+  "Humboldt Origins Sour Tangie, and Apple Fritter 1g cartridge only $10! (regularly $18)": { "art": "ho-cart", "chip": "$10" }
+ }
+}

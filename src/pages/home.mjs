@@ -79,7 +79,7 @@ ${marquee(['Arcata’s Backyard', 'Premium Humboldt Cannabis', 'Farm to Counter'
 </section>
 
 <section class="band band--lit grown" data-spot style="--lx:85%;--ly:40%">
-  <div class="band__clip">${img('redwood-fog', { alt: '', cls: 'band__bg grown__bg', sizes: '100vw' })}<div class="grown__shade"></div>${fog()}</div>
+  <div class="band__clip">${img('redwood-fog', { alt: '', cls: 'band__bg grown__bg', sizes: '(max-width: 760px) 400vw, 100vw' })}<div class="grown__shade"></div>${fog()}</div>
   <div class="wrap">
     <div class="section-head" data-reveal>
       <div>${kicker('Humboldt grown')}<h2>${acc('From our own *backyard.*')}</h2></div>
@@ -99,7 +99,7 @@ ${marquee(['Arcata’s Backyard', 'Premium Humboldt Cannabis', 'Farm to Counter'
 
 <section class="yard" data-yard data-spot>
   <div class="yard__stage">
-    <div class="yard__layer yard__layer--back" data-depth="0.12">${img('courtyard-night', { alt: 'The courtyard at night, lanterns and the waterfall lights glowing', sizes: '100vw', cls: 'yard__img' })}</div>
+    <div class="yard__layer yard__layer--back" data-depth="0.12">${img('courtyard-night', { alt: 'The courtyard at night, lanterns and the waterfall lights glowing', sizes: '(max-width: 760px) 400vw, 100vw', cls: 'yard__img' })}</div>
     <div class="yard__shade" aria-hidden="true"></div>
     ${fog('fog--yard')}
     ${embers(40, 'embers--yard')}

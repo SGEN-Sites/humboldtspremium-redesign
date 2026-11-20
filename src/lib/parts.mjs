@@ -5,6 +5,16 @@ import { store, CATS, CATALOG, catCount, FACTS, SHOP, DAYS, feelings, hoursShort
 
 const PIMG = new URL('../assets/img/p/', import.meta.url);
 export const hasPimg = (slug) => fs.existsSync(new URL(slug + '.webp', PIMG));
+// real pixel sizes of each product photo: a = store size (<=480), b = the 640 photo for 2x/3x screens (when there is one)
+const PSZ = JSON.parse(fs.readFileSync(new URL('../content/p-sizes.json', import.meta.url), 'utf8'));
+// The card frame is square and filled (object-fit: cover), so a landscape photo needs its frame width x its aspect.
+export function productPhoto(p) {
+  const z = PSZ[p.slug]; const base = asset('img/p/' + p.slug + '.webp');
+  if (!z) return `<img src="${base}" alt="${esc(p.name)}" width="480" height="480" loading="lazy" decoding="async">`;
+  const [w, h] = z.a; const A = Math.max(1, w / h).toFixed(2);
+  const set = z.b ? ` srcset="${base} ${w}w, ${asset('img/p/' + p.slug + '-640.webp')} ${z.b[0]}w" sizes="(max-width: 760px) calc(72vw * ${A}), calc(260px * ${A})"` : '';
+  return `<img src="${base}"${set} alt="${esc(p.name)}" width="${w}" height="${h}" loading="lazy" decoding="async">`;
+}
 
 // ---------- atmosphere ----------
 export const fog = (cls = '') => `<div class="fog ${cls}" aria-hidden="true"><span class="fog__l fog__l--1"></span><span class="fog__l fog__l--2"></span><span class="fog__l fog__l--3"></span></div>`;
@@ -34,7 +44,7 @@ const thcOf = (name) => { const m = name.match(/(\d{1,2}(?:\.\d+)?)\s*%\s*THC/i)
 const num = (p) => Number(String(p).replace(/[^0-9.]/g, '')) || 0;
 export function productCard(p, { i = 0, catSlug = '' } = {}) {
   const t = typeOf(p.name); const thc = thcOf(p.name);
-  const pic = hasPimg(p.slug) ? `<img src="${asset('img/p/' + p.slug + '.webp')}" alt="${esc(p.name)}" width="480" height="480" loading="lazy" decoding="async">` : `<span class="pc__ph">${icon('leaf')}</span>`;
+  const pic = hasPimg(p.slug) ? productPhoto(p) : `<span class="pc__ph">${icon('leaf')}</span>`;
   const ribbon = p.ribbon ? `<span class="pc__rib${/sale/i.test(p.ribbon) ? ' is-sale' : ''}">${esc(p.ribbon.replace(/!+$/, ''))}</span>` : '';
   const price = p.was ? `<span class="pc__price"><s aria-label="Regular price">${esc(p.was)}</s> <b aria-label="Sale price">${esc(p.price)}</b></span>` : `<span class="pc__price"><b>${esc(p.price)}</b></span>`;
   return `<article class="pc" data-tilt data-type="${t}" data-price="${num(p.price)}" data-thc="${thc ?? ''}" data-name="${esc(p.name.toLowerCase())}" data-cats="${esc(p.cats.join(' '))}" style="--i:${i % 12}">
@@ -102,23 +112,41 @@ export function catFlow(slugs, { id = 'cats' } = {}) {
 // ---------- shop by feeling ----------
 export function feelingTiles() {
   return `<div class="feel" data-accordion>${feelings.map((f, i) => `<a class="feel__tile feel__tile--${f.tone}${i === 0 ? ' is-open' : ''}" href="${u('/' + f.slug + '/')}" data-spot style="--i:${i}">
-    <span class="feel__media">${img(f.img, { alt: '', sizes: '(max-width: 760px) 100vw, 33vw' })}</span>
+    <span class="feel__media">${img(f.img, { alt: '', sizes: '(max-width: 760px) 100vw, 72vw' })}</span>
     <span class="feel__shade"></span>
     <span class="feel__spine" aria-hidden="true">${f.key}</span>
     <span class="feel__body"><span class="feel__k">${catCount(f.slug)} ${esc(CATS[f.slug].name.toLowerCase())} products</span><span class="feel__name">${f.key}</span><span class="feel__line">${esc(f.line)}</span><span class="feel__go">Shop ${f.key.toLowerCase()} ${icon('arrow')}</span></span>
   </a>`).join('')}</div>`;
 }
 
-// ---------- daily deals board ----------
+// ---------- daily deals board: each day pictures its lead deal, and every deal is a row with a round product thumb,
+// the price called out and the item in plain words. deals.json maps each posted deal (facts) to its picture; product
+// art comes from the store's own photos (prod-art.json). A posted deal with no entry fails the build. ----------
+const DEALS = JSON.parse(fs.readFileSync(new URL('../content/deals.json', import.meta.url), 'utf8'));
+const PROD_ART = JSON.parse(fs.readFileSync(new URL('../content/prod-art.json', import.meta.url), 'utf8'));
+export function prodArt(key, { alt = '', cls = '' } = {}) {
+  const a = PROD_ART[key]; if (!a) throw new Error('product art missing from prod-art.json: ' + key);
+  const hi = a.x.filter((d) => d > 1).map((d) => `${asset(`img/prod/${key}-${d}x.webp`)} ${d}x`).join(', ');
+  return `<img src="${asset(`img/prod/${key}-1x.webp`)}"${hi ? ` srcset="${hi}"` : ''} width="${a.w}" height="${a.h}" alt="${esc(alt)}" loading="lazy" decoding="async"${cls ? ` class="${cls}"` : ''}${a.tile ? ' data-tile' : ''}>`;
+}
+const dealOf = (x) => { const d = DEALS.daily[x]; if (!d) throw new Error('daily deal without an entry in deals.json: ' + x); return d; };
+const dealThumb = (d) => d.cats
+  ? `<span class="dl__thumb dl__thumb--pair">${d.cats.map((c) => `<span>${img(c, { alt: '', sizes: '40px', pick: 0 })}</span>`).join('')}</span>`
+  : `<span class="dl__thumb">${prodArt(d.art)}</span>`;
 export function dealsBoard({ compact = false } = {}) {
-  const d = FACTS.dailyDeals.value;
+  const posted = FACTS.dailyDeals.value;
   return `<div class="board${compact ? ' board--compact' : ''}" data-deals-board>
-  ${DAYS.slice(1).concat('Sunday').map((day) => `<div class="board__day" data-day="${day}">
+  ${DAYS.slice(1).concat('Sunday').map((day) => {
+    const lead = dealOf(DEALS.lead[day]);
+    const leadName = lead.art ? ((CATALOG.products[PROD_ART[lead.art].slug] || {}).name || lead.item) : lead.item;
+    return `<div class="board__day" data-day="${day}">
     <p class="board__name"><span>${day.slice(0, 3)}</span><span class="board__full">${day}</span><span class="board__today">Today</span></p>
-    <ul>${d[day].map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
-  </div>`).join('')}
+    <div class="board__art">${lead.art ? prodArt(lead.art, { alt: leadName }) : ''}</div>
+    <ul class="board__list">${posted[day].map((x) => { const d = dealOf(x); return `<li class="dl">${dealThumb(d)}<span class="dl__txt"><b class="dl__price">${esc(d.price)}${d.unit ? `<small>${esc(d.unit)}</small>` : ''}</b><span class="dl__item">${esc(d.item)}</span></span></li>`; }).join('')}</ul>
+  </div>`;
+  }).join('')}
   </div>
-  <p class="board__src">Daily deals as posted by the Arcata store. **Discounts cannot be stacked or applied to items on special or to sale items.</p>`;
+  <p class="board__src">Daily deals as posted by the Arcata store, pictured with products from today's menu. **Discounts cannot be stacked or applied to items on special or to sale items.</p>`;
 }
 
 export function saleRail() {
@@ -135,7 +163,11 @@ export function catRail(slug, max = 14) {
 // ---------- promos ----------
 export function promoCards() {
   const m = FACTS.monthPromos;
-  const card = (t, i, tag) => `<li class="promo-card glass" style="--i:${i}"><span class="promo-card__tag">${tag}</span><p>${esc(t)}</p></li>`;
+  const card = (t, i, tag) => {
+    const p = DEALS.promos[t]; if (!p) throw new Error('promo without an entry in deals.json: ' + t);
+    const art = `<span class="promo-card__art">${prodArt(p.art)}${p.get ? `<span class="promo-card__get">${prodArt(p.get)}</span>` : ''}${p.chip ? `<b class="promo-card__chip">${esc(p.chip)}</b>` : ''}</span>`;
+    return `<li class="promo-card glass" style="--i:${i}">${art}<span class="promo-card__txt"><span class="promo-card__tag">${tag}</span><p>${esc(t)}</p></span></li>`;
+  };
   return `<div class="promos">
     <div><h3 class="promos__h">${esc(m.month)} promotions</h3><ul class="promo-list">${m.value.map((t, i) => card(t, i, 'This month')).join('')}</ul></div>
     <div><h3 class="promos__h">On going promos</h3><ul class="promo-list">${m.ongoing.map((t, i) => card(t, i, 'Ongoing')).join('')}</ul></div>
@@ -214,6 +246,8 @@ export function wheelCard() {
 // name, details from the live menu when the product is on today's shelf, and a "Picked by" strip with a round photo
 // (or one uniform placeholder) and the action. ----------
 const PICKS = JSON.parse(fs.readFileSync(new URL('../content/picks.json', import.meta.url), 'utf8'));
+// product art made from the store's full-size uploads: CSS size + the densities on disk (<slug>-<k>x.webp)
+const PICK_ART = JSON.parse(fs.readFileSync(new URL('../content/picks-art.json', import.meta.url), 'utf8'));
 const PICK_CAT = {
   Flower: { art: 'cat-flower', glow: '#fdc232', href: '/a-all-flower-1/', label: 'flower' },
   Joints: { art: 'cat-prerolls', glow: '#e8732c', href: '/a-prerolls/', label: 'prerolls' },
@@ -227,8 +261,10 @@ export function staffPicks() {
   const cards = PICKS.picks.map((k, i) => {
     const c = PICK_CAT[k.cat]; const p = k.slug ? CATALOG.products[k.slug] : null;
     const thc = p ? thcOf(p.name) : null; const mg = p ? (p.name.match(/(\d{2,4})\s*mg\s*thc/i) || [])[1] : null; const t = p ? typeOf(p.name) : '';
-    const art = p && fs.existsSync(new URL('../assets/img/picks/' + p.slug + '.webp', import.meta.url))
-      ? `<img src="${asset('img/picks/' + p.slug + '.webp')}" alt="${esc(p.name)}" loading="lazy" decoding="async">`
+    const pa = p ? PICK_ART[p.slug] : null;
+    const hi = pa ? pa.x.filter((d) => d > 1).map((d) => `${asset(`img/picks/${p.slug}-${d}x.webp`)} ${d}x`).join(', ') : '';
+    const art = pa
+      ? `<img src="${asset(`img/picks/${p.slug}-1x.webp`)}"${hi ? ` srcset="${hi}"` : ''} width="${pa.w}" height="${pa.h}" alt="${esc(p.name)}" loading="lazy" decoding="async">`
       : img(c.art, { alt: '', sizes: '260px', pick: 1 });
     const who = k.house ? 'The house' : k.who;
     const av = k.photo ? img(k.photo, { alt: '', sizes: '44px', pick: 0 }) : AVATAR_PH;
@@ -316,7 +352,7 @@ export function faqList(items, { open = 0 } = {}) {
 // ---------- closing CTA ----------
 export function ctaBand({ k = 'Arcata’s backyard', title = 'Stay a *while.*', lead = 'Order ahead, pick up at 460 I St, and pull up a chair in the courtyard.', image = 'courtyard-night', actions } = {}) {
   return `<section class="cta-band" data-spot>
-  <div class="band__clip">${img(image, { alt: '', cls: 'cta-band__img', sizes: '100vw' })}<div class="cta-band__shade"></div>${fog()}${embers(30)}</div>
+  <div class="band__clip">${img(image, { alt: '', cls: 'cta-band__img', sizes: '(max-width: 760px) 400vw, 100vw' })}<div class="cta-band__shade"></div>${fog()}${embers(30)}</div>
   <div class="wrap cta-band__in" data-reveal>
     ${kicker(k)}
     <h2 class="cta-band__h">${acc(title)}</h2>
@@ -329,7 +365,7 @@ export function ctaBand({ k = 'Arcata’s backyard', title = 'Stay a *while.*', 
 // ---------- slat reveal photo (the slatted wood wall from the store) ----------
 export function slatPhoto(id, { alt, cls = '', sizes = '(max-width: 900px) 100vw, 50vw', caption = '' } = {}) {
   return `<figure class="slat ph ${cls}" data-ph>
-  <span class="slat__img ph__img">${img(id, { alt, sizes })}</span>
+  <span class="slat__img ph__img">${img(id, { alt, sizes: sizes.replace(/(\d+)vw/g, (m, n) => Math.min(200, Number(n) * 2) + 'vw') })}</span>
   <span class="ph__sheen" aria-hidden="true"></span><span class="ph__mist" aria-hidden="true"></span><span class="ph__edge" aria-hidden="true"></span>
   ${caption ? `<figcaption>${caption}</figcaption>` : ''}
 </figure>`;

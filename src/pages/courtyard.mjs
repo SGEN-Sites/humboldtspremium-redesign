@@ -28,7 +28,7 @@ ${marquee(['Gazebos', 'Fireplaces', 'A rock waterfall', 'Jolly Giant Creek', 'Th
 <section class="band yard-tour" data-spot style="--lx:20%;--ly:10%">
   <div class="band__clip"><span class="key-light"></span>${fog('fog--low')}</div>
   <div class="wrap">
-    <div class="section-head" data-reveal><div>${kicker('What’s out back')}<h2>${acc('Arcata’s backyard, *piece by piece.*')}</h2></div><p class="lead">The best seat in the house is outside. Hover a photo to open the slats.</p></div>
+    <div class="section-head" data-reveal><div>${kicker('What’s out back')}<h2>${acc('Arcata’s backyard, *piece by piece.*')}</h2></div><p class="lead">The best seat in the house is outside.</p></div>
     <div class="tour">
       <figure class="tour__item tour__item--a" data-reveal>${slatPhoto('waterfall-golden', { alt: 'The rock waterfall and its Bigfoot statue at golden hour', sizes: '(max-width: 900px) 100vw, 58vw' })}<figcaption><b>The rock waterfall</b> Built into the courtyard wall. Look for the Bigfoot on the rocks.</figcaption></figure>
       <figure class="tour__item tour__item--b" data-reveal>${slatPhoto('leaf-gazebos', { alt: 'Covered gazebos and teak chairs in the courtyard', sizes: '(max-width: 900px) 100vw, 38vw' })}<figcaption><b>Covered gazebos</b> Shade on sunny days, cover when the fog rolls in.</figcaption></figure>
@@ -41,7 +41,7 @@ ${marquee(['Gazebos', 'Fireplaces', 'A rock waterfall', 'Jolly Giant Creek', 'Th
 </section>
 
 <section class="band band--lit news" id="news" data-spot style="--lx:85%;--ly:20%">
-  <div class="band__clip">${img('courtyard-night', { alt: '', cls: 'band__bg news__bg', sizes: '100vw' })}<div class="news__shade"></div>${embers(28)}</div>
+  <div class="band__clip">${img('courtyard-night', { alt: '', cls: 'band__bg news__bg', sizes: '(max-width: 760px) 400vw, 100vw' })}<div class="news__shade"></div>${embers(28)}</div>
   <div class="wrap news__grid">
     <div data-reveal>
       ${kicker('The lounge news')}
@@ -74,7 +74,7 @@ ${marquee(['Gazebos', 'Fireplaces', 'A rock waterfall', 'Jolly Giant Creek', 'Th
 </section>
 
 <section class="band marsh-band" data-spot>
-  <div class="band__clip">${img('marsh-golden', { alt: '', cls: 'band__bg', sizes: '100vw' })}<div class="marsh-band__shade"></div>${fog()}</div>
+  <div class="band__clip">${img('marsh-golden', { alt: '', cls: 'band__bg', sizes: '(max-width: 760px) 400vw, 100vw' })}<div class="marsh-band__shade"></div>${fog()}</div>
   <div class="wrap marsh-band__in" data-reveal>
     ${kicker('Before or after the Marsh')}
     <h2>${acc('Walk the Marsh, *then the fire.*')}</h2>
